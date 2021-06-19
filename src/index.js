@@ -1,3 +1,4 @@
+const passportUse       = require('./resources/app/middleware/passport')
 const LocalStrategy     = require('passport-local').Strategy
 const handlebars        = require('express-handlebars')
 const session           = require("express-session")
@@ -7,15 +8,8 @@ const morgan            = require('morgan')
 const path              = require('path')
 const app               = express()
 const port              = 3000
-const hostname          = '0.0.0.0'
-const db                = require('./resources/config/db/index')
 
 
-//MongoDB Connect
-db.connect()
-
-//Models
-const auther = require('./resources/models/auther')
 
 //Static file in path: src/resources/public
 app.use(express.static(path.join(__dirname, 'resources/public')))
@@ -34,10 +28,27 @@ app.engine('hbs', handlebars({
 app.set('view engine', 'hbs')  
 app.set('views', path.join(__dirname, 'resources/views'))
 
+//Database
+const db = require('./resources/config/db/index')
+db.connect()
+const auther = require('./resources/models/auther')
+
+//PassPort
+app.use(session({
+  secret: "mySecret",
+  resave: false,
+  saveUninitialized: true,
+}))
+app.use(passport.initialize());
+app.use(passport.session());
+
+//Login
+app.post('/login', passportUse)
+
 //Route
 const route = require('./resources/routes/routeIndex')
 route(app)
 
-app.listen(port, hostname, () => {
-  console.log(`Example app listening at http://${hostname}:${port}`)
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
 })
