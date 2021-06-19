@@ -1,0 +1,353 @@
+@import '_variables', 'base';
+
+html{
+   font-size: 62.5%;
+   font-family: 'Open Sans', sans-serif;
+}
+
+*{ 
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+.header{
+   height: $headerHeight;
+   background-color: $primaryColor;
+   position: relative;
+
+   a{
+      text-decoration: none;
+      color: $WhiteColor;
+   }
+   
+   //Right and Left
+   .header__border-left,
+   .header__border-right {
+      width: 8px;
+      height: 8px;
+      overflow: hidden;
+      position: absolute;
+      top: 100%;
+   }
+   .header__border-right:before,
+   .header__border-left:before {
+      content: "";
+      display: block;
+      width: 200%;
+      height: 200%;
+      position: absolute;
+      border-radius: 50%;
+      top: 0;
+   }
+   //Left
+   .header__border-left{
+      left: 0;
+   }
+   .header__border-left:before{
+      left: 0;
+      box-shadow: -4px -4px 0 0 $primaryColor;
+   }
+   //Right
+   .header__border-right{
+      right: 0;
+   }
+   .header__border-right:before{
+      right: 0;
+      box-shadow: 4px -4px 0 0 $primaryColor;
+   }
+}
+
+.header-container{
+   height: 100%;
+   max-width: 1240px;
+   margin: 0 auto;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+
+   //Header Left
+   .header-container__left{
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+   }
+
+   .header-container__logo{
+      color: $iconWhiteColor;
+      font-size: 3rem;
+      padding: 1.4rem;
+   }
+   .header-container__logo-title{
+      color: $WhiteColor;
+      font-size: 1.6rem;
+      letter-spacing: 3px;
+   }
+
+   //Header - Right
+   .header-container__right{
+      display: flex;
+      align-items: center;
+
+   }
+   .header-container-right__account{
+      display: flex;
+      align-items: center;
+      margin-right: 1.4rem;
+
+      .avatar-container{
+         $height: 3rem;
+         $min-width: 10rem;
+         $max-width: 20rem;
+         display: flex;
+         align-items: center;
+         height: $height;
+         min-width: $min-width; 
+         max-width: $max-width;
+         white-space: nowrap;
+         text-overflow: ellipsis;
+         background-color: rgb(255, 255, 255);
+         border-radius: 5rem;
+         position: relative;
+
+         .name{
+            $margin-size: $height + 1rem;
+            height: 1.2rem;
+            line-height: 1.2rem;
+            min-width: $min-width - $height;
+            max-width: $max-width - $height - 2rem;
+            color: $textColor;
+            font-size: 1.2rem;
+            margin: 0 $margin-size 0 1rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            text-overflow: ellipsis;
+         }
+   
+         .avatar{
+            font-size: $height;
+            color: $primaryColor;
+            padding: 0.2rem;
+            position: absolute;
+            right: -.3rem;
+         }   
+
+         .avatar-container--hover{
+            background-color: $WhiteColor;
+            width: 100%;
+            justify-self: center;
+            list-style: none;
+            position: absolute;
+            top: 100%;
+            right: 3rem;
+            margin-top: 1rem;
+            display: none;
+
+            .avatar-container__item{
+               display: flex;
+               flex-direction: column;
+               justify-content: center;
+               align-items: center;
+
+               .avatar-container-item__title{
+                  display: block;
+                  height: 4rem;
+                  width: 100%;
+                  background-color: rgb(0, 255, 136);
+                  color: $textColor;
+                  line-height: 4rem;
+                  text-align: center;
+               }
+            }
+         }
+
+         .avatar-container--hover::after{
+            content: '';
+            height: 1rem;
+            width: 100%;
+            position: absolute;
+            bottom: 100%;
+         }
+         
+         .avatar-container--hover::before{
+            content: '';
+            width: 0;
+            height: 0;
+            border-bottom: 1rem solid rgb(0, 255, 136);;
+            border-left: 1rem solid transparent;
+            position: absolute;
+            bottom: 100%;
+            right: 0;
+         }
+      }
+
+      .avatar-container:hover .avatar-container--hover{
+         display: block
+      }
+
+      .header-container-right__account-login{
+         border-right: .2rem solid rgba(255, 255, 255, 0.555);
+      }
+      a{
+         padding: 0 0.5rem;
+         font-size: 1.3rem;
+      }
+   }
+}
+
+.login,
+.register{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   .login-background{
+      height: 100vh;
+      width: 100%;
+      filter: blur(0.3rem);
+   }
+   .register-background{
+      height: 100vh;
+      width: 100%;
+      filter: blur(1rem);
+   }
+   
+   .login-form,
+   .register-form{
+      width: 45rem;
+      height: 50rem;
+      position: absolute;
+      background-color: $WhiteColor;
+      border-radius: 1rem;
+      box-shadow: 0 .1rem 1rem .1rem rgba(0, 0, 0, 0.452);
+
+      .login-form__header,
+      .register-form__header{
+         height: 2.4rem;
+         display: flex;
+         align-items: center;
+         margin: 2rem 0 ;
+         padding-left: 1rem;
+         position: relative;
+
+         .login-form__seperate,
+         .register-form__seperate{
+            height: 110%;
+            width: 0.3rem;
+            background-color: $primaryColor;
+            margin-right: 0.5rem;
+            position: relative;
+            bottom: -0.1rem;
+         }
+
+         .login-form__title,
+         .register-form__title{
+            font-size: 2.2rem;
+         }
+      }
+
+      .login-form__header::after,
+      .reigster-form__header::after{
+         content: '';
+         width: calc(100% - 2rem);
+         border-bottom: 0.1rem solid #ccc;
+         position: absolute;
+         top: 140%
+      }
+
+      .login-form__avatar,
+      .register-form__avatar{
+         height: 180px;
+         display: flex;
+         
+         #avatar-input{
+            display: none;
+         }
+
+         &-icon{
+            width: 12rem;
+            margin: auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+
+            .avatar-input__title{
+               $height: 3rem;
+               $border-size: .2rem;
+               height: $height;
+               min-width: 21rem;
+               display: flex;
+               align-items: center;
+               background-color: #00AEFF;
+               border-radius: $height / 2;
+               position: absolute;
+               top: 105%;
+               padding: 0 1rem;
+               border: $border-size solid $primaryColor;
+
+               span{
+                  color: rgb(255, 255, 255);
+                  font-size: 1.4rem;
+                  margin-left: $height / 2 + 1.7rem;
+                  text-align: center;
+                  line-height: $height;
+               }
+
+               img{
+                  height: $height;
+                  position: absolute;
+                  left: -$border-size;
+               }
+            }
+         }
+      }
+}
+
+   #logUsername, #logPassword,
+   #regUsername, #regPassword, #regGmail, #regName{
+      height: 3.5rem;
+      width: 85%;
+      display: block;
+      margin: 1rem auto;
+      border: 0;
+      border-bottom: 0.1rem solid $primaryColor;
+      outline: none;
+   }
+
+   #regUsername, #regPassword{
+      width: 50%;
+      display: inline-block;
+   }
+
+   #regUsername{
+      margin-right: 5%;
+   }
+
+   .username-and-password{
+      display: flex;
+      width: 85%;
+      justify-content: center;
+      margin: 0 auto;
+   }
+
+   .login-btn,
+   .register-btn{
+      $height: 5rem;
+      display: block;
+      margin-top: 4rem;
+      margin-left: auto;
+      margin-right: auto;
+      height: $height;
+      min-width: 15rem;
+      background-color: $primaryColor;
+      border-radius: 0.5rem;
+      color: $WhiteColor;
+      font-weight: bold;
+      font-size: 1.8rem;
+      p{
+         line-height: $height;
+      }
+   }
+}

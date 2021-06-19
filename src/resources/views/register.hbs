@@ -1,0 +1,37 @@
+<div class="register">
+   <img class="register-background" src="/img/register_background.jpg" alt="">
+
+   <form method="post" action="/register" class="register-form" >
+      <div class="register-form__header">
+         <div class="register-form__seperate"></div>
+         <p class="register-form__title">Đăng ký</p>
+      </div>
+      
+      <div class="register-form__avatar">
+         {{!-- AVATAR IMAGE --}}
+         <div class="register-form__avatar-icon">
+            <img src="svg/add-user.svg" alt="">
+            <label for="avatar-input" class="avatar-input__title">
+               <span>THÊM ẢNH ĐẠI DIỆN</span>
+               <img src="svg/add.svg" alt="">
+            </label>
+         </div>
+
+         {{!-- AVATAR INPUT --}}
+         <input type="file" id="avatar-input">
+
+      </div>
+      
+      <label for="name"></label>
+      <input type="text" id="regName" name="name" placeholder="Họ và tên..." autocomplete="off">
+      <div class="username-and-password">
+         <label for="username"></label>
+         <input type="text" id="regUsername" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
+         <label for="password"></label>
+         <input type="password" id="regPassword" name="password" placeholder="Mật khẩu...">
+      </div>
+      <label for="gmail"></label>
+      <input type="text" id="regGmail" name="gmail" placeholder="Gmail của bạn...">
+      <button class="btn register-btn" type="submit"><p>ĐĂNG KÝ</p></button>
+   </form>
+</div>

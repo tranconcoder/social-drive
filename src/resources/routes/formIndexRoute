@@ -1,0 +1,14 @@
+[Route Import]
+const siteRouter = require('./site')
+const locatesRouter = require('./locate')
+
+[Process]
+function routes(app) {
+
+    app.use('/locate', locatesRouter) 
+    
+    app.use('/', siteRouter)
+
+}
+
+module.exports = routes

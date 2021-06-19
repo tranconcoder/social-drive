@@ -1,0 +1,12 @@
+[Thư viện]
+const express = require('express')
+const router = express.Router()
+
+[Controller]
+const [controller] = require('[linkController]')
+
+[Router]
+router.get('/', [Phương thức trong controller])
+
+[export cho index route]
+module.exports = router

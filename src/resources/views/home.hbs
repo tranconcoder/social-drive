@@ -1,0 +1,36 @@
+<div class="header grid">
+   <div class="header-container grid wine">
+      <a href="/" class="header-container__left">
+         <i class="header-container__logo fal fa-images"></i>
+         <span class="header-container__logo-title">TVC Social</span>
+      </a>
+
+      <a href="" class="header-container__right">
+         <div class="header-container-right__account">
+         {{#if username}}
+            <div class="avatar-container">
+               <span>
+                  <p class="name">{{name}}</p>
+               </span>
+               <i class="avatar fad fa-user-circle"></i>
+
+               {{!-- HOVER --}}
+               <ul class="avatar-container--hover">
+                  <li class="avatar-container__item">
+                     <a class="avatar-container-item__title" href="/logout">Đăng xuất</a>
+                  </li>
+               </ul>
+            </div>
+         {{else}}
+            <h1>{{username}}</h1>
+            <a href="/login" class="header-container-right__account-login">Đăng nhập</a>
+            <a href="/register" class="header-container-right__account-register">Đăng ký</a>
+         {{/if}}
+         </div>
+      </a>
+   </div>
+
+   {{!-- Border --}}
+   <div class="header__border-right"></div>
+   <div class="header__border-left"></div>
+</div>

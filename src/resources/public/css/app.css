@@ -1,0 +1,388 @@
+.btn {
+  border: 0;
+  height: 1.8rem;
+  min-width: 3rem; }
+
+.triangle {
+  width: 0;
+  height: 0; }
+
+.triangle.up {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red; }
+
+.triangle.down {
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid red; }
+
+.triangle.left {
+  border-top: 50px solid transparent;
+  border-right: 100px solid red;
+  border-bottom: 50px solid transparent; }
+
+.triangle.right {
+  border-top: 50px solid transparent;
+  border-left: 100px solid red;
+  border-bottom: 50px solid transparent; }
+
+html {
+  font-size: 62.5%;
+  font-family: 'Open Sans', sans-serif; }
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; }
+
+.header {
+  height: 60px;
+  background-color: #7a00cc;
+  position: relative; }
+  .header a {
+    text-decoration: none;
+    color: #fff; }
+  .header .header__border-left,
+  .header .header__border-right {
+    width: 8px;
+    height: 8px;
+    overflow: hidden;
+    position: absolute;
+    top: 100%; }
+  .header .header__border-right:before,
+  .header .header__border-left:before {
+    content: "";
+    display: block;
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    border-radius: 50%;
+    top: 0; }
+  .header .header__border-left {
+    left: 0; }
+  .header .header__border-left:before {
+    left: 0;
+    box-shadow: -4px -4px 0 0 #7a00cc; }
+  .header .header__border-right {
+    right: 0; }
+  .header .header__border-right:before {
+    right: 0;
+    box-shadow: 4px -4px 0 0 #7a00cc; }
+
+.header-container {
+  height: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+  .header-container .header-container__left {
+    display: flex;
+    align-items: center;
+    text-decoration: none; }
+  .header-container .header-container__logo {
+    color: whitesmoke;
+    font-size: 3rem;
+    padding: 1.4rem; }
+  .header-container .header-container__logo-title {
+    color: #fff;
+    font-size: 1.6rem;
+    letter-spacing: 3px; }
+  .header-container .header-container__right {
+    display: flex;
+    align-items: center; }
+  .header-container .header-container-right__account {
+    display: flex;
+    align-items: center;
+    margin-right: 1.4rem; }
+    .header-container .header-container-right__account .avatar-container {
+      display: flex;
+      align-items: center;
+      height: 3rem;
+      min-width: 10rem;
+      max-width: 20rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      background-color: white;
+      border-radius: 5rem;
+      position: relative; }
+      .header-container .header-container-right__account .avatar-container .name {
+        height: 1.2rem;
+        line-height: 1.2rem;
+        min-width: 7rem;
+        max-width: 15rem;
+        color: #5c5c5c;
+        font-size: 1.2rem;
+        margin: 0 4rem 0 1rem;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        text-overflow: ellipsis; }
+      .header-container .header-container-right__account .avatar-container .avatar {
+        font-size: 3rem;
+        color: #7a00cc;
+        padding: 0.2rem;
+        position: absolute;
+        right: -.3rem; }
+      .header-container .header-container-right__account .avatar-container .avatar-container--hover {
+        background-color: #fff;
+        width: 100%;
+        justify-self: center;
+        list-style: none;
+        position: absolute;
+        top: 100%;
+        right: 3rem;
+        margin-top: 1rem;
+        display: none; }
+        .header-container .header-container-right__account .avatar-container .avatar-container--hover .avatar-container__item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; }
+          .header-container .header-container-right__account .avatar-container .avatar-container--hover .avatar-container__item .avatar-container-item__title {
+            display: block;
+            height: 4rem;
+            width: 100%;
+            background-color: #00ff88;
+            color: #5c5c5c;
+            line-height: 4rem;
+            text-align: center; }
+      .header-container .header-container-right__account .avatar-container .avatar-container--hover::after {
+        content: '';
+        height: 1rem;
+        width: 100%;
+        position: absolute;
+        bottom: 100%; }
+      .header-container .header-container-right__account .avatar-container .avatar-container--hover::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-bottom: 1rem solid #00ff88;
+        border-left: 1rem solid transparent;
+        position: absolute;
+        bottom: 100%;
+        right: 0; }
+    .header-container .header-container-right__account .avatar-container:hover .avatar-container--hover {
+      display: block; }
+    .header-container .header-container-right__account .header-container-right__account-login {
+      border-right: 0.2rem solid rgba(255, 255, 255, 0.555); }
+    .header-container .header-container-right__account a {
+      padding: 0 0.5rem;
+      font-size: 1.3rem; }
+
+.login,
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .login .login-background,
+  .register .login-background {
+    height: 100vh;
+    width: 100%;
+    filter: blur(0.3rem); }
+  .login .register-background,
+  .register .register-background {
+    height: 100vh;
+    width: 100%;
+    filter: blur(1rem); }
+  .login .login-form,
+  .login .register-form,
+  .register .login-form,
+  .register .register-form {
+    width: 45rem;
+    height: 50rem;
+    position: absolute;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0.1rem 1rem 0.1rem rgba(0, 0, 0, 0.452); }
+    .login .login-form .login-form__header,
+    .login .login-form .register-form__header,
+    .login .register-form .login-form__header,
+    .login .register-form .register-form__header,
+    .register .login-form .login-form__header,
+    .register .login-form .register-form__header,
+    .register .register-form .login-form__header,
+    .register .register-form .register-form__header {
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      margin: 2rem 0;
+      padding-left: 1rem;
+      position: relative; }
+      .login .login-form .login-form__header .login-form__seperate,
+      .login .login-form .login-form__header .register-form__seperate,
+      .login .login-form .register-form__header .login-form__seperate,
+      .login .login-form .register-form__header .register-form__seperate,
+      .login .register-form .login-form__header .login-form__seperate,
+      .login .register-form .login-form__header .register-form__seperate,
+      .login .register-form .register-form__header .login-form__seperate,
+      .login .register-form .register-form__header .register-form__seperate,
+      .register .login-form .login-form__header .login-form__seperate,
+      .register .login-form .login-form__header .register-form__seperate,
+      .register .login-form .register-form__header .login-form__seperate,
+      .register .login-form .register-form__header .register-form__seperate,
+      .register .register-form .login-form__header .login-form__seperate,
+      .register .register-form .login-form__header .register-form__seperate,
+      .register .register-form .register-form__header .login-form__seperate,
+      .register .register-form .register-form__header .register-form__seperate {
+        height: 110%;
+        width: 0.3rem;
+        background-color: #7a00cc;
+        margin-right: 0.5rem;
+        position: relative;
+        bottom: -0.1rem; }
+      .login .login-form .login-form__header .login-form__title,
+      .login .login-form .login-form__header .register-form__title,
+      .login .login-form .register-form__header .login-form__title,
+      .login .login-form .register-form__header .register-form__title,
+      .login .register-form .login-form__header .login-form__title,
+      .login .register-form .login-form__header .register-form__title,
+      .login .register-form .register-form__header .login-form__title,
+      .login .register-form .register-form__header .register-form__title,
+      .register .login-form .login-form__header .login-form__title,
+      .register .login-form .login-form__header .register-form__title,
+      .register .login-form .register-form__header .login-form__title,
+      .register .login-form .register-form__header .register-form__title,
+      .register .register-form .login-form__header .login-form__title,
+      .register .register-form .login-form__header .register-form__title,
+      .register .register-form .register-form__header .login-form__title,
+      .register .register-form .register-form__header .register-form__title {
+        font-size: 2.2rem; }
+    .login .login-form .login-form__header::after,
+    .login .login-form .reigster-form__header::after,
+    .login .register-form .login-form__header::after,
+    .login .register-form .reigster-form__header::after,
+    .register .login-form .login-form__header::after,
+    .register .login-form .reigster-form__header::after,
+    .register .register-form .login-form__header::after,
+    .register .register-form .reigster-form__header::after {
+      content: '';
+      width: calc(100% - 2rem);
+      border-bottom: 0.1rem solid #ccc;
+      position: absolute;
+      top: 140%; }
+    .login .login-form .login-form__avatar,
+    .login .login-form .register-form__avatar,
+    .login .register-form .login-form__avatar,
+    .login .register-form .register-form__avatar,
+    .register .login-form .login-form__avatar,
+    .register .login-form .register-form__avatar,
+    .register .register-form .login-form__avatar,
+    .register .register-form .register-form__avatar {
+      height: 180px;
+      display: flex; }
+      .login .login-form .login-form__avatar #avatar-input,
+      .login .login-form .register-form__avatar #avatar-input,
+      .login .register-form .login-form__avatar #avatar-input,
+      .login .register-form .register-form__avatar #avatar-input,
+      .register .login-form .login-form__avatar #avatar-input,
+      .register .login-form .register-form__avatar #avatar-input,
+      .register .register-form .login-form__avatar #avatar-input,
+      .register .register-form .register-form__avatar #avatar-input {
+        display: none; }
+      .login .login-form .login-form__avatar-icon,
+      .login .login-form .register-form__avatar-icon,
+      .login .register-form .login-form__avatar-icon,
+      .login .register-form .register-form__avatar-icon,
+      .register .login-form .login-form__avatar-icon,
+      .register .login-form .register-form__avatar-icon,
+      .register .register-form .login-form__avatar-icon,
+      .register .register-form .register-form__avatar-icon {
+        width: 12rem;
+        margin: auto;
+        position: relative;
+        display: flex;
+        justify-content: center; }
+        .login .login-form .login-form__avatar-icon .avatar-input__title,
+        .login .login-form .register-form__avatar-icon .avatar-input__title,
+        .login .register-form .login-form__avatar-icon .avatar-input__title,
+        .login .register-form .register-form__avatar-icon .avatar-input__title,
+        .register .login-form .login-form__avatar-icon .avatar-input__title,
+        .register .login-form .register-form__avatar-icon .avatar-input__title,
+        .register .register-form .login-form__avatar-icon .avatar-input__title,
+        .register .register-form .register-form__avatar-icon .avatar-input__title {
+          height: 3rem;
+          min-width: 21rem;
+          display: flex;
+          align-items: center;
+          background-color: #00AEFF;
+          border-radius: 1.5rem;
+          position: absolute;
+          top: 105%;
+          padding: 0 1rem;
+          border: 0.2rem solid #7a00cc; }
+          .login .login-form .login-form__avatar-icon .avatar-input__title span,
+          .login .login-form .register-form__avatar-icon .avatar-input__title span,
+          .login .register-form .login-form__avatar-icon .avatar-input__title span,
+          .login .register-form .register-form__avatar-icon .avatar-input__title span,
+          .register .login-form .login-form__avatar-icon .avatar-input__title span,
+          .register .login-form .register-form__avatar-icon .avatar-input__title span,
+          .register .register-form .login-form__avatar-icon .avatar-input__title span,
+          .register .register-form .register-form__avatar-icon .avatar-input__title span {
+            color: white;
+            font-size: 1.4rem;
+            margin-left: 3.2rem;
+            text-align: center;
+            line-height: 3rem; }
+          .login .login-form .login-form__avatar-icon .avatar-input__title img,
+          .login .login-form .register-form__avatar-icon .avatar-input__title img,
+          .login .register-form .login-form__avatar-icon .avatar-input__title img,
+          .login .register-form .register-form__avatar-icon .avatar-input__title img,
+          .register .login-form .login-form__avatar-icon .avatar-input__title img,
+          .register .login-form .register-form__avatar-icon .avatar-input__title img,
+          .register .register-form .login-form__avatar-icon .avatar-input__title img,
+          .register .register-form .register-form__avatar-icon .avatar-input__title img {
+            height: 3rem;
+            position: absolute;
+            left: -0.2rem; }
+  .login #logUsername, .login #logPassword,
+  .login #regUsername, .login #regPassword, .login #regGmail, .login #regName,
+  .register #logUsername,
+  .register #logPassword,
+  .register #regUsername,
+  .register #regPassword,
+  .register #regGmail,
+  .register #regName {
+    height: 3.5rem;
+    width: 85%;
+    display: block;
+    margin: 1rem auto;
+    border: 0;
+    border-bottom: 0.1rem solid #7a00cc;
+    outline: none; }
+  .login #regUsername, .login #regPassword,
+  .register #regUsername,
+  .register #regPassword {
+    width: 50%;
+    display: inline-block; }
+  .login #regUsername,
+  .register #regUsername {
+    margin-right: 5%; }
+  .login .username-and-password,
+  .register .username-and-password {
+    display: flex;
+    width: 85%;
+    justify-content: center;
+    margin: 0 auto; }
+  .login .login-btn,
+  .login .register-btn,
+  .register .login-btn,
+  .register .register-btn {
+    display: block;
+    margin-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    height: 5rem;
+    min-width: 15rem;
+    background-color: #7a00cc;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.8rem; }
+    .login .login-btn p,
+    .login .register-btn p,
+    .register .login-btn p,
+    .register .register-btn p {
+      line-height: 5rem; }
