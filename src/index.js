@@ -42,9 +42,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Login
-app.post('/login', passportUse)
-
 //Route
 const route = require('./resources/routes/routeIndex')
 route(app)
