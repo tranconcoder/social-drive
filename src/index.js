@@ -7,8 +7,8 @@ const morgan            = require('morgan')
 const path              = require('path')
 const app               = express()
 const port              = 3000
-const hostname          = 0.0.0.0
-const db = require('./resources/config/db/index')
+const hostname          = '0.0.0.0'
+const db                = require('./resources/config/db/index')
 
 
 //MongoDB Connect
