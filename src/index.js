@@ -4,10 +4,11 @@ const handlebars        = require('express-handlebars')
 const session           = require("express-session")
 const passport          = require('passport')
 const express           = require('express')
+const morgan            = require('morgan')
 const path              = require('path')
 const app               = express()
+const host              = '0.0.0.0'
 const port              = 3000
-const morgan            = require('morgan')
 
 
 
@@ -55,6 +56,6 @@ app.use(passport.session());
 const route = require('./resources/routes/routeIndex')
 route(app)
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+app.listen(port, host, () => {
+  console.log(`Example app listening at http://${host}:${port}`)
 })
