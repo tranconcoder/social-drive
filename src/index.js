@@ -26,9 +26,14 @@ app.use(
 app.engine('hbs', handlebars({
   extname: ".hbs",
   helpers: {
-    
+    stem: (filepath) => {
+      if (typeof filepath !== 'string') {
+        throw new TypeError(utils.expectedType('filepath', 'string', filepath))
+      }
+      return path.basename(filepath, path.extname(filepath))
+    }
   }
-}))  
+}))
 app.set('view engine', 'hbs')  
 app.set('views', path.join(__dirname, 'resources/views'))
 

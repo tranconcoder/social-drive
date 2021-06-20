@@ -31,9 +31,9 @@ passport.use(new LocalStrategy(
 ))
 
 router.post('/',
-    passport.authenticate('local',
-        { successRedirect: '/',
-        failureRedirect: '/login',}
+  passport.authenticate('local',
+    { successRedirect: '/',
+    failureRedirect: '/login',}
 ))
 
 passport.serializeUser(function(user, done) {
