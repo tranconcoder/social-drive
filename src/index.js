@@ -4,10 +4,10 @@ const handlebars        = require('express-handlebars')
 const session           = require("express-session")
 const passport          = require('passport')
 const express           = require('express')
-const morgan            = require('morgan')
 const path              = require('path')
 const app               = express()
 const port              = 3000
+const morgan            = require('morgan')
 
 
 
@@ -19,11 +19,15 @@ app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 //Morgan
-app.use(morgan('combined'))
-
+app.use(
+  morgan(' :remote-user [:date[clf]] :response-time ms       ":method"')
+)
 //HandleBars
 app.engine('hbs', handlebars({
   extname: ".hbs",
+  helpers: {
+    
+  }
 }))  
 app.set('view engine', 'hbs')  
 app.set('views', path.join(__dirname, 'resources/views'))

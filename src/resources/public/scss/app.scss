@@ -1,4 +1,4 @@
-@import '_variables', 'base';
+@import '_variables', 'base', 'grid';
 
 html{
    font-size: 62.5%;
@@ -72,6 +72,58 @@ html{
       display: flex;
       align-items: center;
       text-decoration: none;
+      height: 100%;
+
+      .header-container-left__search-bar-icon{
+         height: 4rem;
+         width: 4rem;
+         font-size: 2.8rem;
+         color:rgb(173, 245, 255);
+         background-color: rgb(101, 0, 168);
+         margin-left: 3rem;
+         padding: .8rem;
+         border-radius: 50%;
+         cursor: pointer;
+      }
+
+      @keyframes showSearchBar {
+         from {
+            opacity: 0;
+            transform: translateX(-7rem);
+         } to {
+            opacity: 1;
+            transform: translateX(0);
+         }
+      }
+
+      @keyframes hideSearchBar {
+         from {
+            opacity: 1;
+            transform: translateX(0);
+         } to {
+            opacity: 0;
+            transform: translateX(-7rem);
+         }
+      }
+
+      .header-container-left__search-bar{
+         height: 3.6rem;
+         margin-left: 3rem;
+         border-radius: 2rem;
+         border: 0;
+         outline: none;
+         padding: 0 1rem;
+         font-size: 1.4rem;
+         font-weight: 600;
+         background-color: rgb(235, 235, 235);
+         animation: showSearchBar linear 300ms;
+         display: none;
+         cursor: pointer;
+
+         &:focus{
+            box-shadow: 0 0 .3rem .3rem #be5bff;
+         }
+      }
    }
 
    .header-container__logo{
@@ -261,10 +313,6 @@ html{
       .register-form__avatar{
          height: 180px;
          display: flex;
-         
-         #avatar-input{
-            display: none;
-         }
 
          &-icon{
             width: 12rem;
@@ -272,39 +320,10 @@ html{
             position: relative;
             display: flex;
             justify-content: center;
-
-            .avatar-input__title{
-               $height: 3rem;
-               $border-size: .2rem;
-               height: $height;
-               min-width: 21rem;
-               display: flex;
-               align-items: center;
-               background-color: #00AEFF;
-               border-radius: $height / 2;
-               position: absolute;
-               top: 105%;
-               padding: 0 1rem;
-               border: $border-size solid $primaryColor;
-
-               span{
-                  color: rgb(255, 255, 255);
-                  font-size: 1.4rem;
-                  margin-left: $height / 2 + 1.7rem;
-                  text-align: center;
-                  line-height: $height;
-               }
-
-               img{
-                  height: $height;
-                  position: absolute;
-                  left: -$border-size;
-               }
-            }
          }
       }
-}
-
+   }
+   
    #logUsername, #logPassword,
    #regUsername, #regPassword, #regGmail, #regName{
       height: 3.5rem;
@@ -349,5 +368,14 @@ html{
       p{
          line-height: $height;
       }
+   }
+}
+
+
+.body{
+   margin: 0 auto;
+
+   &__slide-show{
+      height: calc(100vh - 6rem)
    }
 }
