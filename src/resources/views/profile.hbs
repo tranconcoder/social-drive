@@ -4,7 +4,7 @@
 
         {{!-- Row --}}
         <div class="row">
-            <div class="profile-container__avatar col l-3 m-0 c-0">
+            <div class="profile-container__avatar col l-2 m-0 c-0">
                 <div class="profile-container__avatar-container">
                     <img src="{{avatar}}svg/user-default.svg" class="profile-container__avatar-container-img"></img>
                     <div class="profile-container__avatar-container-name">{{name}}</div>
@@ -12,14 +12,21 @@
                 </div>
             </div>
 
-            <div class="profile-container__infomation col l-6 m-9 c-12">
+            <div class="profile-container__infomation col l-8 m-9 c-12">
                 <div class="profile-container__infomation-container">
                     <span class="profile-container__infomation-container-title">CHỈNH SỬA THÔNG TIN</span>
-                    <div class="profile-container__infomation-container-form-change"></div>
+                    <form class="profile-container__infomation-container-form-change" action="/profile/update">
+                        <label for="">Họ và Tên</label>
+                        <input type="text" name="name">
+                        <label for="">Địa chỉ Gmail</label>
+                        <input type="text" name="gmail">
+                        
+                        <button type="submit">Cập nhật</button>
+                    </form>
                 </div>
             </div>
 
-            <div class="profile-container__others col l-3 m-3 c-0">
+            <div class="profile-container__others col l-2 m-3 c-0">
                 3
             </div>
         </div>

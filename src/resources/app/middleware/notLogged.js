@@ -5,7 +5,7 @@ function notLogged (req, res, next) {
     if (req.user) {
         next()
     } else{
-        res.render('notLogged')
+        res.redirect('/login')
     }
 }
 

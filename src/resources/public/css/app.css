@@ -429,15 +429,12 @@
 
 html {
   font-size: 62.5%;
-  font-family: 'Open Sans', sans-serif; }
+  font-family: 'Baloo Paaji 2', cursive; }
 
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box; }
-
-.header-layout {
-  height: 60px; }
 
 .header {
   height: 60px;
@@ -450,31 +447,34 @@ html {
   .header a {
     text-decoration: none;
     color: #eefdff; }
+  .header .header__border-left {
+    top: 100%;
+    left: -.1rem; }
+  .header .header__border-right {
+    top: 100%;
+    right: -.1rem; }
   .header .header__border-left,
   .header .header__border-right {
-    width: 14px;
-    height: 14px;
+    width: 1rem;
+    height: 1rem;
     overflow: hidden;
     position: absolute; }
-  .header .header__border-right:before,
-  .header .header__border-left:before {
+  .header .header__border-left:before,
+  .header .header__border-right:before {
     content: "";
     display: block;
     width: 200%;
     height: 200%;
     position: absolute;
-    border-radius: 50%;
-    top: 0; }
-  .header .header__border-left {
-    left: -.1rem; }
+    border-radius: 50%; }
   .header .header__border-left:before {
+    top: 0;
     left: 0;
-    box-shadow: -7px -7px 0 0 #7a00cc; }
-  .header .header__border-right {
-    right: -.1rem; }
+    box-shadow: -0.5rem -0.5rem 0 0 #7a00cc; }
   .header .header__border-right:before {
+    top: 0;
     right: 0;
-    box-shadow: 7px -7px 0 0 #7a00cc; }
+    box-shadow: 0.5rem -0.5rem 0 0 #7a00cc; }
 
 .header-container.grid.wide {
   height: 100%;
@@ -509,14 +509,6 @@ html {
   to {
     opacity: 1;
     transform: translateX(0); } }
-
-@keyframes hideSearchBar {
-  from {
-    opacity: 1;
-    transform: translateX(0); }
-  to {
-    opacity: 0;
-    transform: translateX(-7rem); } }
     .header-container.grid.wide .header-container__left .header-container-left__search-bar {
       height: 3.6rem;
       margin-left: 3rem;
@@ -546,85 +538,115 @@ html {
   .header-container.grid.wide .header-container__right {
     display: flex;
     align-items: center; }
-  .header-container.grid.wide .header-container-right__account {
-    display: flex;
-    align-items: center;
-    margin-right: 1.4rem; }
-    .header-container.grid.wide .header-container-right__account .avatar-container {
-      display: flex;
-      align-items: center;
-      height: 3rem;
+    .header-container.grid.wide .header-container__right .header-account {
+      display: block;
+      height: 3.6rem;
       min-width: 10rem;
-      max-width: 20rem;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      background-color: white;
-      border-radius: 5rem;
-      position: relative; }
-      .header-container.grid.wide .header-container-right__account .avatar-container .name {
-        height: 1.2rem;
-        line-height: 1.2rem;
-        min-width: 7rem;
-        max-width: 15rem;
-        color: #5c5c5c;
-        font-size: 1.2rem;
-        margin: 0 4rem 0 1rem;
-        overflow: hidden;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 1;
-        text-overflow: ellipsis; }
-      .header-container.grid.wide .header-container-right__account .avatar-container .avatar {
-        font-size: 3rem;
-        color: #7a00cc;
-        padding: 0.2rem;
-        position: absolute;
-        right: -.3rem; }
-      .header-container.grid.wide .header-container-right__account .avatar-container .avatar-container--hover {
+      max-width: 30rem; }
+      .header-container.grid.wide .header-container__right .header-account__container {
+        height: 100%;
         background-color: #eefdff;
-        width: 100%;
-        justify-self: center;
-        list-style: none;
-        position: absolute;
-        top: 100%;
-        right: 3rem;
-        margin-top: 1rem;
-        display: none; }
-        .header-container.grid.wide .header-container-right__account .avatar-container .avatar-container--hover .avatar-container__item {
+        border-radius: 10rem;
+        display: flex;
+        align-items: center;
+        position: relative; }
+        .header-container.grid.wide .header-container__right .header-account__container:hover .header-account__container-hover {
+          display: flex; }
+        .header-container.grid.wide .header-container__right .header-account__container-name {
+          max-width: 25rem;
+          font-size: 1.5rem;
+          color: #5c5c5c;
+          padding-left: 1.5rem;
+          padding-right: 4.6rem;
+          overflow: hidden;
           display: flex;
-          flex-direction: column;
           justify-content: center;
           align-items: center; }
-          .header-container.grid.wide .header-container-right__account .avatar-container .avatar-container--hover .avatar-container__item .avatar-container-item__title {
-            display: block;
-            height: 4rem;
-            width: 100%;
-            background-color: #00ff88;
-            color: #5c5c5c;
-            line-height: 4rem;
-            text-align: center; }
-      .header-container.grid.wide .header-container-right__account .avatar-container .avatar-container--hover::after {
-        content: '';
-        height: 1rem;
-        width: 100%;
-        position: absolute;
-        bottom: 100%; }
-      .header-container.grid.wide .header-container-right__account .avatar-container .avatar-container--hover::before {
-        content: '';
-        width: 0;
-        height: 0;
-        border-bottom: 1rem solid #00ff88;
-        border-left: 1rem solid transparent;
-        position: absolute;
-        bottom: 100%;
-        right: 0; }
-    .header-container.grid.wide .header-container-right__account .avatar-container:hover .avatar-container--hover {
-      display: block; }
-    .header-container.grid.wide .header-container-right__account .header-container-right__account-login {
-      border-right: 0.2rem solid rgba(255, 255, 255, 0.555); }
-    .header-container.grid.wide .header-container-right__account a {
-      padding: 0 0.5rem;
-      font-size: 1.3rem; }
+        .header-container.grid.wide .header-container__right .header-account__container-avatar-img {
+          font-size: 3.6rem;
+          color: #5c5c5c;
+          position: absolute;
+          right: 0;
+          top: 0; }
+        .header-container.grid.wide .header-container__right .header-account__container-hover {
+          position: absolute;
+          top: 100%;
+          right: 1rem;
+          transform: translateY(1.2rem);
+          list-style: none;
+          display: none;
+          flex-direction: column; }
+          .header-container.grid.wide .header-container__right .header-account__container-hover-item:not(.header-account__container-hover-item:first-child) {
+            margin-top: 1.2rem; }
+          .header-container.grid.wide .header-container__right .header-account__container-hover-item {
+            width: 18rem;
+            height: 3rem;
+            background-color: #b966f0d0;
+            border-radius: .5rem;
+            box-shadow: 0 0.2rem 0.6rem 0.2rem #7c7c7c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: showItem linear .1s; }
+            .header-container.grid.wide .header-container__right .header-account__container-hover-item:hover {
+              box-shadow: 0 0.2rem 0.6rem 0.2rem #d226d4; }
+            .header-container.grid.wide .header-container__right .header-account__container-hover-item:hover .header-account__container-hover-item-container__arrow {
+              display: block; }
+            .header-container.grid.wide .header-container__right .header-account__container-hover-item::before {
+              content: '';
+              width: 100%;
+              height: 1.2rem;
+              position: absolute;
+              bottom: 100%; }
+            .header-container.grid.wide .header-container__right .header-account__container-hover-item-container {
+              color: #eefdff;
+              align-items: center;
+              justify-content: center;
+              display: flex; }
+              .header-container.grid.wide .header-container__right .header-account__container-hover-item-container span {
+                font-size: 1.6rem;
+                line-height: 2rem;
+                justify-self: center; }
+              .header-container.grid.wide .header-container__right .header-account__container-hover-item-container__arrow {
+                position: absolute;
+                font-size: 2rem;
+                left: 1rem;
+                display: none;
+                transform: rotate(-90deg);
+                animation: showArrow linear .15s; }
+
+@keyframes showArrow {
+  from {
+    opacity: 0;
+    transform: translateX(-1rem);
+    transform: rotate(0); }
+  to {
+    opacity: 1;
+    transform: translateX(0rem);
+    transform: rotate(-90deg); } }
+
+@keyframes showItem {
+  from {
+    opacity: 0;
+    height: 0; }
+  to {
+    opacity: 1;
+    height: 3rem; } }
+        .header-container.grid.wide .header-container__right .header-account__container-hover::before {
+          content: '';
+          width: 100%;
+          height: 1rem;
+          position: absolute;
+          bottom: 100%;
+          background-color: transparent; }
+    .header-container.grid.wide .header-container__right .header-container-right__account-login,
+    .header-container.grid.wide .header-container__right .header-container-right__account-register {
+      font-size: 1.7rem; }
+    .header-container.grid.wide .header-container__right .header-container-right__account-seperate {
+      border-left: 0.2rem solid #cccccc;
+      height: 1.8rem;
+      margin: 0 .5rem; }
 
 .login,
 .register {
@@ -815,10 +837,12 @@ html {
     .profile.grid .profile-container__avatar-container-name, .profile.grid .profile-container__avatar-container-gmail {
       text-align: center;
       word-wrap: break-word;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       overflow: hidden;
       display: -webkit-box; }
+      .profile.grid .profile-container__avatar-container-name:hover, .profile.grid .profile-container__avatar-container-gmail:hover {
+        -webkit-line-clamp: 10; }
     .profile.grid .profile-container__avatar-container-name {
       margin-top: 1rem;
       width: 70%;
@@ -835,29 +859,49 @@ html {
       height: 50rem; }
       .profile.grid .profile-container__infomation-container-title {
         max-width: 100%;
-        font-size: 2.4rem;
+        font-size: 3rem;
         font-weight: 500;
         margin-top: 1rem;
-        padding: 1.5rem 0 1.5rem 1rem;
-        display: block; }
+        margin: .5rem 0 1.5rem 1rem;
+        display: block;
+        text-decoration: underline; }
+      .profile.grid .profile-container__infomation-container-form-change {
+        display: flex;
+        flex-direction: column; }
+        .profile.grid .profile-container__infomation-container-form-change label {
+          width: 100%;
+          font-size: 2rem;
+          display: block;
+          margin-top: 2rem; }
+        .profile.grid .profile-container__infomation-container-form-change input {
+          height: 3rem;
+          width: 100%; }
+        .profile.grid .profile-container__infomation-container-form-change button {
+          width: 10rem;
+          height: 3rem;
+          background-color: #23d3ff;
+          font-size: 1.6rem;
+          font-weight: 600;
+          border: 0;
+          border-radius: .25rem;
+          align-self: flex-end; }
 
-.profile--none.grid {
+.not-found {
   height: calc(100vh - 6rem);
   display: flex;
   flex-direction: column; }
-  .profile--none.grid .row.not-found-background {
+  .not-found-background {
     height: 70vh;
     flex: 1; }
-    .profile--none.grid .row.not-found-background .col {
+    .not-found-background .col {
       display: flex; }
-      .profile--none.grid .row.not-found-background .col img {
+      .not-found-background .col img {
         width: 30rem;
         margin: auto; }
-  .profile--none.grid .row.not-found-content {
+  .not-found-content {
     padding-bottom: 7rem; }
-    .profile--none.grid .row.not-found-content .col {
+    .not-found-content .col span {
+      display: block;
       text-align: center;
-      font-size: 1.6rem; }
-      .profile--none.grid .row.not-found-content .col a {
-        color: red;
-        text-decoration: none; }
+      font-size: 1.8rem;
+      color: red; }

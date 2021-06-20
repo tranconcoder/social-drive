@@ -10,29 +10,43 @@
             <input class="header-container-left__search-bar" type="text">
          </div>
          
-         <a href="" class="header-container__right">
-            <div class="header-container-right__account">
+         <div class="header-container__right">
             {{#if username}}
-               <div class="avatar-container">
-                  <span>
-                     <p class="name">{{name}}</p>
-                  </span>
-                  <i class="avatar fad fa-user-circle"></i>
-
-                  {{!-- HOVER --}}
-                  <ul class="avatar-container--hover">
-                     <li class="avatar-container__item">
-                        <a class="avatar-container-item__title" href="/logout">Đăng xuất</a>
-                     </li>
-                  </ul>
+            <div class="header-container__right-account">
+               <div class="header-account">
+                  <div class="header-account__container">
+                     <a href="/profile" class="header-account__container-name">
+                        <div class="header-account__container-name-content">{{name}}</div>
+                     </a>
+                     <a href="/profile" class="header-account__container-avatar">
+                        <i class="header-account__container-avatar-img fad fa-user-circle"></i>
+                     </a>
+                     
+                     {{!-- HOVER --}}
+                     <ul class="header-account__container-hover">
+                        <li class="header-account__container-hover-item">
+                           <a class="header-account__container-hover-item-container" href="/profile">
+                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
+                              <span class="header-account__container-hover-item-container-title">Quản lý tài khoản</span>
+                           </a>
+                        </li>
+                        <li class="header-account__container-hover-item">
+                           <a class="header-account__container-hover-item-container" href="/logout">
+                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
+                              <span class="header-account__container-hover-item-container-title">Đăng xuất</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
                </div>
+               
             {{else}}
-               <h1>{{username}}</h1>
                <a href="/login" class="header-container-right__account-login">Đăng nhập</a>
+               <div class="header-container-right__account-seperate"></div>
                <a href="/register" class="header-container-right__account-register">Đăng ký</a>
-            {{/if}}
             </div>
-         </a>
+            {{/if}}
+         </div>
       </div>
    </div>
 
