@@ -20,10 +20,10 @@ passport.use(new LocalStrategy(
       auther.findOne({ username: username }, function(err, user) {
         if (err) { return done(err) }
         if (!user) {
-          return done(null, false, { message: 'Incorrect username.' })
+          return done(null, false)
         }
-        if (!user.password === password) {
-          return done(null, false, { message: 'Incorrect password.' })
+        if (!(user.password === password)) {
+          return done(null, false)
         }
         return done(null, user)
       })
@@ -31,9 +31,9 @@ passport.use(new LocalStrategy(
 ))
 
 router.post('/',
-  passport.authenticate('local',
-    { successRedirect: '/',
-    failureRedirect: '/login',}
+    passport.authenticate('local',
+        { successRedirect: '/',
+        failureRedirect: '/login-fail',}
 ))
 
 passport.serializeUser(function(user, done) {
@@ -41,7 +41,10 @@ passport.serializeUser(function(user, done) {
 })
 
 passport.deserializeUser(function(user, done) {
-    done(null, user)
+  auther.findOne({_id: user._id})
+    .then(user => {
+      done(null, user)
+    })
 })
 
 module.exports = router

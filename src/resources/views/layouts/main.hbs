@@ -15,9 +15,31 @@
 </head>
 <body>
    
-   {{> header}}
-   {{{body}}}
+   <div>
+      {{> header}}
+   </div>
+   <div class="header-layout"></div>
+   <div>
+      {{{body}}}
+   </div>
    
 
+   {{!-- message --}}
+   {{#if message}}
+   <div class="message">
+      <span class="message-title">
+         <p>Notification</p> 
+      </span>
+
+      <span class="message-content">
+         <p>{{message}}</p>
+      </span>
+
+      <button class="message-close-btn">
+         <p>Close</p>
+      </button>
+   </div>
+   {{/if}}
+   <script src="js/message.js"></script>
 </body>
 </html>

@@ -2,15 +2,15 @@
 $primaryColor: #7a00cc;
 $primaryColorBlur: #b966f0d0;
 $iconWhiteColor: rgb(245, 245, 245);
-$WhiteColor: rgb(238, 253, 255);
+$WhiteColor: rgb(246, 246, 246);
 $textColor: rgb(92, 92, 92);
-$boderColor: rgb(204, 204, 204);
+$borderColor: rgb(204, 204, 204);
 
 // SIZE
 $headerHeight: 60px;
 
 //MIXIN
 @mixin borderLeftAndRight {
-    border-left: .1rem solid $boderColor;
-    border-right: .1rem solid $boderColor;
+    border-left: .1rem solid $borderColor;
+    border-right: .1rem solid $borderColor;
 }

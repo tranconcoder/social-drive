@@ -30,6 +30,156 @@ html{
    box-sizing: border-box;
 }
 
+//NOT FOUND PAGE
+.not-found{
+   height: calc(100vh - 6rem);
+   display: flex;
+   flex-direction: column;
+
+   &-background{
+      height: 70vh;
+      flex: 1;
+
+      .col{
+         display: flex;
+
+         img{
+            width: 30rem;
+            margin: auto;
+         }
+      }
+   }
+   &-content{
+      padding-bottom: 7rem;
+
+      .col{
+         
+         span{
+            display: block;
+            text-align: center;
+            font-size: 1.8rem;
+            color: red;
+         }
+      }
+   }
+}
+
+
+
+.message{
+   //VARIABLES
+   $btnHeight: 3rem;
+   $messageWidth: 40rem;
+   $messageMaxHeight: 16rem;
+   $messageSeperate: $headerHeight / 3;
+   $messageTransitionYBefore: -$messageMaxHeight - 2rem;
+   $messageTransitionYAfter: 0;
+   $btnSeperate: 1rem;
+   $viewWidth: 100vw;
+
+   //ANIMATION
+   &-show{
+      animation: showMessage linear .5s;
+      transform: translate3D(-$messageWidth / 2, $messageTransitionYAfter, 0);
+
+      @keyframes showMessage {
+         from{
+            opacity: 0;
+            transform: translate3D(-$messageWidth / 2, $messageTransitionYBefore, 0);
+         }
+         to {
+            opacity: 1;
+            transform: translate3D(-$messageWidth / 2, $messageTransitionYAfter, 0);
+         }
+      }
+   }
+   &-hidden{
+      animation: hiddenMessage linear .5s;
+      transform: translate3D(-$messageWidth / 2, $messageTransitionYBefore, 0);
+   
+      @keyframes hiddenMessage {
+         from {
+            opacity: 1;
+            transform: translate3D(-$messageWidth / 2, $messageTransitionYAfter, 0);
+         }
+         to{
+            opacity: 0;
+            transform: translate3D(-$messageWidth / 2, $messageTransitionYBefore, 0);
+         }
+      }
+   }
+
+   width: $messageWidth;
+   max-height: $messageMaxHeight;
+   position: fixed;
+   z-index: 100;
+   left: 50%;
+   transform: translate3D(-$messageWidth / 2, $messageTransitionYBefore, 0);
+   top: $headerHeight / 3;
+   background-color: $WhiteColor;
+   border-radius: 1rem;
+   box-shadow: 0 .1rem 1.5rem .5rem rgba(0, 0, 0, 0.466);
+   overflow: hidden;
+   display: flex;
+
+   flex-direction: column;
+   align-items: stretch;
+
+   &-title{
+      width: 100%;
+      min-height: 3rem;
+      line-height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: .3rem;
+      background-color: #9c58c8;
+
+      p{
+         font-size: 1.8rem;
+         color: rgb(255, 255, 255);
+      }
+   }
+
+   &-content{
+      $fontSize: 1.7rem;
+
+      min-height: 4rem;
+      max-height: $fontSize * 4;
+      display: flex;
+      margin-bottom: $btnHeight + $btnSeperate;
+      overflow: hidden;
+      
+      p{
+         font-size: $fontSize;
+         color: $textColor;
+         margin: auto;
+      }
+   }
+
+   &-close-btn{
+      width: 10rem;
+      height: $btnHeight;
+      font-size: 1.6rem;
+      color: $WhiteColor;
+      border: 0;
+      background-color: rgb(164, 33, 168);
+      border-radius: .25rem;
+      position: absolute;
+      bottom: $btnSeperate;
+      right: $btnSeperate;
+
+      &:hover{
+         background-color: rgb(140, 29, 144);
+         cursor: pointer;
+      }
+   }
+}
+
+.header-layout{
+   height: 6rem;
+}
+
 .header{
    height: $headerHeight;
    background-color: $primaryColor;
@@ -168,9 +318,9 @@ html{
       align-items: center;
 
       .header-account{
-         display: block;
          $height: 3.6rem;
 
+         display: block;
          height: $height;
          min-width: 10rem;
          max-width: 30rem;
@@ -189,7 +339,8 @@ html{
 
             &-name{
                max-width: 25rem;
-               font-size: 1.5rem;
+               font-size: 1.4rem;
+               line-height: 1.4rem;
                color: $textColor;
                padding-left: 1.5rem;
                padding-right: $height + 1rem;
@@ -197,19 +348,22 @@ html{
                display: flex;
                justify-content: center;
                align-items: center;
-
-               &-content{
-               }
+               text-align: center;
             }
 
             &-avatar{
                
                &-img{
-                  font-size: $height;
-                  color: $textColor;
+                  height: $height;
+                  width: $height;
                   position: absolute;
                   right: 0;
                   top: 0;
+                  border-radius: 50%;
+                  border: .1rem solid $borderColor;
+                  background-position: center;
+                  background-size: cover;
+                  background-repeat: no-repeat;
                }
             }
 
@@ -327,12 +481,9 @@ html{
       }
 
       .header-container-right__account-seperate{
-         border-left: .2rem solid $boderColor;
+         border-left: .2rem solid $borderColor;
          height: 1.8rem;
          margin: 0 .5rem;
-      }
-
-      .header-container-right__account-register{
       }
    }
 }
@@ -421,18 +572,57 @@ html{
    
    #logUsername, #logPassword,
    #regUsername, #regPassword, #regGmail, #regName{
-      height: 3.5rem;
-      width: 85%;
-      display: block;
-      margin: 1rem auto;
-      border: 0;
-      border-bottom: 0.1rem solid $primaryColor;
-      outline: none;
+      position: relative;
+
+      .regUserMessage{
+         
+         position: absolute;
+         right: 100%;
+         top: 0;
+         width: 10rem;
+         height: 3rem;
+         background-color: red;
+      }
+
+      input{
+         font-size: 1.6rem;
+         height: 3.5rem;
+         width: 85%;
+         display: block;
+         margin: 1rem auto;
+         border: 0;
+         background-color: transparent;
+         border-bottom: 0.2rem solid $borderColor;
+         outline: none;
+      }
+
+      &.fail{
+         input{
+            border-color: red;
+            color: red;
+            position: relative;
+
+            &::placeholder {
+               color: red;
+            }
+         }
+         
+      }
    }
 
+   #regGmail, #regName{
+      input{
+         animation: inputShow linear .3s;
+      }
+   }
+   
    #regUsername, #regPassword{
-      width: 50%;
-      display: inline-block;
+      flex: 1;
+
+      input{
+         width: 100%;
+         margin: 0;
+      }
    }
 
    #regUsername{
@@ -441,10 +631,20 @@ html{
 
    .username-and-password{
       display: flex;
-      width: 85%;
-      justify-content: center;
-      margin: 0 auto;
+      width: calc(100% - 6.8rem);
+      justify-content: space-between;
+      margin: 1rem 3.4rem;
+      animation: inputShow linear .3s;
    }
+
+   #logUsername, #logPassword{
+
+      input{
+         animation: inputShow linear .3s;
+         
+      }
+   }
+
 
    .login-btn,
    .register-btn{
@@ -460,10 +660,20 @@ html{
       color: $WhiteColor;
       font-weight: bold;
       font-size: 1.8rem;
+
       p{
          line-height: $height;
       }
    }
+}
+@keyframes inputShow {
+   from{
+      opacity: 0;
+      width: 0;
+   } to {
+      opacity: 1;
+      width: 85%;
+   } 
 }
 
 
@@ -490,16 +700,46 @@ html{
             align-items: center;
 
             &-img{
-               height: 15rem;
+               height: 20rem;
+               width: 20rem;
                margin-top: 5rem;
                border-radius: 50%;
                border: .2rem solid rgb(51, 67, 85);
+               background-position: center;
+               background-size: cover;
+               background-repeat: no-repeat;
+               position: relative;
+
+               &-hover{
+                  display: none;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 50%;
+                  background-color: rgba(51, 51, 51, 0.4);
+
+                  i{
+                     font-size: 5rem;
+                     color: $iconWhiteColor;
+                     position: absolute;
+                     bottom: 2rem;
+                     left: 50%;
+                     transform: translateX(-50%);
+                  }
+               }
+
+               &:hover > {
+
+                  .profile-container__avatar-container-img-hover{
+                     display: block;
+                     cursor: pointer;
+                  }
+               }
             }
 
             &-name, &-gmail{
                text-align: center;
                word-wrap: break-word;
-               -webkit-line-clamp: 1;
+               -webkit-line-clamp: 2;
                -webkit-box-orient: vertical;
                overflow: hidden;
                display: -webkit-box;
@@ -510,9 +750,10 @@ html{
             }
    
             &-name{
-               margin-top: 1rem;
                width: 70%;
                font-size: 1.6rem;
+               line-height: 1.6rem;
+               margin-top: 1.4rem;
             }
    
             &-gmail{
@@ -521,13 +762,39 @@ html{
                opacity: .6;
                font-size: 1.4rem;
             }
+
+            &-upload-avatar{
+
+               &-input{
+
+                  display: none
+               }
+
+               button{
+                  outline: none;
+                  border: 0;
+                  font-size: 1.4rem;
+                  color: $primaryColor;
+                  margin-top: .5rem;
+                  padding: .5rem 1rem;
+                  border: .1rem solid $borderColor;
+
+                  &:hover{
+                     color: rgb(255, 255, 255);
+                     background-color: rgb(157, 0, 219);
+                     cursor: pointer;
+                  }
+               }
+            }
          }
       }
 
       &__infomation{
-         @include borderLeftAndRight;
-      
+         border-left: .1rem solid $borderColor;
+
          &-container{
+            margin: 0 auto;
+            width: 90%;
             height: 50rem;
 
             &-title{
@@ -537,28 +804,40 @@ html{
                margin-top: 1rem;
                margin: .5rem 0 1.5rem 1rem;
                display: block;
-               text-decoration:underline;
             }
 
             &-form-change{
+               margin-top: 5rem;
                display: flex;
                flex-direction: column;
 
                label{
                   width: 100%;
-                  font-size: 2rem;
+                  font-size: 1.6rem;
                   display: block;
                   margin-top: 2rem;
+                  margin-left: .5rem;
                }
 
                input{
-                  height: 3rem;
-                  width: 100%;
+                  font-size: 1.5rem;
+                  height: 3.8rem;
+                  width: 94%;
+                  padding-left: 1rem;
+                  outline: none;
+                  border: .2rem solid #ccc;
+                  border-radius: .5rem;
+
+                  &:focus{
+                     border: .2rem solid $primaryColor;
+                  }
                }
 
                button{
-                  width: 10rem;
-                  height: 3rem;
+                  margin-top: 3rem;
+                  margin-right: 3rem;
+                  width: 12rem;
+                  height: 4rem;
                   background-color: rgb(35, 211, 255);
                   font-size: 1.6rem;
                   font-weight: 600;
@@ -566,46 +845,12 @@ html{
                   border-radius: .25rem;
                   align-self: flex-end;
                }
+
+               button:hover{
+                  background-color: rgb(110, 226, 255);
+                  cursor: pointer;
+               }
             }
-
-         }
-      }
-
-      &__others{
-
-      }
-   }
-}
-
-// NONE PROFILE
-.not-found{
-   height: calc(100vh - 6rem);
-   display: flex;
-   flex-direction: column;
-
-   &-background{
-      height: 70vh;
-      flex: 1;
-
-      .col{
-         display: flex;
-
-         img{
-            width: 30rem;
-            margin: auto;
-         }
-      }
-   }
-   &-content{
-      padding-bottom: 7rem;
-
-      .col{
-         
-         span{
-            display: block;
-            text-align: center;
-            font-size: 1.8rem;
-            color: red;
          }
       }
    }

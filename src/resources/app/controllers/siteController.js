@@ -1,9 +1,8 @@
-const Auth = require('../../models/auther')
+const Auther = require('../../models/auther')
 
 class Home{
    home (req, res, next) {
-      const User = req.user
-      res.render('home', User)
+      res.render('home', req.user)
    }
 }
 

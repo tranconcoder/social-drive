@@ -9,8 +9,10 @@ const path              = require('path')
 const app               = express()
 const host              = '0.0.0.0'
 const port              = 3000
+const upload            = require('./resources/app/middleware/upload')
 
-
+//upload
+app.use(upload)
 
 //Static file in path: src/resources/public
 app.use(express.static(path.join(__dirname, 'resources/public')))

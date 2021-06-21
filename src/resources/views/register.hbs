@@ -14,16 +14,40 @@
          </div>
       </div>
       
-      <label for="name"></label>
-      <input type="text" id="regName" name="name" placeholder="Họ và tên..." autocomplete="off">
-      <div class="username-and-password">
-         <label for="username"></label>
-         <input type="text" id="regUsername" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
-         <label for="password"></label>
-         <input type="password" id="regPassword" name="password" placeholder="Mật khẩu...">
+      <div id="regName">
+         <input type="text" name="name" placeholder="Họ và tên...">
       </div>
-      <label for="gmail"></label>
-      <input type="text" id="regGmail" name="gmail" placeholder="Gmail của bạn...">
+
+      <div class="username-and-password">
+         <div id="regUsername" class="fail">
+            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
+         </div>
+
+         <div id="regPassword">
+            <input type="password" name="password" placeholder="Mật khẩu...">
+         </div>
+      </div>
+      <div id="regGmail">
+         <input type="text"  name="gmail" placeholder="Gmail của bạn...">
+      </div>
       <button class="btn register-btn" type="submit"><p>ĐĂNG KÝ</p></button>
    </form>
 </div>
+
+<script>
+   const $ = document.querySelector.bind(document)
+   const $$ = document.querySelectorAll.bind(document)
+
+   let name = $('#regName')
+   let currentHTMLName = $('#regName').innerHTML
+
+   name.addEventListener('focusout', function (e) {
+
+      if (e.target.value.length > 50) {
+         name.classList.add('fail')
+      } else {
+         name.classList.remove('fail')
+      }
+   })
+
+</script>
