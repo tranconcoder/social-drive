@@ -7,7 +7,8 @@
             <div class="profile-container__avatar col l-3 m-4 c-0">
                 <div class="profile-container__avatar-container">
                     <label for="avatar-input">
-                        <div style="background-image: url(/{{avatar}})" class="profile-container__avatar-container-img">
+                        <div class="profile-container__avatar-container-img">
+                            <img src="{{avatar}}" alt="">
                             <div class="profile-container__avatar-container-img-hover">
                                 <i class="fal fa-exchange"></i>
                             </div>
@@ -16,8 +17,8 @@
                     <div class="profile-container__avatar-container-name">{{name}}</div>
                     <div class="profile-container__avatar-container-gmail">{{gmail}}</div>
                     <form class="profile-container__avatar-container-upload-avatar" action="/profile/upload-avatar/{{_id}}" method="post" enctype="multipart/form-data">
-                        <input name="avatar" id="avatar-input" class="profile-container__avatar-container-upload-avatar-input" type="file" >
-                        <button type="submit">Cập nhật Avatar</button>
+                        <input name="avatar" id="avatar-input"  accept="image/*" class="profile-container__avatar-container-upload-avatar-input" type="file" >
+                        <button class="avatar-button" type="submit">Cập nhật Avatar</button>
                     </form>
                 </div>
             </div>
@@ -28,35 +29,48 @@
                     <form class="profile-container__infomation-container-form-change" action="/profile" method="post">
                         <input type="text" value="{{_id}}" name="id" style="display: none">
                         <label for="">Họ và Tên</label>
-                        <input type="text" name="name" value="{{name}}">
+                        <input type="text" name="name" value="{{name}}" maxlength="30">
                         <label for="">Địa chỉ Gmail</label>
-                        <input type="text" name="gmail" value="{{gmail}}">
+                        <input type="email" name="gmail" value="{{gmail}}">
                         
-                        <button type="submit">Cập nhật</button>
+                        <button class="profile-button" type="submit">Cập nhật</button>
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 <script>
-    const uploadField = document.getElementById("avatar-input");
+    const uploadAvatar = document.getElementById("avatar-input");
     const buttonUpload = document.querySelector('.profile-container__avatar-container-upload-avatar button')
 
+    let avatarButton = document.querySelector('.avatar-button')
+    let profileButton = document.querySelector('.profile-button')
+
     buttonUpload.onclick = function (e) {
-        if (uploadField.value == '') {
+        if (uploadAvatar.value == '') {
             alert('Vui lòng nhấn vào ảnh phía trên để tải lên ảnh đại diện!!!')
         }
     }
 
-    uploadField.onchange = function() {
-        if(uploadField.files[0].size > 5 * 1024 * 1024){
-            alert("Dung lượng tệp giới hạn là 5MB, vui lòng chọn tệp nhỏ hơn!!!");
-            this.value = "";
-        };
-    };
+    uploadAvatar.onchange = function() {
+        let image = uploadAvatar.files
 
+        if (uploadAvatar.files[0].size <= 5 * 1024 *1024) {
+            let fileReader = new FileReader()
+
+            fileReader.onload = function (e) {
+                document.querySelector('.profile-container__avatar-container-img img').setAttribute("src", e.target.result)
+            }
+
+            fileReader.readAsDataURL(image[0])
+        }
+
+        if(uploadAvatar.files[0].size > 5 * 1024 * 1024){
+            alert("Dung lượng tệp giới hạn là 5MB, vui lòng chọn tệp nhỏ hơn!!!")
+            this.value = ""
+        }
+    }
 
 </script>
