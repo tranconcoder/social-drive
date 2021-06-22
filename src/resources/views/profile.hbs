@@ -17,7 +17,7 @@
                     <div class="profile-container__avatar-container-name">{{name}}</div>
                     <div class="profile-container__avatar-container-gmail">{{gmail}}</div>
                     <form class="profile-container__avatar-container-upload-avatar" action="/profile/upload-avatar/{{_id}}" method="post" enctype="multipart/form-data">
-                        <input name="avatar" id="avatar-input"  accept="image/*" class="profile-container__avatar-container-upload-avatar-input" type="file" >
+                        <input name="avatar" id="avatar-input"  accept=".png, .jpg, .jpeg" class="profile-container__avatar-container-upload-avatar-input" type="file" >
                         <button class="avatar-button" type="submit">Cập nhật Avatar</button>
                     </form>
                 </div>
@@ -50,27 +50,38 @@
 
     buttonUpload.onclick = function (e) {
         if (uploadAvatar.value == '') {
-            alert('Vui lòng nhấn vào ảnh phía trên để tải lên ảnh đại diện!!!')
+            alert('Vui lòng nhấn vào ảnh trên để tải lên ảnh đại diện!!!')
         }
     }
+
 
     uploadAvatar.onchange = function() {
         let image = uploadAvatar.files
 
-        if (uploadAvatar.files[0].size <= 5 * 1024 *1024) {
-            let fileReader = new FileReader()
+        const fileType = uploadAvatar.files[0].type.split('/')[1]
+        const fileTypeAccept = ['png', 'jpeg', 'jpg']
 
-            fileReader.onload = function (e) {
-                document.querySelector('.profile-container__avatar-container-img img').setAttribute("src", e.target.result)
+        if (fileTypeAccept.includes(fileType)) {
+
+            if (uploadAvatar.files[0].size <= 5 * 1024 *1024) {
+                let fileReader = new FileReader()
+
+                fileReader.onload = function (e) {
+                    document.querySelector('.profile-container__avatar-container-img img').setAttribute("src", e.target.result)
+                }
+
+                fileReader.readAsDataURL(image[0])
             }
 
-            fileReader.readAsDataURL(image[0])
+            if (uploadAvatar.files[0].size > 5 * 1024 * 1024) {
+                alert("Dung lượng tệp giới hạn là 5MB, vui lòng chọn tệp nhỏ hơn!!!")
+                this.value = ""
+            }
+        } else {
+            alert('Chỉ chấp nhận hình ảnh có đuôi tệp là:  \'.png\', \'.jpeg\',\'.jpg\'')
+            uploadAvatar.files[0].value = ''
         }
 
-        if(uploadAvatar.files[0].size > 5 * 1024 * 1024){
-            alert("Dung lượng tệp giới hạn là 5MB, vui lòng chọn tệp nhỏ hơn!!!")
-            this.value = ""
-        }
     }
 
 </script>

@@ -501,19 +501,11 @@ html{
    .login-background{
       height: 100vh;
       width: 100%;
-      filter: blur(0.3rem);
-      background-image: url('/img/login_background.jpg');
-      background-position: center;
-      background-size: cover;
    }
 
    .register-background{
       height: 100vh;
       width: 100%;
-      filter: blur(1rem);
-      background-image: url('/img/register_background.jpg');
-      background-position: left;
-      background-size: cover;
    }
 
    .login-form,

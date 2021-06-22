@@ -19,7 +19,7 @@ var storage = multer.diskStorage({
             .then(user => {
                 let path = `src/resources/public/img/avatars/${req.params.id}`
 
-                let arrPath = [`${path}.png`,`${path}.jpg`,`${path}.jpeg`,`${path}.svg`]
+                let arrPath = [`${path}.png`,`${path}.jpg`,`${path}.jpeg`]
 
                 arrPath.forEach(function (element, index) {
                     //Delete Old Avatar

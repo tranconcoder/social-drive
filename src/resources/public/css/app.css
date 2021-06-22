@@ -464,7 +464,7 @@ html {
   left: 50%;
   transform: translate3D(-20rem, -18rem, 0);
   top: 20px;
-  background-color: #f6f6f6;
+  background-color: white;
   border-radius: 1rem;
   box-shadow: 0 0.1rem 1.5rem 0.5rem rgba(0, 0, 0, 0.466);
   overflow: hidden;
@@ -519,7 +519,7 @@ html {
     width: 10rem;
     height: 3rem;
     font-size: 1.6rem;
-    color: #f6f6f6;
+    color: white;
     border: 0;
     background-color: #a421a8;
     border-radius: .25rem;
@@ -543,7 +543,7 @@ html {
   border: .1rem solid #ab2cff; }
   .header a {
     text-decoration: none;
-    color: #f6f6f6; }
+    color: white; }
   .header .header__border-left {
     top: 100%;
     left: -.1rem; }
@@ -629,7 +629,7 @@ html {
       font-size: 3rem;
       padding: 1.4rem; }
     .header-container.grid.wide a .header-container__logo-title {
-      color: #f6f6f6;
+      color: white;
       font-size: 1.6rem;
       letter-spacing: 3px; }
   .header-container.grid.wide .header-container__right {
@@ -642,7 +642,7 @@ html {
       max-width: 30rem; }
       .header-container.grid.wide .header-container__right .header-account__container {
         height: 100%;
-        background-color: #f6f6f6;
+        background-color: white;
         border-radius: 10rem;
         display: flex;
         align-items: center;
@@ -706,7 +706,7 @@ html {
               position: absolute;
               bottom: 100%; }
             .header-container.grid.wide .header-container__right .header-account__container-hover-item-container {
-              color: #f6f6f6;
+              color: white;
               align-items: center;
               justify-content: center;
               display: flex; }
@@ -762,19 +762,11 @@ html {
   .login .login-background,
   .register .login-background {
     height: 100vh;
-    width: 100%;
-    filter: blur(0.3rem);
-    background-image: url("/img/login_background.jpg");
-    background-position: center;
-    background-size: cover; }
+    width: 100%; }
   .login .register-background,
   .register .register-background {
     height: 100vh;
-    width: 100%;
-    filter: blur(1rem);
-    background-image: url("/img/register_background.jpg");
-    background-position: left;
-    background-size: cover; }
+    width: 100%; }
   .login .login-form,
   .login .register-form,
   .register .login-form,
@@ -782,7 +774,7 @@ html {
     width: 45rem;
     height: 50rem;
     position: absolute;
-    background-color: #f6f6f6;
+    background-color: white;
     border-radius: 1rem;
     box-shadow: 0 0.1rem 1rem 0.1rem rgba(0, 0, 0, 0.452); }
     .login .login-form .login-form__header,
@@ -973,7 +965,7 @@ html {
     min-width: 15rem;
     background-color: #7a00cc;
     border-radius: 0.5rem;
-    color: #f6f6f6;
+    color: white;
     font-weight: bold;
     font-size: 1.8rem; }
     .login .login-btn p,

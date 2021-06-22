@@ -15,20 +15,20 @@
       </div>
       
       <div id="regName">
-         <input type="text" name="name" placeholder="Họ và tên...">
+         <input type="text" name="name" placeholder="Họ và tên..." minlength="6" maxlength="18" required>
       </div>
 
       <div class="username-and-password">
          <div id="regUsername" class="fail">
-            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
+            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off" required>
          </div>
 
          <div id="regPassword">
-            <input type="password" name="password" placeholder="Mật khẩu...">
+            <input type="password" name="password" placeholder="Mật khẩu..." required>
          </div>
       </div>
       <div id="regGmail">
-         <input type="text"  name="gmail" placeholder="Gmail của bạn...">
+         <input type="email"  name="gmail" placeholder="Gmail của bạn..." required>
       </div>
       <button class="btn register-btn" type="submit"><p>ĐĂNG KÝ</p></button>
    </form>
