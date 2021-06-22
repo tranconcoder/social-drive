@@ -14,25 +14,41 @@
          </div>
       </div>
       
-      <div id="regName">
-         <input type="text" name="name" placeholder="Họ và tên..." minlength="6" maxlength="18" required>
+      <div id="regName" {{#if nameMessage}}class="fail"{{/if}}>
+         <input type="text" name="name" value="{{name}}" placeholder="Họ và tên...">
+         {{#if nameMessage}}
+         <span class="register-message register-message-name"><p>{{nameMessage}}</p></span>
+         {{/if}}
       </div>
+
 
       <div class="username-and-password">
-         <div id="regUsername" class="fail">
-            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off" required>
+         <div id="regUsername" {{#if usernameMessage}}class="fail"{{/if}}>
+            <input type="text" name="username" value="{{username}}" placeholder="Tên đăng nhập..." autocomplete="off">
+            {{#if usernameMessage}}
+            <span class="fail register-message register-message-username">{{usernameMessage}}</span>
+            {{/if}}
          </div>
 
-         <div id="regPassword">
-            <input type="password" name="password" placeholder="Mật khẩu..." required>
+         <div id="regPassword" {{#if passwordMessage}}class="fail"{{/if}}>
+            <input type="password" name="password" value="{{password}}" placeholder="Mật khẩu...">
+            {{#if passwordMessage}}
+            <span class="register-message register-message-password">{{passwordMessage}}</span>
+            {{/if}}
          </div>
       </div>
-      <div id="regGmail">
-         <input type="email"  name="gmail" placeholder="Gmail của bạn..." required>
+
+
+      <div id="regGmail" {{#if gmailMessage}}class="fail"{{/if}}>
+         <input type="text"  name="gmail" value="{{gmail}}" placeholder="Gmail của bạn...">
+         {{#if gmailMessage}}
+         <span class="register-message register-message-gmail">{{gmailMessage}}</span>
+         {{/if}}
       </div>
       <button class="btn register-btn" type="submit"><p>ĐĂNG KÝ</p></button>
    </form>
 </div>
+
 
 <script>
    const $ = document.querySelector.bind(document)
@@ -49,5 +65,11 @@
          name.classList.remove('fail')
       }
    })
+
+   //WARNING ICON ON REGISTER MESSAGE
+   const registerMessage = $$('.register-message')
+   for (let element of registerMessage) {
+      element.innerHTML = `<img src="svg/warning.svg" alt="">${element.innerHTML}`
+   }
 
 </script>
