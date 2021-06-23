@@ -1,3 +1,4 @@
+const api                  = require('./routeAPI')
 const site                 = require('./routeSite')
 const login                = require('./routeLogin')
 const register             = require('./routeRegister')
@@ -14,6 +15,7 @@ function route(app) {
    app.use('/logout',logout)
    app.use('/private', private)
    app.use('/profile', profile)
+   app.use('/api', api)
    app.use('/', site)
 
 }

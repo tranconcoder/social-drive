@@ -12,10 +12,10 @@
       </div>
       
       <div id="logUsername">
-         <input type="text" name="username" placeholder="Tên đăng nhập">
+         <input type="text" name="username" {{#if User.username}}value="{{User.username}}"{{/if}} placeholder="Tên đăng nhập">
       </div>
       <div id="logPassword">
-         <input type="password" name="password" placeholder="Mật khẩu">
+         <input type="password" name="password" {{#if User.password}}value="{{User.password}}"{{/if}} placeholder="Mật khẩu">
       </div>
       <button class="btn login-btn" type="submit">LOGIN</button>
    </form>

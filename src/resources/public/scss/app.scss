@@ -580,14 +580,35 @@ html {
 
     input {
       font-size: 1.6rem;
+      font-weight: 600;
       height: 3.5rem;
       width: 85%;
       display: block;
       margin: 1rem auto;
+      padding: 0 1rem;
       border: 0;
       background-color: transparent;
-      border-bottom: 0.2rem solid $borderColor;
+      border: 0.1rem solid $borderColor;
       outline: none;
+      animation: inputRegisterAndLoginAnimation linear 0.5s;
+
+      &::placeholder {
+        font-weight: 400;
+      }
+
+      &:focus {
+        border: 0.2rem solid $borderColor;
+        animation: inputRegisterAndLoginAnimation linear 0.5s;
+      }
+
+      @keyframes inputRegisterAndLoginAnimation {
+        from {
+          border: 0.1rem solid $borderColor;
+        }
+        to {
+          border: 0.2rem solid $borderColor;
+        }
+      }
     }
 
     &.fail {
@@ -597,7 +618,8 @@ html {
         position: relative;
 
         &::placeholder {
-          color: rgb(219, 38, 38);
+          color: rgb(255, 85, 85);
+          font-weight: 400;
         }
       }
     }
@@ -639,17 +661,24 @@ html {
     font-weight: bold;
     font-size: 1.8rem;
 
+    &:hover {
+      cursor: pointer;
+      opacity: 0.75;
+    }
+
     p {
       line-height: $height;
     }
   }
 
   //REGISTER MESSAGE
+  $messageHeight: 3rem;
+
   .register-message {
-    min-height: 3rem;
-    min-width: 30rem;
+    height: $messageHeight;
+    min-width: 20rem;
     font-size: 1.4rem;
-    line-height: 1.6rem;
+    line-height: 1.4rem;
     color: red;
     background-color: rgb(255, 212, 212);
     border: 0.1rem solid red;
@@ -658,25 +687,27 @@ html {
     position: absolute;
     top: 50%;
     transform: translate3D(0, -50%, 0);
-    display: flex;
+    display: none; //flex when show
     align-items: center;
 
     img {
-      margin-right: 1rem;
+      display: inline-block;
       height: 2rem;
+    }
+
+    p {
+      text-align: center;
     }
 
     &-name,
     &-gmail {
       left: 100%;
-      justify-self: flex-end;
       margin-left: 1rem;
       animation: registerMessageAnimationRight linear 0.3s;
     }
 
     &-username {
       right: calc(100% + 3.4rem);
-      justify-self: flex-start;
       margin-right: 1rem;
       animation: registerMessageAnimationLeft linear 0.3s;
     }

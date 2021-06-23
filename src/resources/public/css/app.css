@@ -27,6 +27,9 @@
   border-left: 100px solid red;
   border-bottom: 50px solid transparent; }
 
+button:disabled {
+  background-color: #b8abab !important; }
+
 .grid {
   width: 100%;
   display: block;
@@ -891,14 +894,50 @@ html {
     .register #regGmail input,
     .register #regName input {
       font-size: 1.6rem;
+      font-weight: 600;
       height: 3.5rem;
       width: 85%;
       display: block;
       margin: 1rem auto;
+      padding: 0 1rem;
       border: 0;
       background-color: transparent;
-      border-bottom: 0.2rem solid #cccccc;
-      outline: none; }
+      border: 0.1rem solid #cccccc;
+      outline: none;
+      animation: inputRegisterAndLoginAnimation linear 0.5s; }
+      .login #logUsername input::placeholder,
+      .login #logPassword input::placeholder,
+      .login #regUsername input::placeholder,
+      .login #regPassword input::placeholder,
+      .login #regGmail input::placeholder,
+      .login #regName input::placeholder,
+      .register #logUsername input::placeholder,
+      .register #logPassword input::placeholder,
+      .register #regUsername input::placeholder,
+      .register #regPassword input::placeholder,
+      .register #regGmail input::placeholder,
+      .register #regName input::placeholder {
+        font-weight: 400; }
+      .login #logUsername input:focus,
+      .login #logPassword input:focus,
+      .login #regUsername input:focus,
+      .login #regPassword input:focus,
+      .login #regGmail input:focus,
+      .login #regName input:focus,
+      .register #logUsername input:focus,
+      .register #logPassword input:focus,
+      .register #regUsername input:focus,
+      .register #regPassword input:focus,
+      .register #regGmail input:focus,
+      .register #regName input:focus {
+        border: 0.2rem solid #cccccc;
+        animation: inputRegisterAndLoginAnimation linear 0.5s; }
+
+@keyframes inputRegisterAndLoginAnimation {
+  from {
+    border: 0.1rem solid #cccccc; }
+  to {
+    border: 0.2rem solid #cccccc; } }
     .login #logUsername.fail input,
     .login #logPassword.fail input,
     .login #regUsername.fail input,
@@ -926,7 +965,8 @@ html {
       .register #regPassword.fail input::placeholder,
       .register #regGmail.fail input::placeholder,
       .register #regName.fail input::placeholder {
-        color: #db2626; }
+        color: #ff5555;
+        font-weight: 400; }
   .login #regUsername,
   .login #regPassword,
   .register #regUsername,
@@ -962,6 +1002,12 @@ html {
     color: white;
     font-weight: bold;
     font-size: 1.8rem; }
+    .login .login-btn:hover,
+    .login .register-btn:hover,
+    .register .login-btn:hover,
+    .register .register-btn:hover {
+      cursor: pointer;
+      opacity: 0.75; }
     .login .login-btn p,
     .login .register-btn p,
     .register .login-btn p,
@@ -969,10 +1015,10 @@ html {
       line-height: 5rem; }
   .login .register-message,
   .register .register-message {
-    min-height: 3rem;
-    min-width: 30rem;
+    height: 3rem;
+    min-width: 20rem;
     font-size: 1.4rem;
-    line-height: 1.6rem;
+    line-height: 1.4rem;
     color: red;
     background-color: #ffd4d4;
     border: 0.1rem solid red;
@@ -981,23 +1027,24 @@ html {
     position: absolute;
     top: 50%;
     transform: translate3D(0, -50%, 0);
-    display: flex;
+    display: none;
     align-items: center; }
     .login .register-message img,
     .register .register-message img {
-      margin-right: 1rem;
+      display: inline-block;
       height: 2rem; }
+    .login .register-message p,
+    .register .register-message p {
+      text-align: center; }
     .login .register-message-name, .login .register-message-gmail,
     .register .register-message-name,
     .register .register-message-gmail {
       left: 100%;
-      justify-self: flex-end;
       margin-left: 1rem;
       animation: registerMessageAnimationRight linear 0.3s; }
     .login .register-message-username,
     .register .register-message-username {
       right: calc(100% + 3.4rem);
-      justify-self: flex-start;
       margin-right: 1rem;
       animation: registerMessageAnimationLeft linear 0.3s; }
     .login .register-message-password,
