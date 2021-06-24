@@ -1,22 +1,37 @@
 <div class="login">
-   <div class="login-background"></div>
+   <div class="login-container">
+      {{!-- Login form --}}
+      <div class="login-form-container">
+         <form class="login-container__form" action="/login" method="post">
+            {{!-- ICON --}}
+            <div class="login-container__form-icon">
+               <img src="svg/user.svg" alt="">
+            </div>
 
-   <form method="post" action="/login" class="login-form">
-      <div class="login-form__header">
-         <div class="login-form__seperate"></div>
-         <p class="login-form__title">Đăng nhập</p>
+            <div class="login-container__form-title">
+               <span>ĐĂNG NHẬP</span>
+               <a href="/register">
+                  Đăng ký
+                  <i class="fas fa-caret-right"></i>
+               </a href="/register">
+            </div>
+            
+            {{!-- USERNAME INPUT --}}
+            <div class="login-container__form-username-container">
+               <input type="text" placeholder="Tên đăng nhập..." name="username" id="loginUsername">
+            </div>
+
+            <div class="login-container__form-password-container">
+               <input type="password" placeholder="Mật khẩu..." name="password" id="loginPassword">
+            </div>
+
+            <div class="button-container">
+               <div>
+                  <i class="fad fa-angle-left"></i>
+               </div>
+               <button class="login-btn" type="submit">Đăng nhập</button>
+            </div>
+         </form>
       </div>
-      
-      <div class="login-form__avatar">
-         <img class="login-form__avatar-icon" src="svg/user.svg" alt="">
-      </div>
-      
-      <div id="logUsername">
-         <input type="text" name="username" {{#if User.username}}value="{{User.username}}"{{/if}} placeholder="Tên đăng nhập">
-      </div>
-      <div id="logPassword">
-         <input type="password" name="password" {{#if User.password}}value="{{User.password}}"{{/if}} placeholder="Mật khẩu">
-      </div>
-      <button class="btn login-btn" type="submit">LOGIN</button>
-   </form>
+   </div>
 </div>

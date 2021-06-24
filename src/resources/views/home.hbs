@@ -1,3 +1,77 @@
+<div class="header grid">
+   <div class="header-container grid wide">
+      <div class="row">
+         <div class="header-container__left">
+            <a href="/">
+               <i class="header-container__logo fal fa-images"></i>
+               <span class="header-container__logo-title">TVC Social</span>
+            </a>
+            <i class="header-container-left__search-bar-icon fas fa-search"></i>
+            <input class="header-container-left__search-bar" type="text">
+         </div>
+         
+         <div class="header-container__right">
+            {{#if username}}
+            <div class="header-container__right-account">
+               <div class="header-account">
+                  <div class="header-account__container">
+                     <a href="/profile" class="header-account__container-name">
+                        <div class="header-account__container-name-content">{{name}}</div>
+                     </a>
+                     <a href="/profile" class="header-account__container-avatar">
+                        <div class="header-account__container-avatar-img" style="background-image: url({{avatar}});"></div>
+                     </a>
+                     
+                     {{!-- HOVER --}}
+                     <ul class="header-account__container-hover">
+                        <li class="header-account__container-hover-item">
+                           <a class="header-account__container-hover-item-container" href="/profile">
+                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
+                              <span class="header-account__container-hover-item-container-title">Quản lý tài khoản</span>
+                           </a>
+                        </li>
+                        <li class="header-account__container-hover-item">
+                           <a class="header-account__container-hover-item-container" href="/logout">
+                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
+                              <span class="header-account__container-hover-item-container-title">Đăng xuất</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+               
+            {{else}}
+               <a href="/login" class="header-container-right__account-login">Đăng nhập</a>
+               <div class="header-container-right__account-seperate"></div>
+               <a href="/register" class="header-container-right__account-register">Đăng ký</a>
+            </div>
+            {{/if}}
+         </div>
+      </div>
+   </div>
+
+   {{!-- Border --}}
+   <div class="header__border-right"></div>
+   <div class="header__border-left"></div>
+</div>
+
+<script>
+   let searchButton = document.querySelector('.header-container-left__search-bar-icon')
+   let visible = false;
+   searchButton.onclick = function () {
+      let searchBar = document.querySelector('.header-container-left__search-bar')
+      console.log(searchBar)
+
+      if (visible === false) {
+         searchBar.style.display = 'block'
+         visible = true
+      } else {
+         searchBar.style.display = 'none'
+         visible = false
+      }
+   }
+</script>
+
 <div class="body grid">
    <div class="body__slide-show grid wide">
    </div>

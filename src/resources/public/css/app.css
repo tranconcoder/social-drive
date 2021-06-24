@@ -533,9 +533,6 @@ html {
       background-color: #8c1d90;
       cursor: pointer; }
 
-.header-layout {
-  height: 6rem; }
-
 .header {
   height: 60px;
   background-color: #7a00cc;
@@ -757,20 +754,128 @@ html {
       height: 1.8rem;
       margin: 0 0.5rem; }
 
-.login,
+.login-container {
+  height: 100vh;
+  background-image: url("/img/registerBackground.png");
+  background-position: center;
+  background-size: cover;
+  position: relative; }
+  .login-container .login-form-container {
+    width: 30vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20vw; }
+  .login-container__form {
+    height: 28rem;
+    width: 45rem;
+    position: absolute;
+    border-radius: 1rem;
+    background-color: white;
+    border: 0.1rem solid #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
+    .login-container__form-icon {
+      height: 10rem;
+      width: 10rem;
+      border-radius: 50%;
+      position: absolute;
+      left: 17.5rem;
+      top: -5rem;
+      background-color: #f6f6f6;
+      padding: 0.7rem; }
+    .login-container__form-title {
+      width: 40rem;
+      font-size: 2rem;
+      line-height: 2rem;
+      margin-top: 5rem;
+      display: flex;
+      justify-content: space-between; }
+      .login-container__form-title span {
+        color: #1b2ed6; }
+      .login-container__form-title a {
+        color: #1be960;
+        font-size: 1.5rem;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        position: relative; }
+        .login-container__form-title a:hover {
+          color: #49b64f; }
+          .login-container__form-title a:hover i {
+            visibility: visible; }
+        .login-container__form-title a i {
+          font-size: 2rem;
+          position: absolute;
+          left: calc(100% + 0.5rem);
+          visibility: hidden;
+          transition: linear 0.1s; }
+    .login-container__form-username-container input {
+      margin-top: 2.4rem; }
+    .login-container__form-password-container input {
+      margin-top: 1rem; }
+    .login-container__form input {
+      font-size: 1.4rem;
+      width: 40rem;
+      height: 4rem;
+      border: 0;
+      border-radius: 0.5rem;
+      padding: 0 1.5rem;
+      background-color: rgba(173, 180, 214, 0.198);
+      outline: none; }
+      .login-container__form input::placeholder {
+        color: #5c5c5c;
+        font-size: 1.4rem; }
+      .login-container__form input:focus {
+        border: 0.2rem solid #b966f0d0; }
+
+.login .button-container {
+  margin-top: 5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative; }
+  .login .button-container button {
+    width: 12rem;
+    height: 3.5rem;
+    border: 0.1rem solid #cccccc;
+    background-color: #3b70ff;
+    border-radius: 0.2rem;
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: absolute;
+    right: 2.5rem; }
+    .login .button-container button:hover {
+      cursor: pointer;
+      background-color: #608aff; }
+  .login .button-container div {
+    width: 5rem;
+    height: 3.5rem;
+    background-color: #b9cfff;
+    border-radius: 4rem;
+    display: flex;
+    position: absolute;
+    left: 2.5rem; }
+    .login .button-container div:hover {
+      cursor: pointer;
+      background-color: #ceddff; }
+      .login .button-container div:hover i {
+        color: #3e52ff; }
+    .login .button-container div i {
+      margin: auto;
+      font-size: 2.8rem;
+      color: #001aff; }
+
 .register {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .login .login-background,
-  .login .register-background,
-  .register .login-background,
   .register .register-background {
     height: 100vh;
     width: 100%; }
-  .login .login-form,
-  .login .register-form,
-  .register .login-form,
   .register .register-form {
     width: 45rem;
     height: 50rem;
@@ -778,13 +883,6 @@ html {
     background-color: white;
     border-radius: 1rem;
     box-shadow: 0 0.1rem 1rem 0.1rem rgba(0, 0, 0, 0.452); }
-    .login .login-form .login-form__header,
-    .login .login-form .register-form__header,
-    .login .register-form .login-form__header,
-    .login .register-form .register-form__header,
-    .register .login-form .login-form__header,
-    .register .login-form .register-form__header,
-    .register .register-form .login-form__header,
     .register .register-form .register-form__header {
       height: 2.4rem;
       display: flex;
@@ -792,21 +890,6 @@ html {
       margin: 2rem 0;
       padding-left: 1rem;
       position: relative; }
-      .login .login-form .login-form__header .login-form__seperate,
-      .login .login-form .login-form__header .register-form__seperate,
-      .login .login-form .register-form__header .login-form__seperate,
-      .login .login-form .register-form__header .register-form__seperate,
-      .login .register-form .login-form__header .login-form__seperate,
-      .login .register-form .login-form__header .register-form__seperate,
-      .login .register-form .register-form__header .login-form__seperate,
-      .login .register-form .register-form__header .register-form__seperate,
-      .register .login-form .login-form__header .login-form__seperate,
-      .register .login-form .login-form__header .register-form__seperate,
-      .register .login-form .register-form__header .login-form__seperate,
-      .register .login-form .register-form__header .register-form__seperate,
-      .register .register-form .login-form__header .login-form__seperate,
-      .register .register-form .login-form__header .register-form__seperate,
-      .register .register-form .register-form__header .login-form__seperate,
       .register .register-form .register-form__header .register-form__seperate {
         height: 110%;
         width: 0.3rem;
@@ -814,81 +897,29 @@ html {
         margin-right: 0.5rem;
         position: relative;
         bottom: -0.1rem; }
-      .login .login-form .login-form__header .login-form__title,
-      .login .login-form .login-form__header .register-form__title,
-      .login .login-form .register-form__header .login-form__title,
-      .login .login-form .register-form__header .register-form__title,
-      .login .register-form .login-form__header .login-form__title,
-      .login .register-form .login-form__header .register-form__title,
-      .login .register-form .register-form__header .login-form__title,
-      .login .register-form .register-form__header .register-form__title,
-      .register .login-form .login-form__header .login-form__title,
-      .register .login-form .login-form__header .register-form__title,
-      .register .login-form .register-form__header .login-form__title,
-      .register .login-form .register-form__header .register-form__title,
-      .register .register-form .login-form__header .login-form__title,
-      .register .register-form .login-form__header .register-form__title,
-      .register .register-form .register-form__header .login-form__title,
       .register .register-form .register-form__header .register-form__title {
         font-size: 2.2rem; }
-    .login .login-form .login-form__header::after,
-    .login .login-form .reigster-form__header::after,
-    .login .register-form .login-form__header::after,
-    .login .register-form .reigster-form__header::after,
-    .register .login-form .login-form__header::after,
-    .register .login-form .reigster-form__header::after,
-    .register .register-form .login-form__header::after,
     .register .register-form .reigster-form__header::after {
       content: "";
       width: calc(100% - 2rem);
       border-bottom: 0.1rem solid #ccc;
       position: absolute;
       top: 140%; }
-    .login .login-form .login-form__avatar,
-    .login .login-form .register-form__avatar,
-    .login .register-form .login-form__avatar,
-    .login .register-form .register-form__avatar,
-    .register .login-form .login-form__avatar,
-    .register .login-form .register-form__avatar,
-    .register .register-form .login-form__avatar,
     .register .register-form .register-form__avatar {
       height: 180px;
       display: flex; }
-      .login .login-form .login-form__avatar-icon,
-      .login .login-form .register-form__avatar-icon,
-      .login .register-form .login-form__avatar-icon,
-      .login .register-form .register-form__avatar-icon,
-      .register .login-form .login-form__avatar-icon,
-      .register .login-form .register-form__avatar-icon,
-      .register .register-form .login-form__avatar-icon,
       .register .register-form .register-form__avatar-icon {
         width: 12rem;
         margin: auto;
         position: relative;
         display: flex;
         justify-content: center; }
-  .login #logUsername,
-  .login #logPassword,
-  .login #regUsername,
-  .login #regPassword,
-  .login #regGmail,
-  .login #regName,
-  .register #logUsername,
-  .register #logPassword,
   .register #regUsername,
   .register #regPassword,
   .register #regGmail,
   .register #regName {
     position: relative;
     flex: 1; }
-    .login #logUsername input,
-    .login #logPassword input,
-    .login #regUsername input,
-    .login #regPassword input,
-    .login #regGmail input,
-    .login #regName input,
-    .register #logUsername input,
-    .register #logPassword input,
     .register #regUsername input,
     .register #regPassword input,
     .register #regGmail input,
@@ -905,27 +936,11 @@ html {
       border: 0.1rem solid #cccccc;
       outline: none;
       animation: inputRegisterAndLoginAnimation linear 0.5s; }
-      .login #logUsername input::placeholder,
-      .login #logPassword input::placeholder,
-      .login #regUsername input::placeholder,
-      .login #regPassword input::placeholder,
-      .login #regGmail input::placeholder,
-      .login #regName input::placeholder,
-      .register #logUsername input::placeholder,
-      .register #logPassword input::placeholder,
       .register #regUsername input::placeholder,
       .register #regPassword input::placeholder,
       .register #regGmail input::placeholder,
       .register #regName input::placeholder {
         font-weight: 400; }
-      .login #logUsername input:focus,
-      .login #logPassword input:focus,
-      .login #regUsername input:focus,
-      .login #regPassword input:focus,
-      .login #regGmail input:focus,
-      .login #regName input:focus,
-      .register #logUsername input:focus,
-      .register #logPassword input:focus,
       .register #regUsername input:focus,
       .register #regPassword input:focus,
       .register #regGmail input:focus,
@@ -938,14 +953,6 @@ html {
     border: 0.1rem solid #cccccc; }
   to {
     border: 0.2rem solid #cccccc; } }
-    .login #logUsername.fail input,
-    .login #logPassword.fail input,
-    .login #regUsername.fail input,
-    .login #regPassword.fail input,
-    .login #regGmail.fail input,
-    .login #regName.fail input,
-    .register #logUsername.fail input,
-    .register #logPassword.fail input,
     .register #regUsername.fail input,
     .register #regPassword.fail input,
     .register #regGmail.fail input,
@@ -953,43 +960,26 @@ html {
       border-color: #ff5252;
       color: red;
       position: relative; }
-      .login #logUsername.fail input::placeholder,
-      .login #logPassword.fail input::placeholder,
-      .login #regUsername.fail input::placeholder,
-      .login #regPassword.fail input::placeholder,
-      .login #regGmail.fail input::placeholder,
-      .login #regName.fail input::placeholder,
-      .register #logUsername.fail input::placeholder,
-      .register #logPassword.fail input::placeholder,
       .register #regUsername.fail input::placeholder,
       .register #regPassword.fail input::placeholder,
       .register #regGmail.fail input::placeholder,
       .register #regName.fail input::placeholder {
         color: #ff5555;
         font-weight: 400; }
-  .login #regUsername,
-  .login #regPassword,
   .register #regUsername,
   .register #regPassword {
     flex: 1; }
-    .login #regUsername input,
-    .login #regPassword input,
     .register #regUsername input,
     .register #regPassword input {
       width: 100%;
       margin: 0; }
-  .login #regUsername,
   .register #regUsername {
     margin-right: 5%; }
-  .login .username-and-password,
   .register .username-and-password {
     display: flex;
     width: 85%;
     justify-content: space-between;
     margin: 1rem auto; }
-  .login .login-btn,
-  .login .register-btn,
-  .register .login-btn,
   .register .register-btn {
     display: block;
     margin-top: 4rem;
@@ -1002,18 +992,11 @@ html {
     color: white;
     font-weight: bold;
     font-size: 1.8rem; }
-    .login .login-btn:hover,
-    .login .register-btn:hover,
-    .register .login-btn:hover,
     .register .register-btn:hover {
       cursor: pointer;
       opacity: 0.75; }
-    .login .login-btn p,
-    .login .register-btn p,
-    .register .login-btn p,
     .register .register-btn p {
       line-height: 5rem; }
-  .login .register-message,
   .register .register-message {
     height: 3rem;
     min-width: 20rem;
@@ -1029,25 +1012,19 @@ html {
     transform: translate3D(0, -50%, 0);
     display: none;
     align-items: center; }
-    .login .register-message img,
     .register .register-message img {
       display: inline-block;
       height: 2rem; }
-    .login .register-message p,
     .register .register-message p {
       text-align: center; }
-    .login .register-message-name, .login .register-message-gmail,
-    .register .register-message-name,
-    .register .register-message-gmail {
+    .register .register-message-name, .register .register-message-gmail {
       left: 100%;
       margin-left: 1rem;
       animation: registerMessageAnimationRight linear 0.3s; }
-    .login .register-message-username,
     .register .register-message-username {
       right: calc(100% + 3.4rem);
       margin-right: 1rem;
       animation: registerMessageAnimationLeft linear 0.3s; }
-    .login .register-message-password,
     .register .register-message-password {
       left: calc(100% + 3.4rem);
       margin-left: 1rem;
