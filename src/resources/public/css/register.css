@@ -586,9 +586,10 @@ button:disabled {
   justify-content: space-evenly; }
   .error-message-container span {
     margin-top: 1rem;
-    animation: showErrorMessage linear .2s; }
+    animation: showErrorMessage linear 0.2s;
+    display: none; }
     .error-message-container span.hidden {
-      animation: hideErrorMessage linear .2s;
+      animation: hideErrorMessage linear 0.2s;
       display: none !important; }
 
 @keyframes showErrorMessage {
@@ -596,9 +597,3 @@ button:disabled {
     transform: translateX(calc(100% + 1rem)); }
   to {
     transform: translateX(0); } }
-
-@keyframes hideErrorMessage {
-  from {
-    transform: translateX(0); }
-  to {
-    transform: translateX(calc(100% + 1rem)); } }

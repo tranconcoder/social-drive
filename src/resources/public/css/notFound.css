@@ -1,0 +1,19 @@
+.not-found {
+  height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column; }
+  .not-found-background {
+    height: 70vh;
+    flex: 1; }
+    .not-found-background .col {
+      display: flex; }
+      .not-found-background .col img {
+        width: 30rem;
+        margin: auto; }
+  .not-found-content {
+    padding-bottom: 7rem; }
+    .not-found-content .col span {
+      display: block;
+      text-align: center;
+      font-size: 1.8rem;
+      color: red; }

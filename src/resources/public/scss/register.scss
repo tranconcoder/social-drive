@@ -31,7 +31,7 @@ $inputHeight: 4rem;
       border-radius: 1rem;
       background-color: $WhiteColor;
       border: 0.1rem solid $borderColor;
-      box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.144);
+      box-shadow: 0 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.144);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -138,8 +138,7 @@ $inputHeight: 4rem;
         }
       }
 
-      &-input-container{
-
+      &-input-container {
         position: relative;
       }
     }
@@ -201,8 +200,8 @@ $inputHeight: 4rem;
 }
 
 .fail {
-    input {
-      border: .2rem solid rgb(255, 82, 82) !important;
+  input {
+    border: 0.2rem solid rgb(255, 82, 82) !important;
     color: red;
     position: relative;
 
@@ -237,8 +236,7 @@ $messageHeight: 4rem;
   }
 }
 
-.error-message-container{
-  
+.error-message-container {
   width: 35rem;
   border-radius: 1rem;
   position: fixed;
@@ -248,32 +246,24 @@ $messageHeight: 4rem;
   flex-direction: column;
   justify-content: space-evenly;
 
-    span{
+  span {
+    margin-top: 1rem;
+    animation: showErrorMessage linear 0.2s;
+    display: none;
 
-        margin-top: 1rem;
-        animation: showErrorMessage linear .2s;
+    &.hidden {
 
-        &.hidden{
-
-            animation: hideErrorMessage linear .2s;
-            display: none !important;
-        }
-
-        @keyframes showErrorMessage {
-            from {
-                transform: translateX(calc(100% + 1rem));
-            }
-            to {
-                transform: translateX(0);
-            }
-        }
-        @keyframes hideErrorMessage {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(calc(100% + 1rem));
-            }
-        }
+      animation: hideErrorMessage linear 0.2s;
+      display: none !important;
     }
+
+    @keyframes showErrorMessage {
+      from {
+        transform: translateX(calc(100% + 1rem));
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
 }

@@ -14,8 +14,8 @@ button.addEventListener("click", (e) => {
 
     if (nameCheckResult) {
       nameMessage.innerHTML = errorIcon + `<p>${nameCheckResult}</p>`;
+      nameMessage.classList.remove("hidden");
       nameMessage.style.display = "flex";
-      nameMessage.classList.remove("hidden")
       nameContainer.classList.add("fail");
       Error = true;
     } else {
@@ -33,8 +33,8 @@ button.addEventListener("click", (e) => {
         if (usernameCheckResult) {
           usernameMessage.innerHTML =
             errorIcon + `<p>${usernameCheckResult}</p>`;
+            usernameMessage.classList.remove("hidden");
           usernameMessage.style.display = "flex";
-          usernameMessage.classList.remove("hidden")
           usernameContainer.classList.add("fail");
           Error = true;
           resolve();
@@ -52,12 +52,12 @@ button.addEventListener("click", (e) => {
               if (data) {
                 usernameMessage.innerHTML =
                   errorIcon + `<p>Tên đăng nhập này đã được sử dụng</p>`;
+                  usernameMessage.classList.remove("hidden");
                 usernameMessage.style.display = "flex";
-                usernameMessage.classList.remove("hidden")
                 usernameContainer.classList.add("fail");
                 Error = true;
               } else {
-                usernameMessage.classList.add("hidden")
+                usernameMessage.classList.add("hidden");
                 usernameContainer.classList.remove("fail");
               }
               resolve();
@@ -72,12 +72,12 @@ button.addEventListener("click", (e) => {
         if (passwordCheckResult) {
           passwordMessage.innerHTML =
             errorIcon + `<p>${passwordCheckResult}</p>`;
+            passwordMessage.classList.remove("hidden");
           passwordMessage.style.display = "flex";
-          passwordMessage.classList.remove("hidden")
           passwordContainer.classList.add("fail");
           Error = true;
         } else {
-          passwordMessage.classList.add("hidden")
+          passwordMessage.classList.add("hidden");
           passwordContainer.classList.remove("fail");
         }
         resolve();
@@ -90,12 +90,12 @@ button.addEventListener("click", (e) => {
 
         if (gmailCheckResult) {
           gmailMessage.innerHTML = errorIcon + `<p>${gmailCheckResult}</p>`;
+          gmailMessage.classList.remove("hidden");
           gmailMessage.style.display = "flex";
-          gmailMessage.classList.remove("hidden")
           gmailContainer.classList.add("fail");
           Error = true;
         } else {
-          gmailMessage.classList.add("hidden")
+          gmailMessage.classList.add("hidden");
           gmailContainer.classList.remove("fail");
         }
         resolve();
@@ -120,11 +120,11 @@ nameInput.addEventListener("focusout", (e) => {
 
   if (nameCheckResult) {
     nameMessage.innerHTML = errorIcon + `<p>${nameCheckResult}</p>`;
-    nameMessage.classList.remove("hidden")
+    nameMessage.classList.remove("hidden");
     nameMessage.style.display = "flex";
     nameContainer.classList.add("fail");
   } else {
-    nameMessage.classList.add("hidden")
+    nameMessage.classList.add("hidden");
     nameContainer.classList.remove("fail");
   }
 });
@@ -139,8 +139,8 @@ usernameInput.addEventListener("focusout", (e) => {
 
   if (usernameCheckResult) {
     usernameMessage.innerHTML = errorIcon + `<p>${usernameCheckResult}</p>`;
+    usernameMessage.classList.remove("hidden");
     usernameMessage.style.display = "flex";
-    usernameMessage.classList.remove("hidden")
     usernameContainer.classList.add("fail");
   } else {
     const apiCheckUsername = "http://localhost:3000/api/register/checkUsername";
@@ -155,11 +155,11 @@ usernameInput.addEventListener("focusout", (e) => {
         if (data) {
           usernameMessage.innerHTML =
             errorIcon + `<p>Tên đăng nhập này đã được sử dụng!</p>`;
+            usernameMessage.classList.remove("hidden");
           usernameMessage.style.display = "flex";
-          usernameMessage.classList.remove("hidden")
           usernameContainer.classList.add("fail");
         } else {
-          usernameMessage.classList.add("hidden")
+          usernameMessage.classList.add("hidden");
           usernameContainer.classList.remove("fail");
         }
       });
@@ -176,11 +176,11 @@ passwordInput.addEventListener("focusout", (e) => {
 
   if (passwordCheckResult) {
     passwordMessage.innerHTML = errorIcon + `<p>${passwordCheckResult}</p>`;
+    passwordMessage.classList.remove("hidden");
     passwordMessage.style.display = "flex";
-    passwordMessage.classList.remove("hidden")
     passwordContainer.classList.add("fail");
   } else {
-    passwordMessage.classList.add("hidden")
+    passwordMessage.classList.add("hidden");
     passwordContainer.classList.remove("fail");
   }
 });
@@ -195,11 +195,11 @@ gmailInput.addEventListener("focusout", (e) => {
 
   if (gmailCheckResult) {
     gmailMessage.innerHTML = errorIcon + `<p>${gmailCheckResult}</p>`;
+    gmailMessage.classList.remove("hidden");
     gmailMessage.style.display = "flex";
-    passwordMessage.classList.remove("hidden")
     gmailContainer.classList.add("fail");
   } else {
-    passwordMessage.classList.add("hidden")
+    gmailMessage.classList.add("hidden");
     gmailContainer.classList.remove("fail");
   }
 });
@@ -251,7 +251,8 @@ function usernameCheck(username) {
       }
     }
     if (lengthError) {
-      if (lengthErrorShort) return "Vui lòng chọn tên đăng nhập dài hơn 6 ký tự!";
+      if (lengthErrorShort)
+        return "Vui lòng chọn tên đăng nhập dài hơn 6 ký tự!";
       else return "Vui lòng chọn tên đăng nhập ngắn hơn 16 ký tự!";
     } else {
       return "Tên đăng nhập không thể chứa ký tự đặc biệt!";
