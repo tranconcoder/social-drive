@@ -1,0 +1,44 @@
+<div class="register">
+   <div class="register-background"></div>
+
+   <form method="post" action="/register" class="register-form" >
+      <div class="register-form__header">
+         <div class="register-form__seperate"></div>
+         <p class="register-form__title">Đăng ký</p>
+      </div>
+      
+      <div class="register-form__avatar">
+         {{!-- AVATAR IMAGE --}}
+         <div class="register-form__avatar-icon">
+            <img src="svg/add-user.svg" alt="">
+         </div>
+      </div>
+      
+      <div id="regName">
+         <input type="text" name="name" placeholder="Họ và tên..." autocomplete="off">
+         <span class="register-message register-message-name"></span>
+      </div>
+
+
+      <div class="username-and-password">
+         <div id="regUsername" >
+            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
+            <span class="fail register-message register-message-username"></span>
+         </div>
+
+         <div id="regPassword">
+            <input type="password" name="password" placeholder="Mật khẩu..." autocomplete="off">
+            <span class="register-message register-message-password"></span>
+         </div>
+      </div>
+
+
+      <div id="regGmail">
+         <input type="text"  name="gmail" placeholder="Gmail của bạn..." autocomplete="off">
+         <span class="register-message register-message-gmail"></span>
+      </div>
+      <button class="btn register-btn"><p>ĐĂNG KÝ</p></button>
+   </form>
+</div>
+
+<script src="/js/register.js"></script>

@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/login.css">
+
 <div class="login">
    <div class="login-container">
       {{!-- Login form --}}
@@ -13,22 +15,24 @@
                <a href="/register">
                   Đăng ký
                   <i class="fas fa-caret-right"></i>
-               </a href="/register">
+               </a>
             </div>
             
             {{!-- USERNAME INPUT --}}
             <div class="login-container__form-username-container">
-               <input type="text" placeholder="Tên đăng nhập..." name="username" id="loginUsername">
+               <input class="register-input-tag" type="text" placeholder="Tên đăng nhập..." name="username" id="loginUsername">
             </div>
 
             <div class="login-container__form-password-container">
-               <input type="password" placeholder="Mật khẩu..." name="password" id="loginPassword">
+               <input class="register-input-tag" type="password" placeholder="Mật khẩu..." name="password" id="loginPassword">
             </div>
 
             <div class="button-container">
-               <div>
-                  <i class="fad fa-angle-left"></i>
-               </div>
+               <a href="/">
+                  <div>
+                     <i class="fad fa-angle-left"></i>
+                  </div>
+               </a>
                <button class="login-btn" type="submit">Đăng nhập</button>
             </div>
          </form>

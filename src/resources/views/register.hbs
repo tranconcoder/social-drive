@@ -1,44 +1,65 @@
+<link rel="stylesheet" href="/css/register.css">
+
 <div class="register">
-   <div class="register-background"></div>
+   <div class="register-container">
+      {{!-- register form --}}
+      <div class="register-form-container">
+         <form class="register-container__form register-form" action="/register" method="post">
+            {{!-- ICON --}}
+            <div class="register-container__form-icon">
+               <img src="svg/user.svg" alt="">
+            </div>
 
-   <form method="post" action="/register" class="register-form" >
-      <div class="register-form__header">
-         <div class="register-form__seperate"></div>
-         <p class="register-form__title">Đăng ký</p>
+            <div class="register-container__form-title">
+               <span>ĐĂNG KÝ</span>
+               <a href="/login">
+                  Đăng nhập
+                  <i class="fas fa-caret-right"></i>
+               </a>
+            </div>
+            
+            {{!-- NAME --}}
+            <div id="regName" class="register-container__form-input-container register-container__form-name-container">
+               <input class="register-input-tag" type="text" placeholder="Họ tên..." name="name" id="registerUsername">
+            </div>
+
+            {{!-- USERNAME INPUT --}}
+            <div class="register-container__form-input-container register-container__form-account-container">
+                <div id="regUsername" class="register-container__form-username-container">
+                    <input class="register-input-tag" type="text" placeholder="Tên đăng nhập..." name="username" id="registerUsername">
+                </div>
+
+                {{!-- PASSWORD INPUT --}}
+                <div id="regPassword" class="register-container__form-input-container register-container__form-password-container">
+                    <input class="register-input-tag" type="password" placeholder="Mật khẩu..." name="password" id="registerPassword">
+                </div>
+            </div>
+
+            {{!-- GMAIL INPUT --}}
+            <div id="regGmail" class="register-container__form-input-container register-container__form-gmail-container">
+                <input class="register-input-tag" type="gmail" placeholder="Địa chỉ Gmail..." name="gmail" id="registerPassword">
+            </div>
+
+            <div class="button-container">
+               <a href="/">
+                  <div>
+                     <i class="fad fa-angle-left"></i>
+                  </div>
+               </a>
+               <button class="register-btn" type="submit">Đăng nhập</button>
+            </div>
+
+
+            {{!-- ERROR MESSAGE --}}
+            <ul class="error-message-container">
+                <span class="register-message register-message-name"></span>
+                <span class="register-message register-message-username"></span>
+                <span class="register-message register-message-password"></span>
+                <span class="register-message register-message-gmail"></span>
+            </ul>
+         </form>
       </div>
-      
-      <div class="register-form__avatar">
-         {{!-- AVATAR IMAGE --}}
-         <div class="register-form__avatar-icon">
-            <img src="svg/add-user.svg" alt="">
-         </div>
-      </div>
-      
-      <div id="regName">
-         <input type="text" name="name" placeholder="Họ và tên..." autocomplete="off">
-         <span class="register-message register-message-name"></span>
-      </div>
-
-
-      <div class="username-and-password">
-         <div id="regUsername" >
-            <input type="text" name="username" placeholder="Tên đăng nhập..." autocomplete="off">
-            <span class="fail register-message register-message-username"></span>
-         </div>
-
-         <div id="regPassword">
-            <input type="password" name="password" placeholder="Mật khẩu..." autocomplete="off">
-            <span class="register-message register-message-password"></span>
-         </div>
-      </div>
-
-
-      <div id="regGmail">
-         <input type="text"  name="gmail" placeholder="Gmail của bạn..." autocomplete="off">
-         <span class="register-message register-message-gmail"></span>
-      </div>
-      <button class="btn register-btn"><p>ĐĂNG KÝ</p></button>
-   </form>
+   </div>
 </div>
 
 <script src="/js/register.js"></script>

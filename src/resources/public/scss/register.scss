@@ -1,0 +1,279 @@
+@import "_variables", "base", "grid";
+
+$formWidthRegister: 45rem;
+$formHeightRegister: 34rem;
+$iconHeight: 10rem;
+$titleFontSize: 2rem;
+$inputWidth: 40rem;
+$inputHeight: 4rem;
+
+.register {
+  &-container {
+    height: 100vh;
+    background-image: url("/img/registerBackground.png");
+    background-position: center;
+    background-size: cover;
+    position: relative;
+
+    .register-form-container {
+      width: 30vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 20vw;
+    }
+
+    &__form {
+      height: $formHeightRegister;
+      width: $formWidthRegister;
+      position: absolute;
+      border-radius: 1rem;
+      background-color: $WhiteColor;
+      border: 0.1rem solid $borderColor;
+      box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.144);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-icon {
+        height: $iconHeight;
+        width: $iconHeight;
+        border-radius: 50%;
+        position: absolute;
+        left: ($formWidthRegister/2) - ($iconHeight/2);
+        top: -$iconHeight/2;
+        background-color: rgb(246, 246, 246);
+        padding: 0.7rem;
+      }
+
+      &-title {
+        width: 40rem;
+        font-size: $titleFontSize;
+        line-height: $titleFontSize;
+        margin-top: $iconHeight/2;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+          color: #c61bd6;
+        }
+
+        a {
+          color: rgb(27, 233, 96);
+          font-size: $titleFontSize - 0.5rem;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          position: relative;
+
+          &:hover {
+            color: rgb(73, 182, 79);
+
+            i {
+              visibility: visible;
+            }
+          }
+
+          i {
+            font-size: $titleFontSize;
+            position: absolute;
+            left: calc(100% + 0.5rem);
+            visibility: hidden;
+            transition: linear 0.1s;
+          }
+        }
+      }
+
+      &-name-container {
+        input {
+          margin-top: 2.4rem !important;
+        }
+      }
+
+      & > div {
+        & > input {
+          font-size: 1.4rem;
+          width: $inputWidth;
+          height: 4rem;
+          border: 0;
+          border-radius: 0.5rem;
+          padding: 0 1.5rem;
+          margin-top: 1rem;
+          background-color: rgba(173, 180, 214, 0.198);
+          outline: none;
+
+          &::placeholder {
+            color: $textColor;
+            font-size: 1.4rem;
+          }
+
+          &:focus {
+            border: 0.2rem solid $primaryColorBlur;
+          }
+        }
+      }
+
+      &-account-container {
+        margin-top: 1rem;
+        width: $inputWidth;
+        height: 4rem;
+        display: flex;
+        justify-content: space-between;
+
+        & > div {
+          width: 49%;
+
+          & > input {
+            margin-top: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            outline: none;
+            font-size: 1.4rem;
+            padding-left: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: rgba(173, 180, 214, 0.198);
+          }
+        }
+      }
+
+      &-input-container{
+
+        position: relative;
+      }
+    }
+  }
+
+  .button-container {
+    margin-top: 5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    button {
+      width: 12rem;
+      height: 3.5rem;
+      border: 0.1rem solid $borderColor;
+      background-color: rgb(59, 112, 255);
+      border-radius: 0.2rem;
+      color: #ffffff;
+      font-size: 1.4rem;
+      font-weight: bold;
+      position: absolute;
+      right: ($formWidthRegister - $inputWidth) / 2;
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgb(96, 138, 255);
+      }
+    }
+
+    a {
+      position: absolute;
+      left: ($formWidthRegister - $inputWidth) / 2;
+      text-decoration: none;
+
+      div {
+        width: 5rem;
+        height: 3.5rem;
+        background-color: rgb(185, 207, 255);
+        border-radius: 4rem;
+        display: flex;
+
+        &:hover {
+          cursor: pointer;
+          background-color: rgb(206, 221, 255);
+          i {
+            color: rgb(62, 82, 255);
+          }
+        }
+      }
+
+      i {
+        margin: auto;
+        font-size: 2.8rem;
+        color: rgb(0, 26, 255);
+      }
+    }
+  }
+}
+
+.fail {
+    input {
+      border: .2rem solid rgb(255, 82, 82) !important;
+    color: red;
+    position: relative;
+
+    &::placeholder {
+      color: rgb(255, 85, 85) !important;
+    }
+  }
+}
+
+//REGISTER MESSAGE
+$messageHeight: 4rem;
+
+.register-message {
+  height: $messageHeight;
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  color: red;
+  background-color: rgb(255, 212, 212);
+  border: 0.1rem solid red;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  display: none; //flex when show
+  align-items: center;
+
+  img {
+    display: inline-block;
+    height: 2rem;
+  }
+
+  p {
+    padding-left: 1rem;
+  }
+}
+
+.error-message-container{
+  
+  width: 35rem;
+  border-radius: 1rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+    span{
+
+        margin-top: 1rem;
+        animation: showErrorMessage linear .2s;
+
+        &.hidden{
+
+            animation: hideErrorMessage linear .2s;
+            display: none !important;
+        }
+
+        @keyframes showErrorMessage {
+            from {
+                transform: translateX(calc(100% + 1rem));
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        @keyframes hideErrorMessage {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(100% + 1rem));
+            }
+        }
+    }
+}

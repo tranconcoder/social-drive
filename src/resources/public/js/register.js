@@ -15,10 +15,11 @@ button.addEventListener("click", (e) => {
     if (nameCheckResult) {
       nameMessage.innerHTML = errorIcon + `<p>${nameCheckResult}</p>`;
       nameMessage.style.display = "flex";
+      nameMessage.classList.remove("hidden")
       nameContainer.classList.add("fail");
       Error = true;
     } else {
-      nameMessage.style.display = "none";
+      nameMessage.classList.add("hidden");
       nameContainer.classList.remove("fail");
     }
     resolve();
@@ -33,6 +34,7 @@ button.addEventListener("click", (e) => {
           usernameMessage.innerHTML =
             errorIcon + `<p>${usernameCheckResult}</p>`;
           usernameMessage.style.display = "flex";
+          usernameMessage.classList.remove("hidden")
           usernameContainer.classList.add("fail");
           Error = true;
           resolve();
@@ -51,10 +53,11 @@ button.addEventListener("click", (e) => {
                 usernameMessage.innerHTML =
                   errorIcon + `<p>Tên đăng nhập này đã được sử dụng</p>`;
                 usernameMessage.style.display = "flex";
+                usernameMessage.classList.remove("hidden")
                 usernameContainer.classList.add("fail");
                 Error = true;
               } else {
-                usernameMessage.style.display = "none";
+                usernameMessage.classList.add("hidden")
                 usernameContainer.classList.remove("fail");
               }
               resolve();
@@ -70,10 +73,11 @@ button.addEventListener("click", (e) => {
           passwordMessage.innerHTML =
             errorIcon + `<p>${passwordCheckResult}</p>`;
           passwordMessage.style.display = "flex";
+          passwordMessage.classList.remove("hidden")
           passwordContainer.classList.add("fail");
           Error = true;
         } else {
-          passwordMessage.style.display = "none";
+          passwordMessage.classList.add("hidden")
           passwordContainer.classList.remove("fail");
         }
         resolve();
@@ -87,10 +91,11 @@ button.addEventListener("click", (e) => {
         if (gmailCheckResult) {
           gmailMessage.innerHTML = errorIcon + `<p>${gmailCheckResult}</p>`;
           gmailMessage.style.display = "flex";
+          gmailMessage.classList.remove("hidden")
           gmailContainer.classList.add("fail");
           Error = true;
         } else {
-          gmailMessage.style.display = "none";
+          gmailMessage.classList.add("hidden")
           gmailContainer.classList.remove("fail");
         }
         resolve();
@@ -115,10 +120,11 @@ nameInput.addEventListener("focusout", (e) => {
 
   if (nameCheckResult) {
     nameMessage.innerHTML = errorIcon + `<p>${nameCheckResult}</p>`;
+    nameMessage.classList.remove("hidden")
     nameMessage.style.display = "flex";
     nameContainer.classList.add("fail");
   } else {
-    nameMessage.style.display = "none";
+    nameMessage.classList.add("hidden")
     nameContainer.classList.remove("fail");
   }
 });
@@ -134,6 +140,7 @@ usernameInput.addEventListener("focusout", (e) => {
   if (usernameCheckResult) {
     usernameMessage.innerHTML = errorIcon + `<p>${usernameCheckResult}</p>`;
     usernameMessage.style.display = "flex";
+    usernameMessage.classList.remove("hidden")
     usernameContainer.classList.add("fail");
   } else {
     const apiCheckUsername = "http://localhost:3000/api/register/checkUsername";
@@ -147,11 +154,12 @@ usernameInput.addEventListener("focusout", (e) => {
       .then((data) => {
         if (data) {
           usernameMessage.innerHTML =
-            errorIcon + `<p>Tên đăng nhập này đã được sử dụng</p>`;
+            errorIcon + `<p>Tên đăng nhập này đã được sử dụng!</p>`;
           usernameMessage.style.display = "flex";
+          usernameMessage.classList.remove("hidden")
           usernameContainer.classList.add("fail");
         } else {
-          usernameMessage.style.display = "none";
+          usernameMessage.classList.add("hidden")
           usernameContainer.classList.remove("fail");
         }
       });
@@ -169,9 +177,10 @@ passwordInput.addEventListener("focusout", (e) => {
   if (passwordCheckResult) {
     passwordMessage.innerHTML = errorIcon + `<p>${passwordCheckResult}</p>`;
     passwordMessage.style.display = "flex";
+    passwordMessage.classList.remove("hidden")
     passwordContainer.classList.add("fail");
   } else {
-    passwordMessage.style.display = "none";
+    passwordMessage.classList.add("hidden")
     passwordContainer.classList.remove("fail");
   }
 });
@@ -187,9 +196,10 @@ gmailInput.addEventListener("focusout", (e) => {
   if (gmailCheckResult) {
     gmailMessage.innerHTML = errorIcon + `<p>${gmailCheckResult}</p>`;
     gmailMessage.style.display = "flex";
+    passwordMessage.classList.remove("hidden")
     gmailContainer.classList.add("fail");
   } else {
-    gmailMessage.style.display = "none";
+    passwordMessage.classList.add("hidden")
     gmailContainer.classList.remove("fail");
   }
 });
@@ -199,13 +209,13 @@ gmailInput.addEventListener("focusout", (e) => {
 function nameCheck(name) {
   if (name) {
     if (name.length < 6) {
-      return `Không ngắn hơn 6 ký tự!`;
+      return `Họ tên: không nhập ngắn hơn 6 ký tự!`;
     }
     if (name.length > 40) {
-      return `Trường này không dài hơn 40 ký tự!`;
+      return `Họ tên: không nhập dài hơn 40 ký tự!`;
     }
   } else {
-    return `Trường này trống!`;
+    return `Vui lòng nhập họ tên!`;
   }
 }
 
@@ -235,19 +245,19 @@ function usernameCheck(username) {
     }
     if (lengthError && syntaxError) {
       if (lengthErrorShort) {
-        return "Phải dài hơn 6 ký tự và không chứa ký tự đặc biệt!";
+        return "Tên đăng nhập phải dài hơn 6 ký tự và không chứa ký tự đặc biệt!";
       } else {
-        return "Phải ngắn hơn 16 ký tự và không chứa ký tự đặc biệt!";
+        return "Tên đăng nhập phải ngắn hơn 16 ký tự và không chứa ký tự đặc biệt!";
       }
     }
     if (lengthError) {
-      if (lengthErrorShort) return "Trường này phải dài hơn 6 ký tự!";
-      else return "Trường này phải ngắn hơn 16 ký tự!";
+      if (lengthErrorShort) return "Vui lòng chọn tên đăng nhập dài hơn 6 ký tự!";
+      else return "Vui lòng chọn tên đăng nhập ngắn hơn 16 ký tự!";
     } else {
-      return "Trường này không thể chứa ký tự đặc biệt!";
+      return "Tên đăng nhập không thể chứa ký tự đặc biệt!";
     }
   } else {
-    return "Trường này trống!";
+    return "Vui lòng điền tên đăng nhập!";
   }
 }
 
@@ -255,13 +265,13 @@ function usernameCheck(username) {
 function checkPassword(password) {
   if (password) {
     if (password.length < 8) {
-      return "Mật khẩu phải từ 8 ký tự trở lên!";
+      return "Mật khẩu phải dài từ 8 ký tự trở lên!";
     }
     if (password.length > 30) {
       return "Vui lòng chọn mật khẩu ngắn hơn 30 ký tự!";
     }
   } else {
-    return "Trường này trống!";
+    return "Vui lòng nhập mật khẩu!";
   }
 }
 
@@ -280,10 +290,10 @@ function checkGmail(gmail) {
     if (gmail.includes("@gmail.com")) {
       return false;
     } else {
-      return "Đây không phải địa chỉ Gmail!";
+      return "Vui lòng nhập đúng định dạng của gmail (có @gmail.com)!";
     }
   } else {
-    return "Trường này trống!";
+    return "Vui lòng điền địa chỉ Gmail!";
   }
 }
 
