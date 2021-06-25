@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon --watch src/index.js",
+    "watch": "node-sass --watch src/resouces/public/scss --output src/resouces/public/css",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,17 +22,15 @@
     "express": "^4.17.1",
     "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
-    "mongodb": "^3.6.8",
+    "handlebars": "^4.7.7",
+    "mongodb": "^3.6.9",
     "mongoose": "^5.12.14",
     "mongoose-delete": "^0.5.3",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "webkit-line-clamp": "^1.2.2"
-  },
-  "devDependencies": {
     "node-sass": "^6.0.1",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   }
 }
