@@ -6,6 +6,8 @@ $iconHeight: 10rem;
 $titleFontSize: 2rem;
 $inputWidth: 40rem;
 $inputHeight: 4rem;
+$titleColorLogin: #1b2ed6;
+$titleColorRegister: #c61bd6;
 
 
 .login {
@@ -30,7 +32,7 @@ $inputHeight: 4rem;
         width: $formWidthLogin;
         position: absolute;
         border-radius: 1rem;
-        background-color: $WhiteColor;
+        background-color: $whiteColor;
         border: 0.1rem solid $borderColor;
         box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.1);
         display: flex;
@@ -57,11 +59,11 @@ $inputHeight: 4rem;
           justify-content: space-between;
   
           span {
-            color: #1b2ed6;
+            color: $titleColorLogin;
           }
   
           a {
-            color: rgb(27, 233, 96);
+            color: $titleColorRegister;
             font-size: $titleFontSize - 0.5rem;
             text-decoration: none;
             display: flex;
@@ -179,3 +181,69 @@ $inputHeight: 4rem;
     }
   }
   
+
+  //REGISTER MESSAGE
+.register-message {
+  font-size: 1.4rem;
+  line-height: 1.4rem;
+  color: red;
+  background-color: rgb(255, 212, 212);
+  border: 0.1rem solid red;
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  display: none; //flex when show
+  align-items: center;
+
+  img {
+    display: inline-block;
+    height: 2rem;
+  }
+
+  p {
+    padding: 1rem 0rem 1rem 1rem;
+  }
+}
+
+.error-message-container {
+  width: 30rem;
+  border-radius: 1rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  span {
+    margin-top: 1rem;
+    animation: showErrorMessage linear 0.2s;
+    display: none;
+
+    &.hidden {
+
+      animation: hideErrorMessage linear 0.2s;
+      display: none !important;
+    }
+
+    @keyframes showErrorMessage {
+      from {
+        transform: translateX(calc(100% + 1rem));
+      }
+      to {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.fail {
+  input {
+    border: 0.2rem solid rgb(255, 82, 82) !important;
+    color: red;
+    position: relative;
+
+    &::placeholder {
+      color: rgb(255, 85, 85) !important;
+    }
+  }
+}

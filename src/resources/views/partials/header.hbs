@@ -1,73 +1,88 @@
+<link rel="stylesheet" href="css/header.css">
+
 <div class="header grid">
    <div class="header-container grid wide">
-      <div class="row">
-         <div class="header-container__left">
-            <a href="/">
-               <i class="header-container__logo fal fa-images"></i>
-               <span class="header-container__logo-title">TVC Social</span>
+      <ul class="directional__list">
+         <li id="home" class="directional__item">
+            <a class="direct" href="/">
+               <i class="fal fa-home"></i>
+               <span class="directional__title">Trang chủ</span>
+               {{#if homePage}}
+               <span class="mark-page"></span>
+               {{/if}}
             </a>
-            <i class="header-container-left__search-bar-icon fas fa-search"></i>
-            <input class="header-container-left__search-bar" type="text">
-         </div>
-         
-         <div class="header-container__right">
-            {{#if username}}
-            <div class="header-container__right-account">
-               <div class="header-account">
-                  <div class="header-account__container">
-                     <a href="/profile" class="header-account__container-name">
-                        <div class="header-account__container-name-content">{{name}}</div>
-                     </a>
-                     <a href="/profile" class="header-account__container-avatar">
-                        <div class="header-account__container-avatar-img" style="background-image: url({{avatar}});"></div>
-                     </a>
-                     
-                     {{!-- HOVER --}}
-                     <ul class="header-account__container-hover">
-                        <li class="header-account__container-hover-item">
-                           <a class="header-account__container-hover-item-container" href="/profile">
-                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
-                              <span class="header-account__container-hover-item-container-title">Quản lý tài khoản</span>
-                           </a>
-                        </li>
-                        <li class="header-account__container-hover-item">
-                           <a class="header-account__container-hover-item-container" href="/logout">
-                              <i class="header-account__container-hover-item-container__arrow fas fa-sort-down"></i>
-                              <span class="header-account__container-hover-item-container-title">Đăng xuất</span>
-                           </a>
-                        </li>
-                     </ul>
-                  </div>
+         </li>
+          <li id="trending" class="directional__item">
+            <a class="direct" href="">
+               <i class="fal fa-file-alt"></i>
+               <span class="directional__title">Tài liệu HOT</span>
+               {{#if trendingPage}}
+               <span class="mark-page"></span>
+               {{/if}}
+            </a>
+         </li>
+         <li id="document" class="directional__item">
+            <a class="direct" href="">
+               <i class="fal fa-file-user"></i>
+               <span class="directional__title">Tài liệu của tôi</span>
+               {{#if documentPage}}
+               <span class="mark-page"></span>
+               {{/if}}
+            </a>
+         </li>
+         <li id="profile" class="directional__item">
+            <a class="direct" href="/profile">
+               <i class="fal fa-address-card"></i>
+               <span class="directional__title">Hồ sơ của tôi</span>
+               {{#if profilePage}}
+               <span class="mark-page"></span>
+               {{/if}}
+            </a>
+         </li>
+      </ul>
+
+      <div class="account">
+         {{#if username}}
+         {{!-- when logged in --}}
+         <div class="account-logged-in">
+            <div class="account-logged-in__avatar" style="background-image: url('/img/avatars/small/{{_id}}-small-60.jpg');">
+                  
+               {{!-- Hover --}}
+               <div class="account-logged-in__avatar--hover">
+                  <a href="/profile" class="account-logged-in__avatar--hover-profile">
+                     <div class="account-logged-in__avatar--hover-profile-avatar" style="background-image:url('/img/avatars/large/{{_id}}-large-300.jpg')"></div>
+                     <div class="account-logged-in__avatar--hover-profile-infomation">
+                        <span class="account-logged-in__avatar--hover-profile-infomation-name">
+                           <i class="fal fa-edit"></i>
+                           <p>{{name}}</p>
+                        </span>
+                        <span class="account-logged-in__avatar--hover-profile-infomation-gmail">
+                           <i class="fal fa-envelope"></i>
+                           <p>{{gmail}}</p>
+                        </span>
+                     </div>
+                  </a>
+                  <a class="account-logged-in__avatar--hover-logout" href="/logout">
+                     <span class="account-logged-in__avatar--hover-logout-container">
+                        <i class="fal fa-sign-out-alt"></i>
+                        <p>Đăng xuất</p>
+                     </span>
+                  </a>
                </div>
-               
-            {{else}}
-               <a href="/login" class="header-container-right__account-login">Đăng nhập</a>
-               <div class="header-container-right__account-seperate"></div>
-               <a href="/register" class="header-container-right__account-register">Đăng ký</a>
             </div>
-            {{/if}}
          </div>
+
+         {{else}}
+         {{!-- when not logged in --}}
+         <div class="account-not-logged">
+            <a href="/login" class="account-not-logged__login">Đăng nhập</a>
+            <div class="account-not-logged__seperate"></div>
+            <a href="/register" class="account-not-logged__register">Đăng ký</a>
+         </div>
+         {{/if}}
       </div>
    </div>
-
-   {{!-- Border --}}
-   <div class="header__border-right"></div>
-   <div class="header__border-left"></div>
 </div>
+<div class="test"></div>
 
-<script>
-   let searchButton = document.querySelector('.header-container-left__search-bar-icon')
-   let visible = false;
-   searchButton.onclick = function () {
-      let searchBar = document.querySelector('.header-container-left__search-bar')
-      console.log(searchBar)
-
-      if (visible === false) {
-         searchBar.style.display = 'block'
-         visible = true
-      } else {
-         searchBar.style.display = 'none'
-         visible = false
-      }
-   }
-</script>
+<script src="js/header.js"></script>

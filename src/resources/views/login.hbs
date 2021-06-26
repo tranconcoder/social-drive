@@ -1,41 +1,59 @@
-<link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/login.css" />
 
 <div class="login">
-   <div class="login-container">
-      {{!-- Login form --}}
-      <div class="login-form-container">
-         <form class="login-container__form" action="/login" method="post">
-            {{!-- ICON --}}
-            <div class="login-container__form-icon">
-               <img src="svg/user.svg" alt="">
-            </div>
+  <div class="login-container">
+    {{! Login form }}
+    <div class="login-form-container">
+      <form class="login-container__form login-form" action="/login" method="post">
+        {{! ICON }}
+        <div class="login-container__form-icon">
+          <img src="svg/user.svg" alt="" />
+        </div>
 
-            <div class="login-container__form-title">
-               <span>ĐĂNG NHẬP</span>
-               <a href="/register">
-                  Đăng ký
-                  <i class="fas fa-caret-right"></i>
-               </a>
-            </div>
-            
-            {{!-- USERNAME INPUT --}}
-            <div class="login-container__form-username-container">
-               <input class="register-input-tag" type="text" placeholder="Tên đăng nhập..." name="username" id="loginUsername">
-            </div>
+        <div class="login-container__form-title">
+          <span>ĐĂNG NHẬP</span>
+          <a href="/register">
+            Đăng ký
+            <i class="fas fa-caret-right"></i>
+          </a>
+        </div>
 
-            <div class="login-container__form-password-container">
-               <input class="register-input-tag" type="password" placeholder="Mật khẩu..." name="password" id="loginPassword">
-            </div>
+        {{! USERNAME INPUT }}
+        <div id="logUsername" class="login-container__form-username-container">
+          <input
+            class="register-input-tag"
+            type="text"
+            placeholder="Tên đăng nhập..."
+            name="username"
+          />
+        </div>
 
-            <div class="button-container">
-               <a href="/">
-                  <div>
-                     <i class="fad fa-angle-left"></i>
-                  </div>
-               </a>
-               <button class="login-btn" type="submit">Đăng nhập</button>
+        <div id="logPassword" class="login-container__form-password-container">
+          <input
+            class="register-input-tag"
+            type="password"
+            placeholder="Mật khẩu..."
+            name="password"
+          />
+        </div>
+
+        <div class="button-container">
+          <a href="/">
+            <div>
+              <i class="fad fa-angle-left"></i>
             </div>
-         </form>
-      </div>
-   </div>
+          </a>
+          <button class="login-btn" type="submit">Đăng nhập</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
+
+
+<ul class="error-message-container">
+  <span class="register-message login-message-username"></span>
+  <span class="register-message login-message-password"></span>
+</ul>
+
+<script src="/js/login.js"></script>

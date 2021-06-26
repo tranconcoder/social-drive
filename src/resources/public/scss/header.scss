@@ -1,0 +1,303 @@
+@import "_variables", "base", "grid";
+
+.header {
+  height: $headerHeight;
+  background-color: $primaryColor;
+  position: relative;
+
+  &-container {
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+
+    .directional__list {
+      height: 100%;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+
+      .directional__item {
+        height: 100%;
+        cursor: pointer;
+        margin-right: 1rem;
+        position: relative;
+
+        .direct {
+          height: 100%;
+          color: $whiteColor;
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          transition: linear 0.1s;
+          transform: translateY(0);
+
+          i {
+            font-size: 2.2rem;
+          }
+
+          .directional__title {
+            font-size: 1.4rem;
+            margin-left: 0.5rem;
+          }
+
+          &:hover {
+            color: rgb(0, 255, 255);
+            transform: translateY(-0.2rem);
+
+            i {
+              font-size: 2.4rem;
+            }
+
+            .directional__title {
+              font-size: 1.5rem;
+            }
+          }
+        }
+
+        .mark-page {
+          width: 100%;
+          height: 0.35rem;
+          position: absolute;
+          top: 0;
+          background-color: $primaryColorBlur;
+          box-shadow: 0 0.1rem 1rem 0.1rem rgba(0, 0, 0, 0.096);
+          border-radius: 1rem;
+        }
+      }
+    }
+
+    .account {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      &-not-logged {
+        height: 2rem;
+        display: flex;
+        align-items: center;
+
+        &__login,
+        &__register {
+          font-size: 1.6rem;
+          text-decoration: none;
+          color: $whiteColor;
+          transition: linear 0.1s;
+          transform: translateY(0rem);
+
+          &:hover {
+            color: rgb(0, 255, 255);
+            transform: translateY(-0.2rem);
+          }
+        }
+
+        &__seperate {
+          width: 0.2rem;
+          height: 95%;
+          border-radius: 1rem;
+          background-color: rgba(255, 255, 255, 0.356);
+          margin: 0 0.5rem;
+        }
+      }
+
+      &-logged-in {
+        height: 100%;
+        width: $headerHeight;
+        display: flex;
+
+        &__avatar {
+          height: 75%;
+          width: 75%;
+          background-color: red;
+          border-radius: 50%;
+          margin: auto;
+          background-position: center;
+          background-size: cover;
+          border: 0.1rem solid $borderColor;
+          position: relative;
+          cursor: pointer;
+
+          &:hover {
+            .account-logged-in__avatar--hover{
+              transform: scale(1);
+            }
+          }
+
+          &--hover {
+            $hoverWidth: 30rem;
+            $avatarSize: 7rem;
+
+            width: 30rem;
+            background-color: $whiteColor;
+            position: absolute;
+            top: calc(100% + 0.5rem);
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: .5rem;
+            box-shadow: 0 .1rem 1rem .1rem rgba(0, 0, 0, 0.13);
+            transition: linear .2s;
+            transform-origin: top right;
+            transform: scale(0);
+
+            &-profile {
+              $profileHeight: 8rem;
+
+              width: 100%;
+              height: $profileHeight;
+              display: flex;
+              align-items: center;
+              text-decoration: none;
+
+              &-avatar {
+
+                width: $avatarSize;
+                height: $avatarSize;
+                margin: ($profileHeight - $avatarSize) / 2;
+                border-radius: 50%;
+                background-position: center;
+                background-size: cover;
+                border: .1rem solid $borderColor;
+                box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.219);
+                transition: linear .1s;
+
+                &:hover{
+                  box-shadow: 0 .1rem .5rem .2rem rgba(0, 0, 0, 0.336);
+                  transform: translateY(-.1rem);
+                }
+              }
+
+              &-infomation{
+
+                height: 100%;
+                flex-grow: 1;
+                position: relative;
+                padding-left: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+
+                &::before{
+
+                  content: '';
+                  height: 100%;
+                  width: .1rem;
+                  background-color: $borderColor;
+                  position: absolute;
+                  left: 0;
+                }
+
+                &-name, &-gmail{
+                  display: flex;
+                  align-items: center;
+                  color: $textColor;
+                  transition: linear .1s;
+                  transform: translateY(0rem);
+
+                  &:hover{
+                    color: $primaryColor;
+                    transform: translateY(-.1rem);
+                  }
+
+                  i{
+                    font-size: 1.6rem;
+                    margin-right: .5rem;
+                  }
+                }
+
+                &-name{
+                  height: 2.5rem;
+                  font-size: 1.5rem;
+
+                  i{
+                    margin-right: .3rem;
+                  }
+                }
+
+                &-gmail{
+                  height: 2.5rem;
+                  font-size: 1.4rem;
+
+                  i{
+                    margin-right: .5rem;
+                  }
+                }
+              }
+            }
+
+            $iconSize: 2rem;
+            &-logout{
+
+              height: 3rem;
+              width: 100%;
+              text-decoration: none;
+
+              &-container{
+                height: 100%;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                color: $textColor;
+                transition: linear .1s;
+                transform: translateY(0);
+
+                &:hover{
+                  transform: translateY(-.2rem);
+                  color: $primaryColor;
+                  background-color: rgba(0, 0, 0, 0.03);
+                }
+
+                i{
+                  font-size: $iconSize;
+                  margin: 0 1rem 0 1.4rem;
+                }
+                
+                p{
+                  font-size: 1.4rem;
+                }
+              }
+            }
+
+            &::before {
+              content: "";
+              width: 100%;
+              height: 2rem;
+              position: absolute;
+              bottom: 100%;
+              left: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #home {
+    width: 11rem;
+  }
+
+  #trending {
+    width: 11rem;
+  }
+
+  #document {
+    width: 13rem;
+  }
+
+  #home,
+  #trending,
+  #document {
+    .directional__title {
+      position: relative;
+      top: 0.1rem;
+    }
+  }
+}
+
+.test {
+  width: 100%;
+  height: 2000px;
+}

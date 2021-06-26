@@ -1,13 +1,14 @@
 // COLOR
-$primaryColor: #7a00cc;
-$primaryColorBlur: #b966f0d0;
+$primaryColor: #4a90ff;
+$primaryColorBlur: #7baeff;
+$primaryColorDark: #0b69ff;
 $iconWhiteColor: rgb(245, 245, 245);
-$WhiteColor: rgb(255, 255, 255);
+$whiteColor: rgb(255, 255, 255);
 $textColor: rgb(92, 92, 92);
 $borderColor: rgb(204, 204, 204);
 
 // SIZE
-$headerHeight: 60px;
+$headerHeight: 54px;
 
 //MIXIN
 @mixin borderLeftAndRight {

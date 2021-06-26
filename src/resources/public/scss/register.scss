@@ -6,6 +6,8 @@ $iconHeight: 10rem;
 $titleFontSize: 2rem;
 $inputWidth: 40rem;
 $inputHeight: 4rem;
+$titleColorLogin: #1b2ed6;
+$titleColorRegister: #c61bd6;
 
 .register {
   &-container {
@@ -29,7 +31,7 @@ $inputHeight: 4rem;
       width: $formWidthRegister;
       position: absolute;
       border-radius: 1rem;
-      background-color: $WhiteColor;
+      background-color: $whiteColor;
       border: 0.1rem solid $borderColor;
       box-shadow: 0 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.144);
       display: flex;
@@ -56,11 +58,11 @@ $inputHeight: 4rem;
         justify-content: space-between;
 
         span {
-          color: #c61bd6;
+          color: $titleColorRegister;
         }
 
         a {
-          color: rgb(27, 233, 96);
+          color: $titleColorLogin;
           font-size: $titleFontSize - 0.5rem;
           text-decoration: none;
           display: flex;
@@ -212,10 +214,7 @@ $inputHeight: 4rem;
 }
 
 //REGISTER MESSAGE
-$messageHeight: 4rem;
-
 .register-message {
-  height: $messageHeight;
   font-size: 1.4rem;
   line-height: 1.4rem;
   color: red;
@@ -232,12 +231,12 @@ $messageHeight: 4rem;
   }
 
   p {
-    padding-left: 1rem;
+    padding: 1rem 0rem 1rem 1rem;
   }
 }
 
 .error-message-container {
-  width: 35rem;
+  width: 30rem;
   border-radius: 1rem;
   position: fixed;
   right: 1rem;

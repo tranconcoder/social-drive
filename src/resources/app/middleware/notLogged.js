@@ -1,12 +1,12 @@
-const express           = require('express')
-const app               = express()
+const express = require("express");
+const app = express();
 
-function notLogged (req, res, next) {
-    if (req.user) {
-        next()
-    } else{
-        res.redirect('/login')
-    }
+function notLogged(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
 }
 
-module.exports = notLogged
+module.exports = notLogged;
