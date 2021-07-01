@@ -37,7 +37,7 @@ button.addEventListener("click", (e) => {
           resolve();
         } else {
           const apiCheckUsername =
-            `http://${domain}:3000/api/register/checkUsername`;
+            `http://0.0.0.0:3000/api/register/checkUsername`;
           fetch(apiCheckUsername, {
             method: "POST",
             mode: "cors",
@@ -140,7 +140,7 @@ usernameInput.addEventListener("focusout", (e) => {
     usernameMessage.style.display = "flex";
     usernameContainer.classList.add("fail");
   } else {
-    const apiCheckUsername = "http://localhost:3000/api/register/checkUsername";
+    const apiCheckUsername = "http://0.0.0.0:3000/api/register/checkUsername";
     fetch(apiCheckUsername, {
       method: "POST",
       mode: "cors",
