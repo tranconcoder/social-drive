@@ -316,7 +316,7 @@
   }
 }
 
-.avatar-update-accept-layout{
+.avatar-update-accept-layout {
   position: fixed;
   z-index: 100;
   top: 0;
@@ -326,7 +326,7 @@
   background-color: rgba(0, 0, 0, 0.3);
   display: none; //flex when visible
 
-  &__container{
+  &__container {
     width: 40rem;
     background-color: $whiteColor;
     border-radius: 1rem;
@@ -334,7 +334,7 @@
     display: flex;
     flex-direction: column;
 
-    &-header-title{
+    &-header-title {
       $fontSize: 1.8rem;
       font-size: $fontSize;
       line-height: 5rem;
@@ -343,13 +343,14 @@
       color: $textColor;
     }
 
-    &-avatar{
+    &-avatar {
       margin-top: 5%;
       width: 90%;
       align-self: center;
       position: relative;
 
-      &-main, &-background{
+      &-main,
+      &-background {
         position: absolute;
         top: 0;
         left: 0;
@@ -357,30 +358,30 @@
         width: 100%;
         object-fit: cover;
         object-position: center;
-        border-radius: .7rem;
+        border-radius: 0.7rem;
       }
 
-      &-main{
+      &-main {
         border-radius: 50%;
-        border: .2rem solid $borderColor;
+        border: 0.2rem solid $borderColor;
         z-index: 2;
       }
 
-      &-background{
-        filter: brightness(.4);
+      &-background {
+        filter: brightness(0.4);
         z-index: 1;
       }
-      
-      &::before{
-        content: '';
+
+      &::before {
+        content: "";
         padding-bottom: 100%;
         display: block;
       }
     }
 
-    &-button-container{
+    &-button-container {
       $buttonHeight: 3.2rem;
-      
+
       width: 100%;
       height: $buttonHeight;
       display: flex;
@@ -388,39 +389,43 @@
       padding-right: 5%;
       margin-bottom: 5%;
 
-      button{
+      button {
         width: 10rem;
         height: 100%;
         margin-left: 2rem;
-        font-size: 1.4rem;
-        font-weight: bold;
-        line-height: $buttonHeight;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
 
-        &:hover{
+        p {
+          line-height: $buttonHeight;
+          font-size: 1.4rem;
+          font-weight: bold;
+          margin-bottom: 0;
+        }
+
+        &:hover {
           color: $whiteColor !important;
           cursor: pointer;
         }
       }
 
-      button:nth-child(1){
+      button:nth-child(1) {
         border-color: #2eb82e;
         color: #2eb82e;
 
-        &:hover{
+        &:hover {
           background-color: #2eb82e;
         }
       }
 
-      button:nth-child(2){
-        border-color:  #ff0000;
-        color:  #ff0000;
+      button:nth-child(2) {
+        border-color: #ff0000;
+        color: #ff0000;
 
-        &:hover{
-          background-color:  #ff0000;
+        &:hover {
+          background-color: #ff0000;
         }
       }
     }

@@ -12,7 +12,6 @@ class Profile {
     let User = req.user;
     User = Object.assign({}, User);
     User = Object.assign({}, User._doc, { header: true, profilePage: true });
-    console.log(User)
     res.render("profile/changePassword", User);
   }
 
@@ -30,7 +29,6 @@ class Profile {
         { newPassword: req.body.newPassword },
         { newPasswordAgain: req.body.newPasswordAgain },
       );
-      console.log(User);
       res.render("profile/changePassword", User);
     });
   }
