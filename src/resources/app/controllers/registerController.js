@@ -2,7 +2,7 @@ const Auther = require("../../models/auther");
 
 class Register {
   registerPage(req, res, next) {
-    res.render("register");
+    res.render("register/register");
   }
 
   register(req, res, next) {
@@ -10,8 +10,8 @@ class Register {
 
     Auther.create(req.body, (err, auther) => {
       if (err) {
-        res.render("register", { message: "Lỗi đăng ký!" });
-      } else res.render('login', {User})
+        res.render("register/register", { message: "Lỗi đăng ký!" });
+      } else res.render('login/login', {User})
     });
   }
 }

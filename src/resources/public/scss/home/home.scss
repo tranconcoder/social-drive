@@ -1,0 +1,15 @@
+$bodyHeight: 30rem;
+
+.body-container{
+    height: $bodyHeight;
+
+    &__introduce-container{
+
+        &__background{
+            width: 100%;
+            height: $bodyHeight;
+            object-fit: cover;
+            object-position: left;
+        }
+    }
+}

@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="http://localhost:3000/css/profile/profile.css"> 
+
+<div class="grid profile">
+    {{!-- Profile Container --}}
+    <div class="grid wide profile-container">
+
+        {{!-- Row --}}
+        <div class="row sm-gutters">
+            <div class="profile-container__avatar col l-3 m-0 c-0">
+                <div class="profile-container__avatar-container">
+                    <label class="profile-container__avatar-container-avatar" for="avatar-input">
+                        <div class="profile-container__avatar-container-img">
+                            <img src="http://localhost:3000/img/avatars/large/{{_id}}-large.jpg" alt="">
+                            <div class="profile-container__avatar-container-img-hover">
+                                <i class="fal fa-exchange"></i>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="profile-container__avatar-container-name">{{name}}</div>
+                    <div class="profile-container__avatar-container-gmail">{{gmail}}</div>
+                    <label class="profile-container__avatar-container-upload-button" for="avatar-input">
+                        <span class="profile-container__avatar-container-upload-button-content">Thay đổi Avatar</span>
+                    </label>
+                    <form class="profile-container__avatar-container-upload-avatar"action="/profile/upload-avatar/{{_id}}" method="post" enctype="multipart/form-data">
+                        <input name="avatar" id="avatar-input"  accept=".png, .jpg, .jpeg" class="profile-container__avatar-container-upload-avatar-input" type="file" >
+                        <button class="avatar-button"></button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="profile-container__infomation col l-6 m-7 c-12">
+                <div class="profile-container__infomation-container">
+                    <span class="profile-container__infomation-container-title">CHỈNH SỬA THÔNG TIN</span>
+                    <form class="profile-container__infomation-container-form-change" action="/profile" method="post">
+                        <input type="text" value="{{_id}}" name="id" style="display: none">
+                        <label for="">Họ và Tên</label>
+                        <input id="name" type="text" name="name" value="{{name}}" maxlength="40">
+                        <label for="">Địa chỉ Gmail</label>
+                        <input id="gmail" type="email" name="gmail" value="{{gmail}}">
+                        <span class="profile-container__infomation-container-form-change-direct-container">
+                            <a class="profile-container__infomation-container-form-change-direct" href="/profile/change-password">Đổi mật khẩu</a> 
+                        </span>
+                        <span class="profile-container__infomation-container-form-change-button-container">
+                            <button class="profile-button btn">Cập nhật</button>
+                        </span>
+                    </form>
+                </div>
+            </div>
+
+            <div class="profile-container__menu col l-3 m-0 c-0">
+                <div class="profile-container__menu-list">
+                    <a href="#" class="profile-container__menu-list__item current">
+                        <span class="profile-container__menu-list__item-seperate"></span>
+                        <span class="profile-container__menu-list__item-content">Thông tin Cá nhân</span>
+                        <div class="profile-container__menu-list__item-icon">
+                            <img src="http://localhost:3000/svg/user-menu.svg" alt="">
+                        </div>
+                    </a>
+                    <a href="/profile/change-password" class="profile-container__menu-list__item">
+                        <span class="profile-container__menu-list__item-seperate"></span>
+                        <span class="profile-container__menu-list__item-content">Thay đổi Mật khẩu</span>
+                        <div class="profile-container__menu-list__item-icon">
+                            <img src="http://localhost:3000/svg/security.svg" alt="">
+                        </div>
+                    </a>
+
+                    <a href="/" class="profile-container__menu-list__item">
+                        <span class="profile-container__menu-list__item-seperate"></span>
+                        <span class="profile-container__menu-list__item-content">Trở lại Trang chủ</span>
+                        <div class="profile-container__menu-list__item-icon">
+                            <img src="http://localhost:3000/svg/house.svg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- ACCEPT UPDATE AVATAR --}}
+<div class="avatar-update-accept-layout">
+    <div class="avatar-update-accept-layout__container">
+        <div class="avatar-update-accept-layout__container-avatar">
+            <img class="avatar-update-accept-layout__container-avatar-main" alt="">
+            <img class="avatar-update-accept-layout__container-avatar-background" alt="">
+        </div>
+        <div class="avatar-update-accept-layout__container-header-title">Bạn chắc chắn muốn đổi avatar mới này?</div>
+        <div class="avatar-update-accept-layout__container-button-container">
+            <button class="btn">
+                <p>Đồng ý</p>
+            </button>
+            <button class="btn">
+                <p>Hủy</p>
+            </button>
+        </div>
+    </div>
+</div>
+
+<ul class="error-message-container">
+    <span class="profile-message profile-message-name"></span>
+    <span class="profile-message profile-message-gmail"></span>
+</ul>
+
+<script src="http://localhost:3000/js/profile/profile.js"></script>

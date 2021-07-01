@@ -1,7 +1,7 @@
-<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="http://localhost:3000/css/header.css">
 
-<div class="header grid">
-   <div class="header-container grid wide">
+<div class="header container-fluid">
+   <div class="header-container container-xxl">
       <ul class="directional__list">
          <li id="home" class="directional__item">
             <a class="direct" href="/">
@@ -45,12 +45,12 @@
          {{#if username}}
          {{!-- when logged in --}}
          <div class="account-logged-in">
-            <div class="account-logged-in__avatar" style="background-image: url('/img/avatars/small/{{_id}}-small-60.jpg');">
+            <div class="account-logged-in__avatar" style="background-image: url('/img/avatars/small/{{_id}}-small.jpg');">
                   
                {{!-- Hover --}}
                <div class="account-logged-in__avatar--hover">
                   <a href="/profile" class="account-logged-in__avatar--hover-profile">
-                     <div class="account-logged-in__avatar--hover-profile-avatar" style="background-image:url('/img/avatars/large/{{_id}}-large-300.jpg')"></div>
+                     <div class="account-logged-in__avatar--hover-profile-avatar" style="background-image:url('/img/avatars/large/{{_id}}-large.jpg')"></div>
                      <div class="account-logged-in__avatar--hover-profile-infomation">
                         <span class="account-logged-in__avatar--hover-profile-infomation-name">
                            <i class="fal fa-edit"></i>
@@ -83,6 +83,4 @@
       </div>
    </div>
 </div>
-<div class="test"></div>
-
-<script src="js/header.js"></script>
+<div class="layout"></div>

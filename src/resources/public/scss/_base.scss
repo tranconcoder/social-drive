@@ -1,7 +1,17 @@
+@import "./_variables", "./grid";
+
+
 .btn{
-   border: 0;
-   height: 1.8rem;
-   min-width: 3rem;
+   border: .2rem solid #0088cc;
+   background-color: $whiteColor;
+   color: #0088cc;
+   transition: linear .2s;
+
+   &:hover{
+      border: 0;
+      color: $whiteColor;
+      background-color: #0088cc;
+   }
 }
 
 .triangle{
@@ -34,4 +44,7 @@
 
 button:disabled {
    background-color: rgb(184, 171, 171) !important;
+   border: 0 !important;
+   color: $whiteColor !important;
+   cursor: default !important;
 }

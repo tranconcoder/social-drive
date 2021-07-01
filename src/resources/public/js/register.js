@@ -1,7 +1,4 @@
 //WARNING ICON ON REGISTER MESSAGE
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 //SUBMIT BTN
 const button = $(".register-btn");
 

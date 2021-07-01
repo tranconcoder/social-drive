@@ -1,16 +1,16 @@
 const fs = require("fs");
 const jimp = require("jimp");
 
-const smallFileSize = 60;
-const mediumFileSize = 120;
-const largeFileSize = 300;
+const smallFileSize = 50;
+const mediumFileSize = 100;
+const largeFileSize = 250;
 const path = `src/resources/public/img/avatars`;
 
 class ProcessImage {
   async deleteOldImage(req, res, next) {
-    const smallFileName = `${req.params.id}-small-${smallFileSize}.jpg`;
-    const mediumFileName = `${req.params.id}-medium-${mediumFileSize}.jpg`;
-    const largeFileName = `${req.params.id}-large-${largeFileSize}.jpg`;
+    const smallFileName = `${req.params.id}-small.jpg`;
+    const mediumFileName = `${req.params.id}-medium.jpg`;
+    const largeFileName = `${req.params.id}-large.jpg`;
     const originalFileName = `${req.params.id}-original.jpg`;
 
     await fs.unlink(`${path}/original/${originalFileName}`, () => {
@@ -34,14 +34,14 @@ class ProcessImage {
     //Original file
     await jimp.read(`${req.file.path}`).then((image) => {
       return image
-        .resize(jimp.AUTO, 500)
+        .resize(jimp.AUTO, 300)
         .write(`${path}/original/${originalFileName}`);
     });
     next();
   }
 
   async processSmallImage(req, res, next) {
-    const smallFileName = `${req.params.id}-small-${smallFileSize}.jpg`;
+    const smallFileName = `${req.params.id}-small.jpg`;
 
     //Small file
     await jimp.read(`${req.file.path}`).then((image) => {
@@ -53,7 +53,7 @@ class ProcessImage {
   }
 
   async processMediumImage(req, res, next) {
-    const mediumFileName = `${req.params.id}-medium-${mediumFileSize}.jpg`;
+    const mediumFileName = `${req.params.id}-medium.jpg`;
 
     //Medium file
     await jimp.read(`${req.file.path}`).then((image) => {
@@ -65,7 +65,7 @@ class ProcessImage {
   }
 
   async processLargeImage(req, res, next) {
-    const largeFileName = `${req.params.id}-large-${largeFileSize}.jpg`;
+    const largeFileName = `${req.params.id}-large.jpg`;
 
     //Large file
     await jimp.read(`${req.file.path}`).then((image) => {

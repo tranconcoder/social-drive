@@ -1,0 +1,274 @@
+@import "_variables", "base", "grid";
+
+//TOAST MESSAGE
+
+// <ul class="toast-message">
+//     <li class="toast-message-error show">
+//         <i class="toast-message-error-icon toast-message-icon"></i>
+//         <span class="toast-message-error-container toast-message-container">
+//             <h2 class="toast-message-error-title toast-message-title">Title</h2>
+//             <p class="toast-message-error-content toast-message-content">Content</p>
+//         </span>
+//         <i class="toast-message-icon-cancel"></i>
+//         <div class="toast-message-timing"></div>
+//     </li>
+//     <li class="toast-message-warning show">
+//         <i class="toast-message-warning-icon toast-message-icon"></i>
+//         <span class="toast-message-warning-container toast-message-container">
+//             <h2 class="toast-message-warning-title toast-message-title">Title</h2>
+//             <p class="toast-message-warning-content toast-message-content">Content</p>
+//         </span>
+//         <i class="toast-message-icon-cancel"></i>
+//         <div class="toast-message-timing"></div>
+//     </li>
+//     <li class="toast-message-notification show">
+//         <i class="toast-message-notification-icon toast-message-icon"></i>
+//         <span class="toast-message-notification-container toast-message-container">
+//             <h2 class="toast-message-notification-title toast-message-title">Title</h2>
+//             <p class="toast-message-notification-content toast-message-content">Content</p>
+//         </span>
+//         <i class="toast-message-icon-cancel"></i>
+//         <div class="toast-message-timing"></div>
+//     </li>
+//     <li class="toast-message-successfully show">
+//         <i class="toast-message-successfully-icon toast-message-icon"></i>
+//         <span class="toast-message-successfully-container toast-message-container">
+//             <h2 class="toast-message-successfully-title toast-message-title">Title</h2>
+//             <p class="toast-message-successfully-content toast-message-content">Content</p>
+//         </span>
+//         <i class="toast-message-icon-cancel"></i>
+//         <div class="toast-message-timing"></div>
+//     </li>
+// </ul>
+
+// Cách sử dụng: thêm đoạn html trên vào và tùy biến:
+// tùy vào dạng message (error, warning, notify hay successfull) mà có những class title khác nhau
+// toast-message-error-title
+// toast-message-warning-title
+// toast-message-notification-title
+// toast-message-successfully-title
+// thẻ content:
+// toast-message-error-content
+// toast-message-warning-content
+// toast-message-notification-content
+// toast-message-successfully-content
+// ẨN/HIỆN THẺ:
+// ẩn: xóa class "show" và sthêm class "hide" vào thẻ li muốn ẩn
+// hiện: xóa class "hide" và thêm class "show" vào thẻ li muốn hiện
+
+//Variables
+$toastMessageWidth: 30rem;
+$toastMessageHeight: 5rem;
+$iconSize: 4rem;
+$cancelContainerSize: 3rem;
+$cancelIconSize: 1rem;
+$toastMessageSeperate: 1rem;
+$toastMessageTiming: 20s;
+
+.toast-message {
+  position: fixed;
+  top: $headerHeight + $toastMessageSeperate;
+  right: $toastMessageSeperate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > li {
+    width: $toastMessageWidth;
+    display: none;
+    align-items: center;
+    background-color: $whiteColor;
+    border-radius: 0.5rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0.1rem 0.5rem 0.1rem rgba(0, 0, 0, 0.15);
+    transform: translateX($toastMessageWidth + $toastMessageSeperate);
+
+    .toast-message-icon {
+      height: $iconSize;
+      width: $iconSize;
+      margin: (($toastMessageHeight - $iconSize) / 2);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .toast-message-container {
+      width: $toastMessageWidth -
+        (($toastMessageHeight - $iconSize) + $iconSize) -
+        (($toastMessageHeight - $cancelIconSize) + $cancelIconSize);
+      display: flex;
+      flex-direction: column;
+
+      .toast-message-title {
+        margin-top: ($toastMessageHeight - $iconSize) / 2;
+        font-weight: 400;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+      }
+
+      .toast-message-content {
+        color: $textColor;
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        word-wrap: break-word;
+        margin: 0.3rem 0 1rem 0;
+      }
+    }
+
+    .toast-message-icon-cancel {
+      height: $cancelContainerSize;
+      width: $cancelContainerSize;
+      margin: ($toastMessageHeight - $cancelContainerSize)/2;
+      background-image: url("http://localhost:3000/svg/toastMessage/cancel.svg");
+      background-size: $cancelIconSize;
+      background-position: center;
+      border-radius: 50%;
+      background-repeat: no-repeat;
+      transition: linear 0.1s;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .toast-message-timing{
+        
+        width: $toastMessageWidth;
+        height: .3rem;
+        visibility: hidden;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        animation: timing linear $toastMessageTiming;
+
+        @keyframes timing {
+            from {
+                visibility: visible;
+                width: $toastMessageWidth;
+            } to {
+                visibility: visible;
+                width: 0;
+            }
+        }
+    }
+
+    &.show {
+      display: flex;
+      transform: translateX(0);
+      animation: showMessage linear 0.3s;
+    }
+
+    &.hide {
+      transform: translateX($toastMessageWidth + $toastMessageSeperate);
+      animation: hideMessage linear 0.3s;
+    }
+
+    @keyframes showMessage {
+      from {
+        opacity: 0.7;
+        transform: translateX($toastMessageWidth + $toastMessageSeperate);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @keyframes hideMessage {
+      from {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateX($toastMessageWidth + $toastMessageSeperate);
+      }
+    }
+  }
+
+  //   ERROR
+  &-error {
+    &-icon {
+      background-image: url("http://localhost:3000/svg/toastMessage/error2.svg");
+    }
+
+    &-container {
+      .toast-message-error-title {
+        color: #fc573b;
+      }
+    }
+
+    .toast-message-icon-cancel {
+      &:hover {
+        box-shadow: 0 0 0.5rem 0.3rem rgba(255, 0, 0, 0.3);
+      }
+    }
+
+    .toast-message-timing{
+        background-color: red;
+    }
+  }
+  //   WARNING
+  &-warning {
+    &-container {
+      .toast-message-warning-title {
+        color: #ffd200;
+      }
+    }
+
+    &-icon {
+      background-image: url("http://localhost:3000/svg/toastMessage/warning2.svg");
+    }
+
+    .toast-message-icon-cancel {
+      &:hover {
+        box-shadow: 0 0 0.5rem 0.3rem rgba(251, 255, 0, 0.45);
+      }
+    }
+
+    .toast-message-timing{
+        background-color: yellow;
+    }
+  }
+  //   NOTIFY
+  &-notification {
+    &-container {
+      .toast-message-notification-title {
+        color: #26c6da;
+      }
+    }
+    &-icon {
+      background-image: url("http://localhost:3000/svg/toastMessage/notification2.svg");
+    }
+
+    .toast-message-icon-cancel {
+      &:hover {
+        box-shadow: 0 0 0.5rem 0.3rem rgba(0, 17, 255, 0.3);
+      }
+    }
+
+    .toast-message-timing{
+        background-color: blue;
+    }
+  }
+  //   SUCCESSFULL
+  &-successfully {
+    &-container {
+      .toast-message-successfully-title {
+        color: #2dde23;
+      }
+    }
+
+    &-icon {
+      background-image: url("http://localhost:3000/svg/toastMessage/successfully2.svg");
+    }
+
+    .toast-message-icon-cancel {
+      &:hover {
+        box-shadow: 0 0 0.5rem 0.3rem rgb(0, 255, 0);
+      }
+    }
+
+    .toast-message-timing{
+        background-color: rgb(0, 255, 0);
+    }
+  }
+}

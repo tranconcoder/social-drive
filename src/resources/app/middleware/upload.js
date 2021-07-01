@@ -38,7 +38,7 @@ router.post(
   processImage.processLargeImage,
   processImage.deleteFileUpload,
   function (req, res, next) {
-    res.redirect("/profile");
+    res.redirect("back");
   }
 );
 
