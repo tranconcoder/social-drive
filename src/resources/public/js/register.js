@@ -37,7 +37,7 @@ button.addEventListener("click", (e) => {
           resolve();
         } else {
           const apiCheckUsername =
-            "http://localhost:3000/api/register/checkUsername";
+            `http://${domain}:3000/api/register/checkUsername`;
           fetch(apiCheckUsername, {
             method: "POST",
             mode: "cors",
