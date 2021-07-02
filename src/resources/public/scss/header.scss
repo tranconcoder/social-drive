@@ -7,6 +7,10 @@
   top: 0;
   z-index: 100;
 
+  p{
+    margin-bottom: 0;
+  }
+
   &-container {
     height: 100%;
     position: absolute;
@@ -78,13 +82,16 @@
       align-items: center;
 
       &-not-logged {
+        $fontSize: 1.6rem;
+
         height: 2rem;
         display: flex;
         align-items: center;
 
         &__login,
         &__register {
-          font-size: 1.6rem;
+          font-size: $fontSize;
+          font-weight: 600;
           text-decoration: none;
           color: $whiteColor;
           transition: linear 0.1s;
@@ -92,16 +99,17 @@
 
           &:hover {
             color: rgb(0, 255, 255);
+            border-color: rgb(0, 255, 255);
             transform: translateY(-0.2rem);
           }
         }
 
-        &__seperate {
-          width: 0.2rem;
-          height: 95%;
-          border-radius: 1rem;
-          background-color: rgba(255, 255, 255, 0.356);
-          margin: 0 0.5rem;
+        &__register{
+          line-height: $fontSize;
+          padding: .5rem;
+          margin-left: 1rem;
+          border-radius: .5rem;
+          border: .2rem solid $borderColor;
         }
       }
 
@@ -111,14 +119,13 @@
         display: flex;
 
         &__avatar {
-          height: 75%;
-          width: 75%;
-          background-color: red;
+          height: 80%;
+          width: 80%;
           border-radius: 50%;
           margin: auto;
           background-position: center;
           background-size: cover;
-          border: 0.1rem solid $borderColor;
+          border: 0.2rem solid $primaryColorBlur;
           position: relative;
           cursor: pointer;
 
@@ -140,7 +147,8 @@
             display: flex;
             flex-direction: column;
             border-radius: .5rem;
-            box-shadow: 0 .1rem 1rem .1rem rgba(0, 0, 0, 0.13);
+            border: .1rem solid $borderColor;
+            box-shadow: 0 .1rem 1rem .1rem rgba(0, 0, 0, 0.2);
             transition: linear .2s;
             transform-origin: top right;
             transform: scale(0);

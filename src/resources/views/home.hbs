@@ -1,10 +1,83 @@
 <link rel="stylesheet" href="/css/home/home.css">
 
 <div class="body-container container-xxl">
-    <div class="body-container__introduce row row-cols-1">
-        <div class="body-container__introduce-contianer col px-0">
-            <img class="body-container__introduce-container__background" src="img/introduce-background.jpg" alt="">
-
+    <div class="body-container__introduce row">
+        <div class="body-container__introduce-container col-12 gx-0">
+            <img class="body-container__introduce-container__background" src="/img/laptop-background.jpg" alt="">
+            <img class="body-container__introduce-container__background-item" src="/svg/laptop.svg" alt="">
+            <div class="body-container__introduce-container__content-box">
+                <span class="body-container__introduce-container__content-box__title">CÙNG CHIA SẺ VÀ CÙNG HỌC TẬP</span>
+                <span class="body-container__introduce-container__content-box__content">
+                    Nơi mọi người chia sẻ tài liệu học tập, trò chuyện và trau dồi kiến thức thực tiễn!!!
+                    </br>Với hệ thống lưu trữ, chia sẻ, tạo bài tập
+                </span>
+                <button class="body-container__introduce-container__content-box__button btn">Chia sẻ ngay!</button>
+            </div>
         </div>
+    </div>
+</div>
+
+
+<div class="document-list-container container-xl">
+    <div class="document-list row gx-5">
+        <div class="document-list__title col-12">Danh mục Tài liệu</div>
+
+        <div onclick="location.href = '/my-documents'" class="document-list__item-container col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="document-list__item">
+                <img src="/svg/word.svg" alt="" class="document-list__item__image">
+                <h2 class="document-list__item__title">Tài liệu</h2>
+                <p class="document-list__item__description">
+                    Tìm kiếm ngay những tài liệu học tập hứu ích cho bản thân về nhiều lĩnh vực!
+                </p>
+                <div class="document-list__item__amount-document-and-button">
+                    <span class="document-list__item__amount-document">0 tài liệu</span>
+                    <button class="btn document-list__item__button">
+                        Truy cập
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="location.href = '/my-documents'" class="document-list__item-container col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="document-list__item">
+                <img src="/svg/excel.svg" alt="" class="document-list__item__image">
+                <h2 class="document-list__item__title">Trang tính</h2>
+                <p class="document-list__item__description">
+                    Tìm kiếm bảng tính, quản lý dữ liệu trực quan, nhanh chóng!
+                </p>
+                <div class="document-list__item__amount-document-and-button">
+                    <span class="document-list__item__amount-document">0 tài liệu</span>
+                    <button class="btn document-list__item__button">
+                        Truy cập
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="location.href = '/my-documents'" class="document-list__item-container col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="document-list__item">
+                <img src="/svg/powerpoint.svg" alt="" class="document-list__item__image">
+                <h2 class="document-list__item__title">Trang trình bày</h2>
+                <p class="document-list__item__description">
+                    Sỡ hữu ngay mẫu thiết kế phù hợp cho bài thuyết trình của bản thân!
+                </p>
+                <div class="document-list__item__amount-document-and-button">
+                    <span class="document-list__item__amount-document">0 tài liệu</span>
+                    <button class="btn document-list__item__button">
+                        Truy cập
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div onclick="location.href = '/my-documents'" class="document-list__item-container col-lg-3 col-md-4 col-sm-6 col-12">
+            <div class="document-list__item--more__container">
+                <span class="document-list__item--more">
+                    <p class="document-list__item--more__content">Xem thêm</p>
+                    <img src="/svg/down-arrow.svg" class="document-list__item--more__icon">
+                </span>
+            </div>
+        </div>
+
     </div>
 </div>

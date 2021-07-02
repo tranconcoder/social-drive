@@ -11,7 +11,9 @@ $titleColorRegister: #c61bd6;
 
 
 .login {
-    &-container {
+  font-family: "Baloo Paaji 2", cursive;
+
+  &-container {
       height: 100vh;
       background-image: url("/img/registerBackground.png");
       background-position: center;
@@ -119,7 +121,7 @@ $titleColorRegister: #c61bd6;
         background-color: rgb(59, 112, 255);
         border-radius: 0.2rem;
         color: #ffffff;
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         font-weight: bold;
         position: absolute;
         right: ($formWidthLogin - $inputWidth) / 2;

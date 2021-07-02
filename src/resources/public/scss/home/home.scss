@@ -1,15 +1,172 @@
+@import "../variables", "../base", "../grid";
+
 $bodyHeight: 30rem;
+$documentListItemHeight: 37rem;
+$amountDocumentAndButton: 4rem;
+
+@mixin documentListHover {
+    &:hover{
+        box-shadow: 0 .1rem .5rem .2rem rgba(0, 0, 0, 0.15);
+        transform: translateY(-.1rem);
+        transition: linear .1s;
+        cursor: pointer;
+    }
+}
 
 .body-container{
     height: $bodyHeight;
+    width: 100%;
+    padding: 0;
 
-    &__introduce-container{
+    &__introduce{
+        margin: 0;
 
-        &__background{
+        &-container{
+            position: relative;
             width: 100%;
-            height: $bodyHeight;
-            object-fit: cover;
-            object-position: left;
+            margin: 0 !important;
+    
+            &__background{
+                width: 100%;
+                height: $bodyHeight;
+                object-fit: cover;
+                object-position: left;
+                position: relative;
+            }
+    
+            &__background-item{
+                height: 30rem;
+                width: 30rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+    
+            &__content-box{
+                position: absolute;
+                right: 10%;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+    
+    
+                &__title, &__content{
+                    color: rgb(255, 255, 255);
+                }
+    
+                &__title{
+                    font-size: 2.4rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                }
+    
+                &__content{
+                    font-size: 1.8rem;
+                }
+    
+                &__button{
+                    margin-top: 2rem;
+                    width: 16rem;
+                    height: 3.6rem;
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+
+}
+.document-list-container{
+    margin: 1rem auto;
+
+    .document-list{
+
+        &__title{
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        &__item-container{
+            
+            .document-list__item{
+                height: $documentListItemHeight;
+                border: .1rem solid rgb(240, 240, 240);
+                border-radius: .5rem;
+                box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.15);
+                position: relative;
+                @include documentListHover;
+
+                &__image{
+                    width: 100%;
+                    padding: 5rem 5rem 2.6rem 5rem;
+                }
+
+                &__title, &__description{
+                    margin: 0 2rem;
+                }
+
+                &__title{
+                    color: black;
+                }
+
+                &__description{
+                    font-size: 1.3rem;
+                    color: $textColor;
+                    margin-top: .5rem;
+                    margin-bottom: $amountDocumentAndButton + 1rem;
+                }
+
+                &__amount-document-and-button{
+                    width: 100%;
+                    height: $amountDocumentAndButton;
+                    position: absolute;
+                    bottom: .5rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 2rem;
+
+                    .document-list__item__amount-document{
+                        font-size: 1.3rem;
+                        color: $textColor;
+                    }
+
+                    .document-list__item__button{
+                        height: 3rem;
+                        width: 9rem;
+                        font-size: 1.4rem;
+                        font-weight: bold;
+                        line-height: 0;
+                    }
+                }
+            }
+
+            .document-list__item--more__container{
+                @include documentListHover;
+
+                .document-list__item--more{
+                    height: $documentListItemHeight;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: .5rem;
+                    border: .1rem solid #f0f0f0;
+                    box-shadow: 0 .1rem .5rem .1rem rgba(0, 0, 0, 0.15);
+
+                    &__content{
+                        font-size: 2rem;
+                        margin: 0 .5rem 0 0;
+                        transform: translateY(-.3rem);
+                    }
+
+                    &__icon{
+                        height: 2rem;
+                        transform: rotate(-90deg);
+                    }
+
+                }
+            }
         }
     }
 }

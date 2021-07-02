@@ -4,7 +4,7 @@ const multer = require("multer");
 const router = express.Router();
 const fs = require("fs");
 const jimp = require("jimp");
-const processImage = require('./processImage')
+const processImage = require("./processImage");
 
 const Auther = require("../../models/auther");
 
@@ -13,7 +13,6 @@ var storage = multer.diskStorage({
     cb(null, "src/resources/public/img/avatars");
   },
   filename: function (req, file, cb) {
-
     const nameFileUpload = `${req.params.id}-upload.${getFileType(
       file.originalname
     )}`;
@@ -39,6 +38,10 @@ router.post(
   processImage.deleteFileUpload,
   function (req, res, next) {
     res.redirect("back");
+    Auther.updateOne({_id: req.params.id}, { avatar: true },
+      function (err, result) {
+        if (err) console.log('Không thể thay đổi trạng thái tồn tại của AVATAR!!!')
+      });
   }
 );
 

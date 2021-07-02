@@ -22,10 +22,10 @@
             </a>
          </li>
          <li id="document" class="directional__item">
-            <a class="direct" href="">
+            <a class="direct" href="/my-documents">
                <i class="fal fa-file-user"></i>
                <span class="directional__title">Tài liệu của tôi</span>
-               {{#if documentPage}}
+               {{#if myDocumentsPage}}
                <span class="mark-page"></span>
                {{/if}}
             </a>
@@ -45,12 +45,12 @@
          {{#if username}}
          {{!-- when logged in --}}
          <div class="account-logged-in">
-            <div class="account-logged-in__avatar" style="background-image: url('/img/avatars/small/{{_id}}-small.jpg');">
+            <div class="account-logged-in__avatar" style="background-image: url('{{#if avatar}}/img/avatars/small/{{_id}}-small.jpg{{else}}/svg/user-login.svg{{/if}}');">
                   
                {{!-- Hover --}}
                <div class="account-logged-in__avatar--hover">
                   <a href="/profile" class="account-logged-in__avatar--hover-profile">
-                     <div class="account-logged-in__avatar--hover-profile-avatar" style="background-image:url('/img/avatars/large/{{_id}}-large.jpg')"></div>
+                     <div class="account-logged-in__avatar--hover-profile-avatar" style="background-image:url('{{#if avatar}}/img/avatars/large/{{_id}}-large.jpg{{else}}/svg/user-login.svg{{/if}}')"></div>
                      <div class="account-logged-in__avatar--hover-profile-infomation">
                         <span class="account-logged-in__avatar--hover-profile-infomation-name">
                            <i class="fal fa-edit"></i>
@@ -76,7 +76,6 @@
          {{!-- when not logged in --}}
          <div class="account-not-logged">
             <a href="/login" class="account-not-logged__login">Đăng nhập</a>
-            <div class="account-not-logged__seperate"></div>
             <a href="/register" class="account-not-logged__register">Đăng ký</a>
          </div>
          {{/if}}

@@ -1,4 +1,5 @@
 const auther = require("../../models/auther");
+const document = require("../../models/document");
 
 class APIController {
   register = {
@@ -20,8 +21,9 @@ class APIController {
   profile = {
     checkOldPassword(req, res, next) {
       auther.findById(req.user._id, function (err, result) {
-        if (err) {console.log(err)}
-        else {
+        if (err) {
+          console.log(err);
+        } else {
           if (result.password === req.body.oldPassword) {
             res.json(true);
           } else {
@@ -29,6 +31,19 @@ class APIController {
           }
         }
       });
+    },
+  };
+
+  documents = {
+    getAllMyDocuments(req, res, next) {
+      if (req.user === req.body.id) {
+        document.find({ userId: req.user._id }, function (err, result) {
+          if (err) console.log("error getAllMyDocuments");
+          else {
+            res.json(result);
+          }
+        });
+      }
     },
   };
 }
