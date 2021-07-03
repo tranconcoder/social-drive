@@ -146,7 +146,7 @@ async function oldPasswordFocusout() {
     } else {
       let error;
 
-      const api = "http://localhost:3000/api/profile/change-password";
+      const api = `https://${domain}/api/profile/change-password`;
 
       await fetch(api, {
         method: "POST",
