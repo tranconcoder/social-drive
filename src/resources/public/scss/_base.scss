@@ -1,49 +1,88 @@
-@import "./_variables", "./grid";
+@import "./_variables", "./grid", "mixin";
 
-.btn{
-   border: .2rem solid #0088cc;
-   background-color: $whiteColor;
-   color: #0088cc;
-   transition: linear .2s;
+.btn {
+  border: 0.2rem solid #1074a2;
+  background-color: $whiteColor;
+  color: #1074a2;
+  transition: linear 0.1s;
 
-   &:hover{
-      border: 0;
-      color: $whiteColor;
-      background-color: #0088cc;
-   }
+  &:hover {
+    border: 0;
+    color: $whiteColor;
+    background-color: #1074a2;
+  }
 }
 
-.triangle{
-   width: 0;
-   height: 0;
+.input-container {
+  position: relative;
+
+  .input {
+    @include setSize(100%);
+    outline: none;
+    border: 0.1rem solid $borderColor;
+    padding: 0 1rem;
+
+    &:focus {
+      border-color: #1074a2;
+      border-width: 0.2rem;
+    }
+
+    &:focus + .input-title,
+    &:not(:placeholder-shown) + .input-title {
+      top: 0;
+      background-color: $whiteColor;
+      padding: 0 0.5rem;
+      font-weight: bold;
+      color: #1074a2;
+    }
+  }
+
+  .input-title {
+    font-size: 1.4rem;
+    color: $textColor;
+    line-height: 1.4rem;
+    position: absolute;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    transition: ease 0.1s;
+    cursor: text;
+    user-select: none;
+    will-change: transform border-color border-width;
+  }
+}
+
+.triangle {
+  width: 0;
+  height: 0;
 }
 
 .triangle.up {
-   border-left: 50px solid transparent;
-   border-right: 50px solid transparent;
-   border-bottom: 100px solid red;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-bottom: 100px solid red;
 }
 .triangle.down {
-   border-left: 50px solid transparent;
-   border-right: 50px solid transparent;
-   border-top: 100px solid red;
+  border-left: 50px solid transparent;
+  border-right: 50px solid transparent;
+  border-top: 100px solid red;
 }
 
-.triangle.left{
-   border-top: 50px solid transparent;
-   border-right: 100px solid red;
-   border-bottom: 50px solid transparent;
+.triangle.left {
+  border-top: 50px solid transparent;
+  border-right: 100px solid red;
+  border-bottom: 50px solid transparent;
 }
 
-.triangle.right{
-   border-top: 50px solid transparent;
-   border-left: 100px solid red;
-   border-bottom: 50px solid transparent;
+.triangle.right {
+  border-top: 50px solid transparent;
+  border-left: 100px solid red;
+  border-bottom: 50px solid transparent;
 }
 
 button:disabled {
-   background-color: rgb(184, 171, 171) !important;
-   border: 0 !important;
-   color: $whiteColor !important;
-   cursor: default !important;
+  background-color: rgb(184, 171, 171) !important;
+  border: 0 !important;
+  color: $whiteColor !important;
+  cursor: default !important;
 }

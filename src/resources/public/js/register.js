@@ -37,7 +37,7 @@ button.addEventListener("click", (e) => {
           resolve();
         } else {
           const apiCheckUsername =
-            `https://${domain}/api/register/checkUsername`;
+            `${http}://${domain}/api/register/checkUsername`;
           fetch(apiCheckUsername, {
             method: "POST",
             mode: "cors",
@@ -140,7 +140,7 @@ usernameInput.addEventListener("focusout", (e) => {
     usernameMessage.style.display = "flex";
     usernameContainer.classList.add("fail");
   } else {
-    const apiCheckUsername = `https://${domain}/api/register/checkUsername`;
+    const apiCheckUsername = `${http}://${domain}/api/register/checkUsername`;
     fetch(apiCheckUsername, {
       method: "POST",
       mode: "cors",
@@ -242,7 +242,7 @@ function usernameCheck(username) {
     }
     if (lengthError && syntaxError) {
       if (lengthErrorShort) {
-        return "Tên đăng nhập phải dài hơn 6 ký tự và không chứa ký tự đặc biệt!";
+        return "Tên đăng nhập phải dài hơn 5 ký tự và không chứa ký tự đặc biệt!";
       } else {
         return "Tên đăng nhập phải ngắn hơn 16 ký tự và không chứa ký tự đặc biệt!";
       }
@@ -285,59 +285,16 @@ function securityLevel(password) {
 //Gmail
 function checkGmail(gmail) {
   if (gmail) {
-    if (gmail.includes("@gmail.com")) {
-      return false;
+    if (gmail.length <= 50) {
+      if (gmail.includes("@gmail.com")) {
+        return false;
+      } else {
+        return "Vui lòng nhập đúng định dạng của gmail (có @gmail.com)!";
+      }
     } else {
-      return "Vui lòng nhập đúng định dạng của gmail (có @gmail.com)!";
+      return "Gmail: Chỉ cho phép nhập tối đa 50 ký tự!"
     }
   } else {
     return "Vui lòng điền địa chỉ Gmail!";
   }
-}
-
-//Gereral functions
-function hasSymbol(string) {
-  for (let i = 0; i < string.length; ++i) {
-    let ASCII = string.charCodeAt(i);
-
-    if (
-      !(ASCII >= 48 && ASCII <= 57) &&
-      !(ASCII >= 65 && ASCII < 90) &&
-      !(ASCII >= 97 && ASCII < 122)
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function hasLowerCase(string) {
-  for (let i = 0; i < string.length; ++i) {
-    let ASCII = string.charCodeAt(i);
-
-    if (ASCII > 96 && ASCII < 123) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function hasUpperCase(string) {
-  for (let i = 0; i < string.length; ++i) {
-    let ASCII = string.charCodeAt(i);
-
-    if (ASCII > 64 && ASCII < 91) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function hasNumber(string) {
-  for (let i in string) {
-    if (string.charCodeAt(i) <= 30 && string.charCodeAt(i) <= 39) {
-      return true;
-    }
-  }
-  return false;
 }

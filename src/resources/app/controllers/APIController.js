@@ -34,6 +34,22 @@ class APIController {
     },
   };
 
+  myDocument = {
+    checkFileName(req, res, next) {
+      console.log(req.body)
+      document.findOne({ name: req.body.fileName, userId: req.user._id }, function (err, result) {
+        if (err) console.log("Lỗi khi tìm file");
+        else {
+          if (result) {
+            res.json(false);
+          } else {
+            res.json(true);
+          }
+        }
+      });
+    },
+  };
+
   documents = {
     getAllMyDocuments(req, res, next) {
       if (req.user === req.body.id) {

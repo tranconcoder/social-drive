@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="/css/myDocuments/myDocuments.css">
+
+<div class="document-container container-xxl p-5">
+    <div class="row document-tools">
+         <span class="document-tools__item document-tools__item__title">
+            Công cụ quản lý
+        </span>
+        <div class="document-tools__item document-tools__item__sync">
+            <div class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-sync.svg');"></div>
+        </div>
+        <div class="document-tools__item document-tools__item__upload">
+            <div onclick="$('.upload-container').style.display = 'flex'"
+                class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-upload.svg');"></div>
+        </div>
+        <div class="document-tools__item document-tools__item__rename">
+            <div class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-rename.svg');"></div>
+        </div>
+        <div class="document-tools__item document-tools__item__delete">
+            <div class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-delete.svg');"></div>
+        </div>
+        <div class="document-tools__item document-tools__item__download">
+            <div class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-download.svg');"></div>
+        </div>
+    </div>
+
+    {{!-- DOCUMENT LIST --}}
+    <div class="document-more row">
+        <div class="document-more__item"
+            onclick="$('.upload-container').style.display = 'flex'">
+            <div class="document-more__item__container">
+                <img class="document-more__item__container__icon" src="/svg/plus.svg">
+                <span class="document-more__item__container__label">Thêm Tài liệu</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="document-list row">
+        <div class="document-list__item">
+            
+        </div>
+    </div>
+</div>
+
+
+{{!-- UPLOAD UI --}}
+<div class="upload-container">
+    <form class="upload" action="/my-documents/upload/{{_id}}" method="post" enctype="multipart/form-data">
+        <h3 class="upload__title">
+            Tải lên
+            <img class="upload__cancel" src="/svg/close2.svg">
+        </h3>
+        <div class="upload__form-content">
+            <div class="upload__form-content__input-container">
+                <img class="upload__form-content__input-container__icon" src="/svg/upload2.svg" alt="">
+                <label for="documentFile"
+                class="upload__form-content__input-container__button">
+                    Chọn tài liệu
+                </label>
+                <div class="upload__form-content__input-container__warning-message">
+                    <img class="upload__form-content__input-container__warning-message__icon" src="/svg/warning-message.svg" alt="">
+                    <span class="upload__form-content__input-container__warning-message__content"></span>
+                </div>
+                <p class="upload__form-content__input-container__original-file-name"></p>
+                <input type="file" name="documentFile" id="documentFile" style="display: none;"
+                    accept=".docx, .xlsm, .xlsx, .pptx">
+            </div>
+            <div class="upload__form-content__file-info">
+                <input type="password" value="{{_id}}" name="id" style="display: none;">
+                <span class="upload__form-content__file-info__title">Thông tin Tài liệu</span>
+                <div class="upload__form-content__file-info__file-name input-container">
+                    <input type="text" id="documentFileName" name="fileName" class="input upload__form-content__file-info__file-name" placeholder=" " autocomplete="off">
+                    <label for="documentFileName" class="input-title">Tên tài liệu</label>
+                    <div class="upload__form-content__file-info__file-name__warning-message">
+                        <img class="upload__form-content__file-info__file-name__warning-message__icon" src="/svg/warning-message.svg" alt="">
+                        <span class="upload__form-content__file-info__file-name__warning-message__content"></span>
+                    </div>
+                </div>
+                <div class="upload__form-content__file-info__option">
+                    <span class="upload__form-content__file-info__option__title">Chế độ:</span>
+                    <input type="radio" name="fileOption" id="publicOption" value="public">
+                    <label for="publicOption">Công khai</label>
+                    <input type="radio" name="fileOption" id="privateOption" value="private">
+                    <label for="privateOption">Riêng tư</label>
+                    <div class="upload__form-content__file-info__option__warning-message">
+                        <img class="upload__form-content__file-info__option__warning-message__icon" src="/svg/warning-message.svg" alt="">
+                        <span class="upload__form-content__file-info__option__warning-message__content"></span>
+                    </div>
+                </div>
+
+                <div class="upload__form-content__file-info__button-container">
+                    <button class="btn upload__form-content__file-info__submit-button">
+                        Tải lên
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+{{!-- UPLOAD/ DOWNLOAD/ DELETE/ SHARE/ OPTION[PUBLIC/ PRIVATE] --}}
+
+<script src="/js/myDocuments/myDocuments.js"></script>

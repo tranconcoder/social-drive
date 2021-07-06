@@ -29,6 +29,8 @@ passport.use(
       if (!(user.password === password)) {
         return done(null, false);
       }
+      auther.findByIdAndUpdate(user._id, { lastLoginAt: Date.now() },
+      (err, result) => {});
       return done(null, user);
     });
   })
