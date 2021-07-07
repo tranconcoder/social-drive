@@ -35,18 +35,17 @@ class APIController {
   };
 
   myDocument = {
-    checkFileName(req, res, next) {
-      console.log(req.body)
-      document.findOne({ name: req.body.fileName, userId: req.user._id }, function (err, result) {
-        if (err) console.log("Lỗi khi tìm file");
-        else {
-          if (result) {
-            res.json(false);
-          } else {
-            res.json(true);
-          }
-        }
+    async checkFileName(req, res, next) {
+      let fileNameError = await document.findOne({
+        userId: req.user._id,
+        name: req.body.fileName,
       });
+      console.log(fileNameError)
+      if (fileNameError) {
+        res.json(false);
+      } else {
+        res.json(true);
+      }
     },
   };
 

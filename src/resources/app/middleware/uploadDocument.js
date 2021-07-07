@@ -60,18 +60,14 @@ function processFileDocumentUpload(req, res, next) {
       if (!err) {
         let documentFile = await {
           userId: req.body.id,
-          file: {
-            name: `${req.body.fileName}${baseJs.getFileType(
-              req.file.originalname
-            )}`,
-            application: getApplicationWithFileName(req.file.originalname),
-            mode: await req.body.fileOption,
-            locate: `${documentPath}/${getApplicationWithFileName(
-              req.file.originalname
-            )}/${req.body.fileName}${baseJs.getFileType(
-              req.file.originalname
-            )}`,
-          },
+          name: `${req.body.fileName}${baseJs.getFileType(
+            req.file.originalname
+          )}`,
+          application: getApplicationWithFileName(req.file.originalname),
+          mode: await req.body.fileOption,
+          locate: `${documentPath}/${getApplicationWithFileName(
+            req.file.originalname
+          )}/${req.body.fileName}${baseJs.getFileType(req.file.originalname)}`,
           uploadAt: Date.now(),
         };
 

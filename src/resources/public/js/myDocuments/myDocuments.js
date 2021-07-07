@@ -197,7 +197,7 @@ async function documentFileInputNameCheck() {
               .then((response) => response.json())
               // checkResult true nếu không có lỗi
               .then((checkResult) => {
-                console.log(checkResult);
+                console.log(checkResult)
                 if (checkResult) {
                   success();
                 } else {

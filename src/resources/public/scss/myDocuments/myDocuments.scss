@@ -59,23 +59,23 @@ $formContentIconSize: 10rem;
       background-color: #f3f3f3;
       border-radius: 0.5rem;
       position: relative;
-      box-shadow: 0 .2rem .5rem .3rem rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.1);
       user-select: none;
-      transition: ease .1s;
-      
-      &:hover{
-        cursor: pointer;
-        box-shadow: 0 .2rem .5rem .3rem rgba(0, 0, 0, 0.15);
+      transition: ease 0.1s;
 
-        .document-more__item__container{
-          opacity: .8;
+      &:hover {
+        cursor: pointer;
+        box-shadow: 0 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.15);
+
+        .document-more__item__container {
+          opacity: 0.8;
         }
       }
 
       &__container {
         @include flex(column, center, center);
         margin: auto;
-        transition: ease .3s;
+        transition: ease 0.3s;
 
         &__icon {
           @include setSize($iconSize);
@@ -84,9 +84,19 @@ $formContentIconSize: 10rem;
         &__label {
           font-size: 1.4rem;
           color: $textColor;
-          margin-top: .5rem;
+          margin-top: 0.5rem;
         }
       }
+    }
+  }
+
+  .document-list {
+    margin-top: 3rem;
+
+    &__item {
+      height: 24rem;
+      border-radius: .5rem;
+      box-shadow: 0 .1rem .5rem .2rem rgba(0, 0, 0, .1);
     }
   }
 }

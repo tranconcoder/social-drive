@@ -1,4 +1,4 @@
-const Auther = require('../../models/auther')
+const auther = require('../../models/auther')
 
 class Login{
    loginPage (req, res, next) {
