@@ -12,6 +12,10 @@ const port = 3000;
 const upload = require("./resources/app/middleware/uploadAvatar");
 const uploadFileDocument = require("./resources/app/middleware/uploadDocument");
 
+
+app.get("/download", (req, res) => {
+  res.download("./package.json")
+})
 //upload
 app.use(upload);
 app.use(uploadFileDocument);

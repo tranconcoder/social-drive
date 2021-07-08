@@ -14,32 +14,16 @@
    <script src="/js/general/base.js"></script>
    <link rel="stylesheet" href="/css/grid.css">
    <link rel="stylesheet" href="/css/app.css">
+   <link rel="stylesheet" href="/css/toastMessage.css">
    <title>CONS - Education page</title>
 </head>
 <body>
-   
+   <ul class="toast-message-container"></ul>
    {{#if header}}
    {{>header}}
    {{/if}}
 
    {{{body}}}
 
-   {{!-- message --}}
-   {{#if message}}
-   <div class="message">
-      <span class="message-title">
-         <p>Notification</p> 
-      </span>
-
-      <span class="message-content">
-         <p>{{message}}</p>
-      </span>
-
-      <button class="message-close-btn">
-         <p>Close</p>
-      </button>
-   </div>
-   {{/if}}
-   <script src="/js/general/message.js"></script>
 </body>
 </html>

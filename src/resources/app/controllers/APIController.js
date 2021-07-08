@@ -40,25 +40,36 @@ class APIController {
         userId: req.user._id,
         name: req.body.fileName,
       });
-      console.log(fileNameError)
+      console.log(fileNameError);
       if (fileNameError) {
         res.json(false);
       } else {
         res.json(true);
       }
     },
-  };
 
-  documents = {
-    getAllMyDocuments(req, res, next) {
-      if (req.user === req.body.id) {
-        document.find({ userId: req.user._id }, function (err, result) {
-          if (err) console.log("error getAllMyDocuments");
-          else {
-            res.json(result);
+    getAll(req, res, next) {
+      document.find(
+        { userId: req.user._id },
+        ["name", "application", "size", "uploadAt"],
+        { sort: { uploadAt: -1 } },
+
+        (err, documentList) => {
+          res.json(documentList);
+        }
+      );
+    },
+
+    downloadDocument(req, res, next) {
+      document.findOne(
+        { _id: req.params.documentId },
+        ["userId", "locate"],
+        function (err, result) {
+          if ((result.userId == req.user._id) && (!err)) {
+            res.download(result.locate);
           }
-        });
-      }
+        }
+      );
     },
   };
 }

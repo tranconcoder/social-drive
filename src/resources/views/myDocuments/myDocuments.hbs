@@ -1,11 +1,14 @@
 <link rel="stylesheet" href="/css/myDocuments/myDocuments.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 <div class="document-container container-xxl p-5">
     <div class="row document-tools">
          <span class="document-tools__item document-tools__item__title">
             Công cụ quản lý
         </span>
-        <div class="document-tools__item document-tools__item__sync">
+        <div class="document-tools__item document-tools__item__refresh">
             <div class="document-tools__item__image" style="background-image: url('/svg/fileTools/cloud-sync.svg');"></div>
         </div>
         <div class="document-tools__item document-tools__item__upload">
@@ -23,7 +26,7 @@
         </div>
     </div>
 
-    {{!-- DOCUMENT LIST --}}
+    {{!-- DOCUMENT ADD NEW DOCUMENT --}}
     <div class="document-more row">
         <div class="document-more__item"
             onclick="$('.upload-container').style.display = 'flex'">
@@ -34,17 +37,45 @@
         </div>
     </div>
 
+    {{!-- DOCUMENT LIST --}}
     <div class="document-list row row-cols-1 row-cols-md-4 row-cols-xl-6">
-        <div class="document-list__item col">
-
-        </div>
     </div>
 </div>
+
+{{!-- CONTEXT MENU --}}
+    {{!-- Document List --}}
+    
+<ul class="context-menu context-menu__document-item">
+    <li class="context-menu__item context-menu__item__download">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-download.svg" alt="">
+        <span class="context-menu__item__label">Tải xuống</span>
+    </li>
+    <li class="context-menu__item context-menu__item__share">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-share.svg" alt="">
+        <span class="context-menu__item__label">Chia sẻ</span>
+    </li>
+    <li class="context-menu__item context-menu__item__rename">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-rename.svg" alt="">
+        <span class="context-menu__item__label">Đổi tên</span>
+    </li>
+    <li class="context-menu__item context-menu__item__delete">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-delete.svg" alt="">
+        <span class="context-menu__item__label">Xóa</span>
+    </li>
+    <li class="context-menu__item context-menu__item__setting">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-setting.svg" alt="">
+        <span class="context-menu__item__label">Cài đặt</span>
+    </li>
+    <li class="context-menu__item context-menu__item__information">
+        <img class="context-menu__item__icon" src="/svg/my-documents/context-menu/file-information.svg" alt="">
+        <span class="context-menu__item__label">Chi tiết</span>
+    </li>
+</ul>
 
 
 {{!-- UPLOAD UI --}}
 <div class="upload-container">
-    <form class="upload" action="/my-documents/upload/{{_id}}" method="post" enctype="multipart/form-data">
+    <form class="upload" method="post" enctype="multipart/form-data">
         <h3 class="upload__title">
             Tải lên
             <img class="upload__cancel" src="/svg/close2.svg">
@@ -95,6 +126,7 @@
             </div>
         </div>
     </form>
-{{!-- UPLOAD/ DOWNLOAD/ DELETE/ SHARE/ OPTION[PUBLIC/ PRIVATE] --}}
 
+{{!-- UPLOAD/ DOWNLOAD/ DELETE/ SHARE/ OPTION[PUBLIC/ PRIVATE] --}}
+<data id="data" userId="{{_id}}"></data>
 <script src="/js/myDocuments/myDocuments.js"></script>

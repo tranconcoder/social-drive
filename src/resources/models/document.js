@@ -9,6 +9,7 @@ const Document = new Schema({
     enum: ["word", "excel", "powerPoint"],
     required: true,
   },
+  size: { type: Number, maxLength: 20, required: true },
   locate: { type: String, maxLength: 512, required: true },
   mode: { type: String, enum: ["public", "private"], required: true },
   uploadAt: { type: Date, default: Date.now },

@@ -1,4 +1,121 @@
-// GENERAL VARIABLES
+// Document tools
+const refreshButton = $(
+  ".document-tools__item__refresh .document-tools__item__image"
+);
+
+refreshButton.addEventListener("click", (e) => {
+  renderDocumentList();
+});
+
+let documents;
+let documentSelected = { id: "", name: "" };
+// document list
+const documentList = $(".document-list");
+async function renderDocumentList() {
+  documents = await getAllDocument();
+  arr = documents;
+  documentList.innerHTML = "";
+
+  await documents.forEach((document) => {
+    documentList.innerHTML += `
+    <div class="document-list__item col">
+      <div class="document-list__item__container">
+        <img class="document-list__item__container__image"
+        src="/svg/${document.application}.svg" alt="">
+        <p class="document-list__item__container__file-name"
+        >${document.name}</p>
+        <div class="document-list__item__container__file-info">
+            <span class="document-list__item__container__file-info__last-change">
+              ${document.uploadAt.slice(0, 13)}
+            </span>
+            <span class="document-list__item__container__file-info__size">
+              ${convertByteToMegaByte(document.size)}MB
+            </span>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  // document list context menu
+  function documentListContextMenu() {
+    const documentListItems = $$(".document-list__item__container");
+    for (let index = 0; index < documentListItems.length; index++) {
+      documentListItems[index].addEventListener("contextmenu", async (e) => {
+        e.preventDefault();
+
+        documentSelected.id = documents[index]._id;
+        documentSelected.name = documents[index].name;
+        const contextMenu = $(".context-menu__document-item");
+        const contextMenuOverHeight =
+          e.screenY + contextMenu.offsetHeight - screen.height;
+
+        contextMenu.style.visibility = "visible";
+        contextMenu.style.left = `${e.clientX}px`;
+
+        if (contextMenuOverHeight > 0) {
+          contextMenu.style.top = `${e.clientY - contextMenuOverHeight}px`;
+        } else {
+          contextMenu.style.top = `${e.clientY}px`;
+        }
+
+        document.addEventListener("click", (e) => {
+          contextMenu.style.visibility = "hidden";
+        });
+      });
+    }
+    // context menu selection
+    // download
+    const contextMenuDownload = $(".context-menu__item__download");
+    contextMenuDownload.addEventListener("click", async (e) => {
+      let downloadAPI = `${http}://${domain}/api/my-documents/download/${documentSelected.id}`;
+      await fetch(downloadAPI)
+        .then((response) => response.blob())
+        .then((blob) => {
+          let a = document.createElement("a"); // create a tag a
+          a.href = URL.createObjectURL(blob); // create url of blob
+          a.setAttribute("download", documentSelected.name); // set file
+          a.click();  // click tag a to downlaod
+        });
+    });
+
+    // delete
+    const contextMenuDelete = $(".context-menu__item__delete");
+    contextMenuDelete.addEventListener("click", (e) => {
+      let deleteAPI = `${http}://${domain}/api/my-documents/delete/${documentId}`;
+      fetch(deleteAPI, {
+        method: "delete",
+        body: JSON.stringify({
+          documentId: documentSelected.id
+        })
+      })
+        .then(response => response.json())
+        .then(deleted => {
+          if (deleted) {
+          }
+        })
+    })
+  }
+
+  documentListContextMenu();
+}
+renderDocumentList();
+
+// document list API
+async function getAllDocument() {
+  const apiGetAll = `${http}://${domain}/api/my-documents/get-all`;
+  let documents;
+  await fetch(apiGetAll, {
+    method: "get",
+    mode: "cors",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      documents = data;
+    });
+  return documents;
+}
+
+// UPLOAD DOCUMENT
 const fileDocumentUploadInput = $("#documentFile");
 const fileDocumentUploadAccept = [".docx", ".xlsm", ".xlsx", ".pptx"];
 const fileDocumentUploadIcon = $(
@@ -12,7 +129,6 @@ const fileDocumentUploadNameInput = $("#documentFileName");
 const fileDocumentUploadOptionsInput = $$("input[name='fileOption']");
 // ESC TO CANCEL FORM UPLOAD
 document.addEventListener("keyup", (e) => {
-  console.log($(".upload-container").style.display);
   if (e.keyCode === 27 && $(".upload-container").style.display === "flex") {
     $(".upload-container").style.display = "none";
   }
@@ -93,7 +209,7 @@ fileDocumentUploadInput.addEventListener("change", (e) => {
           fileDocumentUploadIcon.setAttribute("src", "/svg/excel.svg");
           break;
         default:
-          fileDocumentUploadIcon.setAttribute("src", "/svg/powerpoint.svg");
+          fileDocumentUploadIcon.setAttribute("src", "/svg/powerPoint.svg");
       }
     })
 
@@ -127,6 +243,7 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
 
   if (fileNameCheck && fileOptionCheck && fileDocumentCheck) {
     await fileDocumentUploadButton.setAttribute("disabled", "");
+    fileDocumentUploadForm.action = `/my-documents/upload/${fileDocumentUploadInput.files[0].size}`;
     fileDocumentUploadForm.submit();
   }
 });
@@ -197,7 +314,6 @@ async function documentFileInputNameCheck() {
               .then((response) => response.json())
               // checkResult true nếu không có lỗi
               .then((checkResult) => {
-                console.log(checkResult)
                 if (checkResult) {
                   success();
                 } else {
@@ -234,7 +350,6 @@ function fileDocumentUploadOptionsInputCheck() {
   $(
     ".upload__form-content__file-info__option__warning-message__content"
   ).innerHTML = "Vui lòng chọn chế độ của Tài liệu!";
-  console.log(false);
   return false;
 }
 
@@ -250,3 +365,27 @@ function fileDocumentUploadInputCheck() {
     return false;
   }
 }
+
+// // PROCESS TEXT IN ITEM
+// const documentListItemFileName = $(".document-list__item__file-name");
+// let documentListItemFileNameContent =
+//   documentListItemFileName.innerHTML.split(".");
+
+// documentListItemFileNameContent.pop();
+
+// documentListItemFileNameContent = documentListItemFileNameContent.join(".");
+
+// let documentListItemFileNameType = getFileType(
+//   documentListItemFileName.innerHTML
+// );
+
+// if (documentListItemFileName.innerHTML.length > 24) {
+//   documentListItemFileNameContent =
+//     documentListItemFileNameContent.slice(
+//       0,
+//       22 - documentListItemFileNameType.length - 3
+//     ) + "...";
+
+//   documentListItemFileName.innerHTML =
+//     documentListItemFileNameContent + documentListItemFileNameType;
+// }

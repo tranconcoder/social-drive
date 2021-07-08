@@ -91,12 +91,100 @@ $formContentIconSize: 10rem;
   }
 
   .document-list {
-    margin-top: 3rem;
+    margin-top: 1rem;
 
     &__item {
-      height: 24rem;
-      border-radius: .5rem;
-      box-shadow: 0 .1rem .5rem .2rem rgba(0, 0, 0, .1);
+      padding: 1.5rem;
+
+      &__container {
+        @include flex(column, center, flex-start);
+        border-radius: 0.5rem;
+        box-shadow: 0 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1);
+
+        &__image {
+          @include setSize(60%);
+          margin: 10% 0;
+        }
+
+        &__file-name {
+          width: 100%;
+          color: $textColor;
+          font-size: 1.4rem;
+          font-family: "Roboto", sans-serif;
+          word-wrap: break-word;
+          text-align: center;
+          overflow: hidden;
+          margin-bottom: 0.5rem;
+        }
+
+        &__file-info {
+          @include flex(row, center, space-between);
+          @include setSize(100%, auto);
+          padding: 0 1rem 1rem;
+
+          &__last-change {
+            color: $textColor;
+            font-size: 1.2rem;
+          }
+
+          &__size {
+            font-size: 1.4rem;
+            font-weight: bold;
+          }
+        }
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0.1rem 0.7rem 0.5rem rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+}
+
+.context-menu {
+  visibility: hidden;
+  position: fixed;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  list-style: none;
+  background-color: $whiteColor;
+  padding-left: 0;
+  box-shadow: 0 0.1rem 0.7rem 0.3rem rgba(0, 0, 0, 0.3);
+  user-select: none;
+  user-zoom: none;
+  margin: 0;
+
+  &__item:first-child {
+    margin-top: 0.8rem;
+  }
+
+  &__item:last-child {
+    margin-bottom: 1rem;
+  }
+
+  &__item {
+    $itemHeight: 3.6rem;
+    @include setSize(20rem, $itemHeight);
+    @include flex(row, center);
+    padding-left: 1rem;
+
+    &__icon {
+      $iconSize: 2.2rem;
+      @include setSize($iconSize);
+      margin-left: ($itemHeight - $iconSize) / 2;
+    }
+
+    &__label {
+      color: $textColor;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-left: ($itemHeight - 2.2rem) / 2;
+    }
+
+    &:hover {
+      background-color: #e2e2e2;
+      cursor: pointer;
     }
   }
 }
