@@ -35,6 +35,26 @@
                 <span class="document-more__item__container__label">Thêm Tài liệu</span>
             </div>
         </div>
+
+        <div class="document-more__uploading">
+            <div class="document-more__uploading__content">
+                <h2 class="document-more__uploading__content__file-name">filename</h2>
+                <div class="document-more__uploading__content__progress-bar">
+                    <h3 class="document-more__uploading__content__progress-bar__percent">100%</h3>
+                    <div class="document-more__uploading__content__progress-bar__status">
+                        <div class="document-more__uploading__content__progress-bar__status__uploaded"></div>
+                    </div>
+                </div>
+                <div class="document-more__uploading__content__uploaded">
+                    <p class="document-more__uploading__content__uploaded__loaded"></p>
+                    <p class="document-more__uploading__content__uploaded__seperate">/</p>
+                    <p class="document-more__uploading__content__uploaded__total"></p>
+                </div>
+                <h2 class="document-more__uploading__content__upload-speed"></h2>
+            </div>
+
+            <img class="document-more__uploading__icon" src="/svg/my-documents/uploading/file-uploading.svg" alt="">
+        </div>
     </div>
 
     {{!-- DOCUMENT LIST --}}
@@ -75,7 +95,7 @@
 
 {{!-- UPLOAD UI --}}
 <div class="upload-container">
-    <form class="upload" method="post" enctype="multipart/form-data">
+    <form class="upload">
         <h3 class="upload__title">
             Tải lên
             <img class="upload__cancel" src="/svg/close2.svg">

@@ -1,10 +1,28 @@
 var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
-var domain = "conkgytt-cons.zeet.app";
-var http = "https";
+var domain = "localhost:3000";
+var http = "http";
 
 function getFileType(originalFileName) {
   return "." + originalFileName.split(".").pop();
+}
+
+function getValueInputRadio(elements) {
+  for (let element of elements) {
+    if (element.checked) {
+      return element.value;
+    }
+  }
+}
+
+function getEverage(arr = [0]) {
+  total = 0;
+
+  for (let element of arr) {
+    total += element;
+  }
+
+  return total / arr.length;
 }
 
 function hasSymbol(string) {

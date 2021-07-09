@@ -68,9 +68,7 @@ function processFileDocumentUpload(req, res, next) {
           mode: await req.body.fileOption,
           locate: `${documentPath}/${getApplicationWithFileName(
             req.file.originalname
-          )}/${req.body.id}/${req.body.fileName}${baseJs.getFileType(
-            req.file.originalname
-          )}`,
+          )}/${req.body.id}/${req.body.fileName}${baseJs.getFileType(req.file.originalname)}`,
           uploadAt: Date.now(),
         };
 
@@ -84,16 +82,6 @@ function processFileDocumentUpload(req, res, next) {
   );
 }
 
-function getChunkUploaded(req, res, next) {
-  let dataUploaded = 0;
-  req.on("data", function (chunk) {
-    dataUploaded += chunk.length;
-    console.log(`${((dataUploaded / req.params.fileSize) * 100).toFixed(1)}%`)
-  });
-
-  next();
-}
-
 const uploadFileDocument = multer({
   storage: storage,
   limits: {
@@ -102,14 +90,24 @@ const uploadFileDocument = multer({
 });
 
 router.post(
-  "/my-documents/upload/:fileSize",
-  getChunkUploaded,
+  "/api/my-documents/upload/:id/:size",
+  function (req, res, next) {
+    let data = [];
+    
+    req.on('data', (chunk) => {
+      data.push(chunk)
+    })
+
+    req.on('end', () => {
+      console.log('data: ', Buffer.concat(data))
+    })
+  },
   uploadFileDocument.single("documentFile"),
   processFileDocumentUpload,
   function (req, res, next) {
     req.on("data", (chunk) => {
-      console.log(chunk);
-    });
+      console.log(chunk)
+    })
     res.redirect("/my-documents");
   }
 );

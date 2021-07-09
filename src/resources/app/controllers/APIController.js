@@ -1,5 +1,6 @@
 const auther = require("../../models/auther");
 const document = require("../../models/document");
+const fs = require("fs");
 
 class APIController {
   register = {
@@ -60,12 +61,18 @@ class APIController {
       );
     },
 
-    downloadDocument(req, res, next) {
+    async upload (req, res, next) {
+      console.log(req.body)
+      console.log(req.files.file)
+      res.json(req.files.file)
+    },
+
+    downloadOne(req, res, next) {
       document.findOne(
         { _id: req.params.documentId },
         ["userId", "locate"],
         function (err, result) {
-          if ((result.userId == req.user._id) && (!err)) {
+          if (result.userId == req.user._id && !err) {
             res.download(result.locate);
           }
         }

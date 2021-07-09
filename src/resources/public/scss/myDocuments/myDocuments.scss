@@ -88,6 +88,81 @@ $formContentIconSize: 10rem;
         }
       }
     }
+
+    &__uploading {
+      @include flex(row-reverse, center, flex-start);
+      @include setSize(50rem, 16rem);
+      margin-left: 2rem;
+
+      &__content {
+        @include setSize(80rem, 100%);
+        @include flex(column, flex-start, center);
+        margin-left: 2rem;
+
+        &__file-name {
+          @include flex(row, center, center);
+          width: 100%;
+          color: $textColor;
+          font-size: 1.8rem;
+        }
+
+        &__progress-bar {
+          @include flex(row, center, flex-start);
+          width: 100%;
+
+          &__percent {
+            font-size: 1.4rem;
+            font-weight: bold ;
+            margin: 0;
+          }
+
+          &__status {
+            height: 0.7rem;
+            flex-grow: 1;
+            background-color: #8dcbff;
+            margin-left: 1rem;
+            border-radius: 1rem;
+
+            &__uploaded {
+              background-image: linear-gradient(-90deg, #0062ff, #52b1ff);
+              width: 0;
+              height: 100%;
+              border-radius: 1rem;
+            }
+          }
+        }
+
+        &__uploaded {
+          @include flex(row, center, center);
+          width: 100%;
+
+          p {
+            margin: 0;
+            color: $textColor;
+            font-size: 1.2rem;
+            font-weight: 600;
+          }
+
+          &__loaded {
+          }
+
+          &__seperate {
+            margin: 0 0.5rem;
+          }
+        }
+      }
+
+      &__icon {
+        width: 18%;
+
+        &::before {
+          content: '';
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
   }
 
   .document-list {

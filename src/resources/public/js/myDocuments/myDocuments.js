@@ -74,7 +74,7 @@ async function renderDocumentList() {
           let a = document.createElement("a"); // create a tag a
           a.href = URL.createObjectURL(blob); // create url of blob
           a.setAttribute("download", documentSelected.name); // set file
-          a.click();  // click tag a to downlaod
+          a.click(); // click tag a to downlaod
         });
     });
 
@@ -85,19 +85,20 @@ async function renderDocumentList() {
       fetch(deleteAPI, {
         method: "delete",
         body: JSON.stringify({
-          documentId: documentSelected.id
-        })
+          documentId: documentSelected.id,
+        }),
       })
-        .then(response => response.json())
-        .then(deleted => {
+        .then((response) => response.json())
+        .then((deleted) => {
           if (deleted) {
           }
-        })
-    })
+        });
+    });
   }
 
   documentListContextMenu();
 }
+
 renderDocumentList();
 
 // document list API
@@ -147,13 +148,14 @@ const originalFileName = $(
 fileDocumentUploadInput.addEventListener("change", (e) => {
   const fileName = fileDocumentUploadInput.files[0].name;
   const fileType = getFileType(fileName);
+  console.log(e.target.files[0].size);
 
   let promise = new Promise((resolve, reject) => {
-    if (fileDocumentUploadAccept.includes(fileType)) {
-      resolve();
-    } else {
-      reject("Vui lòng chọn tài liệu Office 2010 trở lên!");
-    }
+    // if (fileDocumentUploadAccept.includes(fileType)) {
+    resolve();
+    // } else {
+    //   reject("Vui lòng chọn tài liệu Office 2010 trở lên!");
+    // }
   });
 
   promise
@@ -243,8 +245,55 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
 
   if (fileNameCheck && fileOptionCheck && fileDocumentCheck) {
     await fileDocumentUploadButton.setAttribute("disabled", "");
-    fileDocumentUploadForm.action = `/my-documents/upload/${fileDocumentUploadInput.files[0].size}`;
-    fileDocumentUploadForm.submit();
+
+    let data = new FormData();
+    let file = fileDocumentUploadInput.files[0];
+    let fileName = fileDocumentUploadNameInput.value + getFileType(file.name);
+    const uploadAPI = `${http}://${domain}/api/my-documents/upload/${$(
+      "data"
+    ).getAttribute("userId")}/${fileName}/${file.size}`;
+
+    data.append("file", file);
+    data.append("fileName", fileName);
+    data.append(
+      "fileOption",
+      getValueInputRadio(fileDocumentUploadOptionsInput)
+    );
+
+    let xhr = new XMLHttpRequest();
+    let netSpeed = [];
+    let cache = 0;
+    xhr.upload.addEventListener("progress", (e) => {
+      const progressBar = $(".document-more__uploading__content__progress-bar__status__uploaded")
+      const uploaded = e.loaded;
+      const fileSize = e.total;
+      let everage = 0;
+
+      if (netSpeed.length <= 5) {
+        netSpeed.push(uploaded - cache)
+        cache = uploaded;
+        everage = getEverage(netSpeed);
+      } else {
+        netSpeed.shift();
+        netSpeed.push(uploaded - cache)
+        cache = uploaded;
+        everage = getEverage(netSpeed);
+      }
+
+      progressBar.style.width = `${((uploaded / fileSize) * 100).toFixed(1)}%`;
+    });
+    xhr.open("POST", uploadAPI);
+    xhr.send(data);
+
+    createToastMessage('error', 'error', 'Error', 'Upload error!', 7000)
+    // fetch(uploadAPI, {
+    //   method: "post",
+    //   body: data,
+    // })
+    //   .then(response => response.json())
+    //   .then(uploadedPercent => {
+    //     console.log(uploadedPercent)
+    //   })
   }
 });
 

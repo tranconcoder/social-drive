@@ -11,14 +11,15 @@ const host = "0.0.0.0";
 const port = 3000;
 const upload = require("./resources/app/middleware/uploadAvatar");
 const uploadFileDocument = require("./resources/app/middleware/uploadDocument");
-
+const fileUpload = require("express-fileupload");
 
 app.get("/download", (req, res) => {
-  res.download("./package.json")
-})
+  res.download("./package.json");
+});
 //upload
 app.use(upload);
-app.use(uploadFileDocument);
+app.use(fileUpload());
+// app.use(uploadFileDocument);
 
 //Static file in path: src/resources/public
 app.use(express.static(path.join(__dirname, "resources/public")));
