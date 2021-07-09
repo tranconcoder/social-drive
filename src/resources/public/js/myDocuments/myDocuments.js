@@ -270,6 +270,8 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     // set file name to document upload form
     $(".document-more__uploading__content__file-name").innerHTML = fileName;
 
+    let geted = false;
+
     xhr.upload.addEventListener("progress", (e) => {
       // HTML Selector
       const progressBar = $(
@@ -288,18 +290,21 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
 
       const uploadedData = e.loaded;
       const fileSize = e.total;
-      let everageSpeed = 0;
-
-      if (netSpeed.length <= 5) {
-        netSpeed.push(uploadedData - cache);
-        cache = uploadedData;
-        everageSpeed = getEverage(netSpeed);
-      } else {
-        netSpeed.shift();
-        netSpeed.push(uploadedData - cache);
-        cache = uploadedData;
-        everageSpeed = getEverage(netSpeed);
+      let totalDataPerSecond = 0;
+      let prevUploadData = 0;
+      
+      if (geted) {
+        uploadSpeed.innerHTML = `${(totalDataPerSecond / 1024 ** 2).toFixed(1)}Mb/s`;
+        totalDataPerSecond = 0;
+        geted = false;
       }
+
+      totalDataPerSecond += uploadedData - prevUploadData;
+      prevUploadData = uploadedData;
+
+      setTimeout(() => {
+        geted = true;
+      }, 1000)
 
       progressBar.style.width = `${((uploadedData / fileSize) * 100).toFixed(
         1
@@ -307,7 +312,6 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
       uploadedPercent.innerHTML = `${((uploadedData / fileSize) * 100).toFixed(
         1
       )}%`;
-      uploadSpeed.innerHTML = `${(everageSpeed / 1024 ** 2).toFixed(1)}Mb/s`;
       uploaded.innerHTML = `${(uploadedData / 1024 ** 2).toFixed(1)}`;
       totalFileSize.innerHTML = `${(fileSize / 1024 ** 2).toFixed(1)}Mb`;
     });
