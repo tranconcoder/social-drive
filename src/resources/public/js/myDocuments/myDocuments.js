@@ -244,6 +244,8 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
   let fileOptionCheck = await fileDocumentUploadOptionsInputCheck();
 
   if (fileNameCheck && fileOptionCheck && fileDocumentCheck) {
+    $(".upload-container").style.display = "none";
+
     await fileDocumentUploadButton.setAttribute("disabled", "");
 
     let data = new FormData();
@@ -271,22 +273,26 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     $(".document-more__uploading__content__file-name").innerHTML = fileName;
 
     let geted = false;
-    
-    xhr.upload.addEventListener('loadstart', (e) => {
-      console.log('upload start!')
+
+    xhr.upload.addEventListener("loadstart", (e) => {
+      console.log("upload start!");
       let getedInterval = setInterval(() => {
         geted = true;
-        console.log('intervaled')
-      }, 1000)
+        console.log("intervaled");
+      }, 1000);
 
-      xhr.upload.addEventListener('loadend', (e) => {
+      xhr.upload.addEventListener("loadend", (e) => {
         clearInterval(getedInterval);
-        console.log('upload end!')
-      })
-    })
+        console.log("upload end!");
+      });
+    });
 
+    let totalDataPerSecond = 0;
+    let prevUploadData = 0;
     xhr.upload.addEventListener("progress", (e) => {
       // HTML Selector
+      console.log("upload start!");
+
       const progressBar = $(
         ".document-more__uploading__content__progress-bar__status__uploaded"
       );
@@ -303,11 +309,11 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
 
       const uploadedData = e.loaded;
       const fileSize = e.total;
-      let totalDataPerSecond = 0;
-      let prevUploadData = 0;
-      
+
       if (geted) {
-        uploadSpeed.innerHTML = `${(totalDataPerSecond / 1024 ** 2).toFixed(1)}Mb/s`;
+        uploadSpeed.innerHTML = `${(totalDataPerSecond / 1024 ** 2).toFixed(
+          1
+        )}Mb/s`;
         totalDataPerSecond = uploadedData - prevUploadData;
         prevUploadData = uploadedData;
         geted = false;
