@@ -273,10 +273,16 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     let geted = false;
     
     xhr.upload.addEventListener('loadstart', (e) => {
+      console.log('upload start!')
       let getedInterval = setInterval(() => {
         geted = true;
         console.log('intervaled')
       }, 1000)
+
+      xhr.upload.addEventListener('loadend', (e) => {
+        clearInterval(getedInterval);
+        console.log('upload end!')
+      })
     })
 
     xhr.upload.addEventListener("progress", (e) => {
@@ -320,9 +326,6 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
       totalFileSize.innerHTML = `${(fileSize / 1024 ** 2).toFixed(1)}Mb`;
     });
 
-    xhr.upload.addEventListener('loadend', (e) => {
-      clearInterval(getedInterval);
-    })
     xhr.open("POST", uploadAPI);
     xhr.send(data);
   }
