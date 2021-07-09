@@ -263,37 +263,56 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     let xhr = new XMLHttpRequest();
     let netSpeed = [];
     let cache = 0;
+
+    //show upload form
+    $(".document-more__uploading").style.display = "flex";
+
+    // set file name to document upload form
+    $(".document-more__uploading__content__file-name").innerHTML = fileName;
+
     xhr.upload.addEventListener("progress", (e) => {
-      const progressBar = $(".document-more__uploading__content__progress-bar__status__uploaded")
-      const uploaded = e.loaded;
+      // HTML Selector
+      const progressBar = $(
+        ".document-more__uploading__content__progress-bar__status__uploaded"
+      );
+      const uploadedPercent = $(
+        ".document-more__uploading__content__progress-bar__percent"
+      );
+      const uploadSpeed = $(".document-more__uploading__content__upload-speed");
+      const uploaded = $(
+        ".document-more__uploading__content__uploaded__loaded"
+      );
+      const totalFileSize = $(
+        ".document-more__uploading__content__uploaded__total"
+      );
+
+      const uploadedData = e.loaded;
       const fileSize = e.total;
-      let everage = 0;
+      let everageSpeed = 0;
 
       if (netSpeed.length <= 5) {
-        netSpeed.push(uploaded - cache)
-        cache = uploaded;
-        everage = getEverage(netSpeed);
+        netSpeed.push(uploadedData - cache);
+        cache = uploadedData;
+        everageSpeed = getEverage(netSpeed);
       } else {
         netSpeed.shift();
-        netSpeed.push(uploaded - cache)
-        cache = uploaded;
-        everage = getEverage(netSpeed);
+        netSpeed.push(uploadedData - cache);
+        cache = uploadedData;
+        everageSpeed = getEverage(netSpeed);
       }
 
-      progressBar.style.width = `${((uploaded / fileSize) * 100).toFixed(1)}%`;
+      progressBar.style.width = `${((uploadedData / fileSize) * 100).toFixed(
+        1
+      )}%`;
+      uploadedPercent.innerHTML = `${((uploadedData / fileSize) * 100).toFixed(
+        1
+      )}%`;
+      uploadSpeed.innerHTML = `${(everageSpeed / 1024 ** 2).toFixed(1)}Mb/s`;
+      uploaded.innerHTML = `${(uploadedData / 1024 ** 2).toFixed(1)}`;
+      totalFileSize.innerHTML = `${(fileSize / 1024 ** 2).toFixed(1)}Mb`;
     });
     xhr.open("POST", uploadAPI);
     xhr.send(data);
-
-    createToastMessage('error', 'error', 'Error', 'Upload error!', 7000)
-    // fetch(uploadAPI, {
-    //   method: "post",
-    //   body: data,
-    // })
-    //   .then(response => response.json())
-    //   .then(uploadedPercent => {
-    //     console.log(uploadedPercent)
-    //   })
   }
 });
 

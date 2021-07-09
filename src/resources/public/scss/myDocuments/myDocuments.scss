@@ -93,6 +93,7 @@ $formContentIconSize: 10rem;
       @include flex(row-reverse, center, flex-start);
       @include setSize(50rem, 16rem);
       margin-left: 2rem;
+      display: none;
 
       &__content {
         @include setSize(80rem, 100%);
@@ -112,18 +113,19 @@ $formContentIconSize: 10rem;
 
           &__percent {
             font-size: 1.4rem;
-            font-weight: bold ;
+            font-weight: bold;
             margin: 0;
           }
 
           &__status {
             height: 0.7rem;
             flex-grow: 1;
-            background-color: #8dcbff;
+            background-color: #cbe8ff;
             margin-left: 1rem;
             border-radius: 1rem;
 
             &__uploaded {
+              transition: linear 0.1s;
               background-image: linear-gradient(-90deg, #0062ff, #52b1ff);
               width: 0;
               height: 100%;
@@ -150,13 +152,18 @@ $formContentIconSize: 10rem;
             margin: 0 0.5rem;
           }
         }
+
+        &__upload-speed {
+          color: #001F99;
+          font-size: 1.8rem;
+        }
       }
 
       &__icon {
         width: 18%;
 
         &::before {
-          content: '';
+          content: "";
           display: block;
           width: 100%;
           height: 100%;
