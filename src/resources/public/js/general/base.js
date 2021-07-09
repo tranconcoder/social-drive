@@ -109,7 +109,7 @@ async function createToastMessage(name, style, title, content, timeout) {
           message.classList.add("hide");
           setTimeout(() => {
             message.remove();
-          }, 300);
+          }, 500);
         }, timeout);
 
         resolve();
@@ -128,7 +128,7 @@ async function createToastMessage(name, style, title, content, timeout) {
           message.classList.add("hide");
           setTimeout(() => {
             message.remove();
-          }, 300);
+          }, 500);
         });
       });
     });

@@ -81,18 +81,13 @@ async function renderDocumentList() {
     // delete
     const contextMenuDelete = $(".context-menu__item__delete");
     contextMenuDelete.addEventListener("click", (e) => {
-      let deleteAPI = `${http}://${domain}/api/my-documents/delete/${documentId}`;
-      fetch(deleteAPI, {
-        method: "delete",
-        body: JSON.stringify({
-          documentId: documentSelected.id,
-        }),
-      })
-        .then((response) => response.json())
-        .then((deleted) => {
-          if (deleted) {
-          }
-        });
+      let deleteAPI = `${http}://${domain}/api/my-documents/deletes`;
+      const xhr = new XMLHttpRequest();
+      const data = new FormData();
+
+      data.append("documentIds", [documentSelected.id, documentSelected.id])
+      xhr.open("DELETE", deleteAPI);
+      xhr.send(data);
     });
   }
 
@@ -273,17 +268,22 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     $(".document-more__uploading__content__file-name").innerHTML = fileName;
 
     let geted = false;
-
+    // when upload start -> set interval per second to monitor net speed
     xhr.upload.addEventListener("loadstart", (e) => {
-      console.log("upload start!");
       let getedInterval = setInterval(() => {
         geted = true;
-        console.log("intervaled");
       }, 1000);
 
+      // uploaded -> clear this interval
       xhr.upload.addEventListener("loadend", (e) => {
         clearInterval(getedInterval);
-        console.log("upload end!");
+        createToastMessage(
+          "uploaded-document",
+          "successfully",
+          "Tải lên",
+          `Đã tải lên thành công Tài liệu ${fileName}`,
+          10000
+        );
       });
     });
 
@@ -291,8 +291,6 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     let prevUploadData = 0;
     xhr.upload.addEventListener("progress", (e) => {
       // HTML Selector
-      console.log("upload start!");
-
       const progressBar = $(
         ".document-more__uploading__content__progress-bar__status__uploaded"
       );
@@ -307,6 +305,7 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
         ".document-more__uploading__content__uploaded__total"
       );
 
+      // local variables
       const uploadedData = e.loaded;
       const fileSize = e.total;
 
@@ -330,10 +329,21 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
       )}%`;
       uploaded.innerHTML = `${(uploadedData / 1024 ** 2).toFixed(1)}`;
       totalFileSize.innerHTML = `${(fileSize / 1024 ** 2).toFixed(1)}Mb`;
+
+      // Abort upload file
+      const cancelButton = $(".document-more__uploading__cancel");
+      cancelButton.addEventListener("click", (e) => {
+        xhr.abort();
+        $(".document-more__uploading").style.display = "none";
+      });
     });
 
     xhr.open("POST", uploadAPI);
     xhr.send(data);
+
+    xhr.addEventListener("loadend", (e) => {
+      console.log(xhr.response);
+    });
   }
 });
 

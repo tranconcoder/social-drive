@@ -149,12 +149,12 @@ $toastMessageSeperate: 1rem;
   
     &.show {
       transform: translateX(0);
-      animation: showMessage linear 0.3s;
+      animation: showMessage linear 0.5s;
     }
   
     &.hide {
       transform: translateX($toastMessageWidth + $toastMessageSeperate);
-      animation: hideMessage linear .3s;
+      animation: hideMessage linear .5s;
     }
   
     @keyframes showMessage {

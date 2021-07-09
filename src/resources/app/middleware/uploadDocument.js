@@ -34,18 +34,7 @@ var storage = multer.diskStorage({
   },
 });
 
-function getApplicationWithFileName(originalFileName) {
-  let fileType = originalFileName.split(".").pop();
 
-  switch (fileType) {
-    case "docx":
-      return "word";
-    case ("xlsm", "xlsx"):
-      return "excel";
-    default:
-      return "powerPoint";
-  }
-}
 
 function processFileDocumentUpload(req, res, next) {
   // Đổi tên file khớp với khi người dùng nhập

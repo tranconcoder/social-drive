@@ -1,6 +1,25 @@
+const fs = require("fs");
+
 class Base {
   getFileType(originalFileName) {
     return "." + originalFileName.split(".").pop();
+  }
+
+  getDocumentApplicationWithFileName(originalFileName) {
+    let fileType = originalFileName.split(".").pop();
+  
+    switch (fileType) {
+      case "docx":
+        return "word";
+      case ("xlsm", "xlsx"):
+        return "excel";
+      default:
+        return "powerPoint";
+    }
+  }
+
+  checkAndCreateDirectory(folderPath) {
+    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
   }
 
   hasSymbol(string) {
@@ -50,4 +69,4 @@ class Base {
   }
 }
 
-module.exports = new Base
+module.exports = new Base();

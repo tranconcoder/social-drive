@@ -1,5 +1,10 @@
 @import "../variables", "../base", "../grid", "../mixin";
 
+$documentMoreItemHeight: 16rem;
+:root {
+  --document-more-item-height: 16rem;
+}
+
 $iconSizeTools: 3rem;
 $iconSeperateTools: 1rem;
 $documentToolsSeperate: 1.4rem;
@@ -51,11 +56,12 @@ $formContentIconSize: 10rem;
 
   .document-more {
     margin-top: 1.5rem;
+    position: relative;
 
     &__item {
       $iconSize: 4rem;
       @include flex(column, center, flex-start);
-      @include setSize(16rem);
+      @include setSize($documentMoreItemHeight);
       background-color: #f3f3f3;
       border-radius: 0.5rem;
       position: relative;
@@ -90,14 +96,28 @@ $formContentIconSize: 10rem;
     }
 
     &__uploading {
-      @include flex(row-reverse, center, flex-start);
-      @include setSize(50rem, 16rem);
-      margin-left: 2rem;
+      @include flex(row, center, flex-start);
+      @include setSize(calc(100% - var(--document-more-item-height)), $documentMoreItemHeight);
+      padding-right: 11rem;
       display: none;
 
+      &__icon {
+        height: 100%;
+        padding: ($documentMoreItemHeight / 100) * 15;
+        padding-right: 0;
+
+        &::before {
+          content: "";
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
       &__content {
-        @include setSize(80rem, 100%);
+        @include setSize(70rem, 100%);
         @include flex(column, flex-start, center);
+        flex-grow: 1;
         margin-left: 2rem;
 
         &__file-name {
@@ -154,19 +174,28 @@ $formContentIconSize: 10rem;
         }
 
         &__upload-speed {
-          color: #001F99;
+          color: #001f99;
           font-size: 1.8rem;
         }
       }
 
-      &__icon {
-        width: 18%;
+      &__cancel {
+        @include setSize(5rem);
+        position: absolute;
+        right: 5rem;
+        top: 50%;
+        transform: translateY(-65%);
+        margin-left: 3rem;
+        border-radius: 50%;
+        background-image: url('/svg/close2.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 1rem;
+        transition: linear .1s;
 
-        &::before {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 100%;
+        &:hover {
+          cursor: pointer;
+          box-shadow: 0 0 .5rem .3rem rgba(0, 0, 0, 0.1);
         }
       }
     }
