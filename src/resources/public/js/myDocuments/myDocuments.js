@@ -271,6 +271,13 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
     $(".document-more__uploading__content__file-name").innerHTML = fileName;
 
     let geted = false;
+    
+    xhr.upload.addEventListener('loadstart', (e) => {
+      let getedInterval = setInterval(() => {
+        geted = true;
+        console.log('intervaled')
+      }, 1000)
+    })
 
     xhr.upload.addEventListener("progress", (e) => {
       // HTML Selector
@@ -295,16 +302,13 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
       
       if (geted) {
         uploadSpeed.innerHTML = `${(totalDataPerSecond / 1024 ** 2).toFixed(1)}Mb/s`;
-        totalDataPerSecond = 0;
+        totalDataPerSecond = uploadedData - prevUploadData;
+        prevUploadData = uploadedData;
         geted = false;
+      } else {
+        totalDataPerSecond += uploadedData - prevUploadData;
+        prevUploadData = uploadedData;
       }
-
-      totalDataPerSecond += uploadedData - prevUploadData;
-      prevUploadData = uploadedData;
-
-      setTimeout(() => {
-        geted = true;
-      }, 1000)
 
       progressBar.style.width = `${((uploadedData / fileSize) * 100).toFixed(
         1
@@ -315,6 +319,10 @@ fileDocumentUploadButton.addEventListener("click", async (e) => {
       uploaded.innerHTML = `${(uploadedData / 1024 ** 2).toFixed(1)}`;
       totalFileSize.innerHTML = `${(fileSize / 1024 ** 2).toFixed(1)}Mb`;
     });
+
+    xhr.upload.addEventListener('loadend', (e) => {
+      clearInterval(getedInterval);
+    })
     xhr.open("POST", uploadAPI);
     xhr.send(data);
   }
