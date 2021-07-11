@@ -1,7 +1,7 @@
 var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
-var domain = "localhost:3000";
-var http = "http";
+var domain = "conkgytt-cons.zeet.app";
+var http = "https";
 
 function getFileType(originalFileName) {
   return "." + originalFileName.split(".").pop();
