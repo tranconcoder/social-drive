@@ -81,7 +81,7 @@ class APIController {
 
             switch (file.name.split(".").pop()) {
               case "docx":
-                const folderWordPath = `src/resources/file/document/word/${req.user._id}`;
+                const folderWordPath = `../../file/document/word/${req.user._id}`;
                 await base.checkAndCreateDirectory(folderWordPath);
                 file.mv(folderWordPath + `/${req.body.fileName}`);
                 break;
