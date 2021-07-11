@@ -19,7 +19,9 @@ class Base {
   }
 
   checkAndCreateDirectory(folderPath) {
-    if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath);
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath);
+    }
   }
 
   hasSymbol(string) {
