@@ -18,9 +18,9 @@ class Base {
     }
   }
 
-  checkAndCreateDirectory(folderPath) {
+  async checkAndCreateDirectory(folderPath) {
     if (!fs.existsSync(folderPath)) {
-      fs.mkdir(folderPath, "0777", (err) => {
+      await fs.mkdir(folderPath, "0777", (err) => {
         if (err) console.log(err);
       });
     }
