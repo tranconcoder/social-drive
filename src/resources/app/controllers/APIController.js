@@ -174,7 +174,7 @@ class APIController {
                   });
 
                   const outputFileFolder = `src/resources/file/document/others/${req.user._id}`;
-                  const outputFile = `src/resources/file/document/others/${req.user._id}/fileProcessing.zip`;
+                  const outputFile = `${outputFileFolder}/fileProcessing.zip`;
                   await base.checkAndCreateDirectory(outputFileFolder);
                   await fs.writeFileSync(outputFile, zip.toBuffer());
 
