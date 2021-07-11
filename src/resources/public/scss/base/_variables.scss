@@ -1,0 +1,20 @@
+// COLOR
+$primaryColor: #0b363a;
+$primaryColorBlur: #239fa8;
+$primaryColorDark: #0a3033;
+$iconWhiteColor: rgb(245, 245, 245);
+$whiteColor: rgb(255, 255, 255);
+$textColor: rgb(92, 92, 92);
+$borderColor: rgb(204, 204, 204);
+$buttonColor: #0088cc;
+$failColor: red;
+$layoutColor: rgba(0, 0, 0, 0.2);
+
+// SIZE
+$headerHeight: 5.4rem;
+
+//MIXIN
+@mixin borderLeftAndRight {
+  border-left: 0.1rem solid $borderColor;
+  border-right: 0.1rem solid $borderColor;
+}

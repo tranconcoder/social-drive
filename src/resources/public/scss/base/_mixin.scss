@@ -1,0 +1,40 @@
+@mixin setSize ($width, $height: $width) {
+    width: $width;
+    height: $height;
+}
+
+@mixin centerAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin font($size: 1.4rem, $color: $textColor, $height: $size, $family: "Baloo Paaji 2") {
+    font-size: $size;
+    color: $color;
+    line-height: $height;
+    font-family: $family;
+}
+
+@mixin flex($direction: column, $align: flex-start, $justify: flex-start) {
+    display: flex;
+    flex-direction: $direction;
+    align-items: $align;
+    justify-content: $justify;
+}
+
+@mixin positionFixedFullscreen() {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin backgroundImage($url, $size: contain, $position: center, $repeat: no-repeat) {
+    background-image: url($url);
+    background-size: $size;
+    background-position: $position;
+    background-repeat: $repeat;
+}

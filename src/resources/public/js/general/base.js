@@ -1,7 +1,7 @@
 var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
-var domain = "conkgytt-cons.zeet.app";
-var http = "https";
+var domain = "localhost:3000";
+var http = "http";
 
 function getFileType(originalFileName) {
   return "." + originalFileName.split(".").pop();
@@ -132,4 +132,47 @@ async function createToastMessage(name, style, title, content, timeout) {
         });
       });
     });
+}
+
+function showConfirm(objectOption, resolve, reject) {
+  const confirm = $(".confirm");
+
+  // Set icon
+  const iconElement = $(".confirm__form__icon");
+  iconElement.src = objectOption.iconURL;
+
+  // Set header Title
+  const headerTitleElement = $(".confirm__form__header__title");
+  headerTitleElement.innerHTML = objectOption.headerTitle;
+
+  // Set footer Title
+  const footerTitleElement = $(".confirm__form__footer__right__title");
+  footerTitltElement.innerHTML = objectOption.footerTitle;
+
+  // Set footer Content
+  const footerContentElement = $(".confirm__form__footer__right__content");
+  footerContentElement.innerHTML = objectOption.footerContent;
+
+  // Set message Cancel button
+  const cancelButtonElement = $(
+    ".confirm__form__footer__right__button-container__cancel"
+  );
+  cancelButtonElement.innerHTML = objectOption.cancelButtonContent;
+
+  // Set message Confirm button
+  const confirmButtonElement = $(
+    ".confirm__form__footer__right__button-container__confirm"
+  );
+  confirmButtonElement.innerHTML = objectOption.confirmButtonContent;
+
+  // BUTTON CLICK [Cancel]
+  cancelButtonElement.addEventListener("click", (e) => {
+    confirm.style.display = "none";
+    reject();
+  });
+
+  // BUTTON CLICK [Confirm]
+  confirmButtonElement.addEventListener("click", (e) => {
+    resolve();
+  });
 }

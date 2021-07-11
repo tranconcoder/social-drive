@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/conkgyt/social#readme",
   "dependencies": {
+    "adm-zip": "^0.5.5",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.3.2",

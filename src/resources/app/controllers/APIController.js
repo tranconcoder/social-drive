@@ -1,6 +1,7 @@
 const auther = require("../../models/auther");
 const document = require("../../models/document");
 const base = require("../middleware/baseMiddleware");
+const AdmZip = require("adm-zip");
 const fs = require("fs");
 
 class APIController {
@@ -135,32 +136,66 @@ class APIController {
 
     deletes(req, res, next) {
       console.log(req.body.documentIds[0]);
-
-      // if (req.user && req.body.documentIds) {
-      //   let error;
-      //   for (let documentId of documentIds) {
-      //     document.deleteOne({ _id: documentId }, (err) => {
-      //       if (err) error = true;
-      //     });
-      //   }
-      //   if (!error) {
-      //     res.json(true);
-      //   } else {
-      //     res.json(false);
-      //   }
-      // }
     },
 
-    downloadOne(req, res, next) {
-      document.findOne(
-        { _id: req.params.documentId },
-        ["userId", "locate"],
-        function (err, result) {
-          if (result.userId == req.user._id && !err) {
-            res.download(result.locate);
-          }
-        }
+    download(req, res, next) {
+      new Promise((resolve, reject) => {
+        if (!req.user) reject();
+        if (!req.query.documents) reject();
+        resolve(req.query.documents);
+      }).then(
+        (documentsDownload) =>
+          new Promise(async (resolve, reject) => {
+            if (documentsDownload.length === 1) {
+              await document
+                .findOne({ _id: documentsDownload[0] }, ["locate"])
+
+                .then((document) => {
+                  res.download(document.locate);
+                })
+
+                .catch((err) => {
+                  console.log(err);
+                });
+
+              resolve();
+            } else {
+              let zip = await new AdmZip();
+              await document
+                .find({ _id: documentsDownload }, ["locate"])
+                .then(async (documents) => {
+                  documents.forEach((document) => {
+                    zip.addLocalFile(document.locate);
+                  });
+
+                  const outputFileFolder = `src/resources/file/document/others/${req.user._id}`;
+                  const outputFile = `src/resources/file/document/others/${req.user._id}/fileProcessing.zip`;
+                  await baseJs.checkAndCreateDirectory(outputFileFolder);
+                  await fs.writeFileSync(outputFile, zip.toBuffer());
+
+                  await res.download(outputFile, (err) => {
+                    if (err) console.log("Err when sending file!");
+                  });
+
+                  fs.unlinkSync(outputFile);
+                });
+
+              resolve();
+            }
+          })
       );
+
+      // if (req.params.documentsId.length % 24 === 0) {
+      //   document.findOne(
+      //     { _id: req.params.documentId },
+      //     ["userId", "locate"],
+      //     function (err, result) {
+      //       if (result.userId == req.user._id && !err) {
+      //         res.download(result.locate);
+      //       }
+      //     }
+      //   );
+      // }
     },
   };
 }

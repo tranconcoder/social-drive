@@ -1,4 +1,4 @@
-@import "_variables", "base", "grid";
+@import "./base/variables", "./base/base", "base/mixin";
 
 .header {
   height: $headerHeight;

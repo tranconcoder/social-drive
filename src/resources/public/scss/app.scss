@@ -1,4 +1,5 @@
-@import "_variables", "base", "grid", "mixin";
+@import "./base/variables", "./base/base", "base/mixin";
+
 
 ::-webkit-scrollbar {
   width: 0.7rem;
@@ -147,7 +148,3 @@ html {
     }
   }
 }
-
-
-
-

@@ -8,18 +8,18 @@ refreshButton.addEventListener("click", (e) => {
 });
 
 let documents;
-let documentSelected = { id: "", name: "" };
 // document list
 const documentList = $(".document-list");
 async function renderDocumentList() {
   documents = await getAllDocument();
-  arr = documents;
+  console.log(documents);
   documentList.innerHTML = "";
 
+  // set HTML
   await documents.forEach((document) => {
     documentList.innerHTML += `
     <div class="document-list__item col">
-      <div class="document-list__item__container">
+      <div docid="${document._id}" class="document-list__item__container">
         <img class="document-list__item__container__image"
         src="/svg/${document.application}.svg" alt="">
         <p class="document-list__item__container__file-name"
@@ -37,14 +37,29 @@ async function renderDocumentList() {
   });
 
   // document list context menu
-  function documentListContextMenu() {
+  async function documentListContextMenu() {
     const documentListItems = $$(".document-list__item__container");
+
     for (let index = 0; index < documentListItems.length; index++) {
+      // Set event Propagation Click event;
+      childElementItem = documentListItems[index].querySelectorAll(
+        ".document-list__item__container > *"
+      );
+      childElementItem.forEach((element) => {
+        element.addEventListener("click", (e) => {});
+        element.addEventListener("contextmenu", (e) => {});
+      });
+
+      // Select item when click
+      documentListItems[index].addEventListener("click", (e) => {
+        documentListItems[index].classList.toggle("selected");
+      });
+
       documentListItems[index].addEventListener("contextmenu", async (e) => {
         e.preventDefault();
+        e.stopPropagation();
 
-        documentSelected.id = documents[index]._id;
-        documentSelected.name = documents[index].name;
+        // TODO: show and set content contextMenu
         const contextMenu = $(".context-menu__document-item");
         const contextMenuOverHeight =
           e.screenY + contextMenu.offsetHeight - screen.height;
@@ -58,6 +73,21 @@ async function renderDocumentList() {
           contextMenu.style.top = `${e.clientY}px`;
         }
 
+        // Check this selection item
+        if (!documentListItems[index].classList.contains("selected")) {
+          // remove all itemsSelected
+          let itemsSelectedElement = $$(
+            ".document-list__item__container.selected"
+          );
+          await itemsSelectedElement.forEach((itemSelected) => {
+            itemSelected.classList.remove("selected");
+          });
+
+          // add this item to itemsSelected
+          documentListItems[index].classList.add("selected");
+        }
+
+        // TODO: hide contextMenu when click
         document.addEventListener("click", (e) => {
           contextMenu.style.visibility = "hidden";
         });
@@ -66,15 +96,35 @@ async function renderDocumentList() {
     // context menu selection
     // download
     const contextMenuDownload = $(".context-menu__item__download");
+
     contextMenuDownload.addEventListener("click", async (e) => {
-      let downloadAPI = `${http}://${domain}/api/my-documents/download/${documentSelected.id}`;
+      let downloadAPI = `${http}://${domain}/api/my-documents/download?`;
+      const itemsSelected = $$(".document-list__item__container.selected");
+      const fileNameItemsSelected = $$(
+        `.document-list__item__container.selected 
+        `
+      );
+
+      await itemsSelected.forEach((item) => {
+        downloadAPI += `documents[]=${item.getAttribute("docId")}&`;
+      });
+
       await fetch(downloadAPI)
         .then((response) => response.blob())
         .then((blob) => {
+          let fileName;
           let a = document.createElement("a"); // create a tag a
           a.href = URL.createObjectURL(blob); // create url of blob
-          a.setAttribute("download", documentSelected.name); // set file
-          a.click(); // click tag a to downlaod
+          if (itemsSelected.length === 1) {
+            fileName = itemsSelected[0].querySelector(
+              ".document-list__item__container__file-name"
+            ).innerHTML;
+            console.log(fileName);
+          } else {
+            fileName = `${Date.now()}__ documents.zip`;
+          }
+          a.setAttribute("download", fileName); // set file
+          a.click(); // click tag a to download
         });
     });
 
@@ -85,7 +135,7 @@ async function renderDocumentList() {
       const xhr = new XMLHttpRequest();
       const data = new FormData();
 
-      data.append("documentIds", [documentSelected.id, documentSelected.id])
+      data.append("documentIds", [documentSelected.id, documentSelected.id]);
       xhr.open("DELETE", deleteAPI);
       xhr.send(data);
     });
@@ -143,29 +193,29 @@ const originalFileName = $(
 fileDocumentUploadInput.addEventListener("change", (e) => {
   const fileName = fileDocumentUploadInput.files[0].name;
   const fileType = getFileType(fileName);
-  console.log(e.target.files[0].size);
 
   let promise = new Promise((resolve, reject) => {
-    // if (fileDocumentUploadAccept.includes(fileType)) {
-    resolve();
-    // } else {
-    //   reject("Vui lòng chọn tài liệu Office 2010 trở lên!");
-    // }
+    // Check file
+    const uploadDocumentInputCheck = fileDocumentUploadInputCheck();
+    if (uploadDocumentInputCheck) {
+      resolve();
+    } else {
+      reject();
+    }
   });
 
   promise
-    //Kiểm tra xem đã nhập file chưa
     .then(() => {
+      // Check file type
       return new Promise((resolve, reject) => {
-        const uploadDocumentInputCheck = fileDocumentUploadInputCheck();
-        if (uploadDocumentInputCheck) {
+        if (fileDocumentUploadAccept.includes(fileType)) {
           resolve();
         } else {
-          reject();
+          reject("Vui lòng chọn tài liệu Office 2010 trở lên!");
         }
       });
     })
-    //Kiểm tra dung lượng file
+    // Check file size
     .then(() => {
       return new Promise((resolve, reject) => {
         if (fileDocumentUploadInput.files[0].size > 100 * 1024 ** 2) {
@@ -175,7 +225,7 @@ fileDocumentUploadInput.addEventListener("change", (e) => {
         }
       });
     })
-    // Kiểm tra tên file có hợp lệ không: không được trùng với file xử lý của server: fileProcessing.*
+    // Check file name
     .then(() => {
       return new Promise((resolve, reject) => {
         let arrFileNameSplitedWithDot = fileName.split(".");
@@ -187,7 +237,7 @@ fileDocumentUploadInput.addEventListener("change", (e) => {
         }
       });
     })
-    // Xử lý tên tệp và thông báo ra giao diện
+    // Notify
     .then(() => {
       if (fileName.length > 18) {
         originalFileName.innerHTML =
@@ -196,7 +246,7 @@ fileDocumentUploadInput.addEventListener("change", (e) => {
         originalFileName.innerHTML = fileName;
       }
     })
-    // Thay đổi icon giao diện phù hợp với File Type
+    // Change icon in form upload
     .then(() => {
       switch (fileType) {
         case ".docx":
@@ -209,7 +259,7 @@ fileDocumentUploadInput.addEventListener("change", (e) => {
           fileDocumentUploadIcon.setAttribute("src", "/svg/powerPoint.svg");
       }
     })
-
+    // Alert error
     .catch((messageErr) => {
       alert(messageErr);
     });

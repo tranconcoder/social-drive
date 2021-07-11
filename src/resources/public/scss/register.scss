@@ -1,4 +1,4 @@
-@import "variables", "base", "grid";
+@import "./base/variables", "./base/base", "base/mixin";
 
 $formWidthRegister: 45rem;
 $formHeightRegister: 34rem;

@@ -1,4 +1,4 @@
-@import "../variables", "../base", "../grid", "../mixin";
+@import "../base/variables", "../base/base", "../base/mixin";
 
 $documentMoreItemHeight: 16rem;
 :root {
@@ -97,7 +97,10 @@ $formContentIconSize: 10rem;
 
     &__uploading {
       @include flex(row, center, flex-start);
-      @include setSize(calc(100% - var(--document-more-item-height)), $documentMoreItemHeight);
+      @include setSize(
+        calc(100% - var(--document-more-item-height)),
+        $documentMoreItemHeight
+      );
       padding-right: 11rem;
       display: none;
 
@@ -187,15 +190,15 @@ $formContentIconSize: 10rem;
         transform: translateY(-65%);
         margin-left: 3rem;
         border-radius: 50%;
-        background-image: url('/svg/close2.svg');
+        background-image: url("/svg/close2.svg");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 1rem;
-        transition: linear .1s;
+        transition: linear 0.1s;
 
         &:hover {
           cursor: pointer;
-          box-shadow: 0 0 .5rem .3rem rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 0.5rem 0.3rem rgba(0, 0, 0, 0.1);
         }
       }
     }
@@ -211,6 +214,19 @@ $formContentIconSize: 10rem;
         @include flex(column, center, flex-start);
         border-radius: 0.5rem;
         box-shadow: 0 0.1rem 0.5rem 0.2rem rgba(0, 0, 0, 0.1);
+        position: relative;
+
+        &.selected {
+          &::before {
+            content: "";
+            display: block;
+            @include setSize(2rem);
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background-image: url("/svg/check.svg");
+          }
+        }
 
         &__image {
           @include setSize(60%);
@@ -469,7 +485,7 @@ $formContentIconSize: 10rem;
         &__file-name {
           height: 3.4rem;
           position: relative;
-          transition: ease 0.3s;
+          transition: ease 0.1s;
 
           &.fail {
             margin-bottom: 3rem;

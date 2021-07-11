@@ -1,0 +1,107 @@
+@import "../base/variables", "../base/base", "../base/mixin";
+$confirmFormHeight: 18rem;
+$confirmFormWidth: 44rem;
+$confirmFormHeaderHeight: 3rem;
+$confirmFormIconSize: 10rem;
+
+.confirm {
+  @include positionFixedFullscreen();
+  @include flex(column, center, center);
+  z-index: 101;
+  background-color: $layoutColor;
+  backdrop-filter: blur(1px);
+  display: none;
+
+  &__form {
+    @include setSize($confirmFormWidth, $confirmFormHeight);
+    @include flex(column, stretch, flex-start);
+    background-color: $whiteColor;
+    border-radius: 1rem;
+    box-shadow: 0 0.1rem 1rem 0.1rem $layoutColor;
+
+    &__header {
+      @include setSize(100%, unset);
+      @include flex(row, center, center);
+      border-bottom: 0.1rem solid $borderColor;
+
+      &__title {
+        font-size: 1.6rem;
+        line-height: $confirmFormHeaderHeight;
+        font-weight: bold;
+        margin: 0;
+      }
+    }
+
+    &__footer {
+      flex-grow: 1;
+      @include flex(row, center, flex-start);
+
+      &__icon {
+        @include setSize($confirmFormIconSize);
+        margin-left: (
+            (
+                ($confirmFormHeight - $confirmFormHeaderHeight) -
+                  $confirmFormIconSize
+              ) / 2
+          ) - 1rem;
+        object-fit: contain;
+        object-position: center;
+      }
+
+      &__right {
+        $seperate: (
+            $confirmFormHeight - $confirmFormHeaderHeight - $confirmFormIconSize
+          ) / 2;
+        height: 100%;
+        flex-grow: 1;
+        padding-top: $seperate;
+        padding-right: $seperate;
+
+        &__title {
+          font-size: 2.2rem;
+          font-weight: 700;
+          font-family: "Nunito", sans-serif;
+          margin-bottom: 0.5rem;
+        }
+
+        &__content {
+          font-size: 1.6rem;
+        }
+
+        &__button-container {
+          @include flex(row, center, flex-end);
+
+          & > button {
+            @include setSize(10rem, 3.6rem);
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: $whiteColor;
+            border: 0;
+            border-radius: 0.5rem;
+          }
+
+          &__cancel {
+            margin-right: 1rem;
+            background-color: red;
+
+            &:hover {
+              background-color: $whiteColor;
+              color: red;
+              border: 0.2rem solid red;
+            }
+          }
+
+          &__confirm {
+            background-color: #2ee500;
+
+            &:hover {
+              background-color: $whiteColor;
+              color: #2ee500;
+              border: 0.2rem solid #2ee500;
+            }
+          }
+        }
+      }
+    }
+  }
+}

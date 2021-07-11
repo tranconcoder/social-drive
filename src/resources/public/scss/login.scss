@@ -1,4 +1,5 @@
-@import "_variables", "base", "grid";
+@import "./base/variables", "./base/base", "base/mixin";
+
 
 $formHeightLogin: 28rem;
 $formWidthLogin: 45rem;
