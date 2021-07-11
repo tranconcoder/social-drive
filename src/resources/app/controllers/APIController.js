@@ -82,23 +82,23 @@ class APIController {
             switch (file.name.split(".").pop()) {
               case "docx":
                 const folderWordPath = `src/resources/file/document/word/${req.user._id}`;
-                base.checkAndCreateDirectory(folderWordPath);
+                await base.checkAndCreateDirectory(folderWordPath);
                 file.mv(folderWordPath + `/${req.body.fileName}`);
                 break;
               case "xlsx":
               case "xlsm":
                 const folderExcelPath = `src/resources/file/document/excel/${req.user._id}`;
-                base.checkAndCreateDirectory(folderExcelPath);
+                await base.checkAndCreateDirectory(folderExcelPath);
                 file.mv(folderExcelPath + `/${req.body.fileName}`);
                 break;
               case "pptx":
                 const folderPowerPointPath = `src/resources/file/document/powerPoint/${req.user._id}`;
-                base.checkAndCreateDirectory(folderPowerPointPath);
+                await base.checkAndCreateDirectory(folderPowerPointPath);
                 file.mv(folderPowerPointPath + `/${req.body.fileName}`);
                 break;
               default:
                 const folderOthersPath = `src/resources/file/document/others/${req.user._id}`;
-                base.checkAndCreateDirectory(folderOthersPath);
+                await base.checkAndCreateDirectory(folderOthersPath);
                 file.mv(folderOthersPath + `/${req.body.fileName}`);
             }
             resolve();

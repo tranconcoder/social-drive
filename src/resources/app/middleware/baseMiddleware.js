@@ -20,7 +20,9 @@ class Base {
 
   checkAndCreateDirectory(folderPath) {
     if (!fs.existsSync(folderPath)) {
-      fs.mkdirSync(folderPath);
+      fs.mkdir(folderPath, 0777, (err) => {
+        if (err) console.log(err);
+      });
     }
   }
 
