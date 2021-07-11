@@ -39,11 +39,13 @@ class APIController {
 
   myDocument = {
     async checkFileName(req, res, next) {
-      let fileNameError = await document.findOne({
-        userId: req.user._id,
-        name: req.body.fileName,
-      });
-      console.log(fileNameError);
+      let fileNameError = await document.findOne(
+        {
+          userId: req.user._id,
+          name: req.body.fileName,
+        },
+        ["_id"]
+      );
       if (fileNameError) {
         res.json(false);
       } else {
@@ -161,41 +163,36 @@ class APIController {
               resolve();
             } else {
               let zip = await new AdmZip();
-              await document
-                .find({ _id: documentsDownload }, ["locate"])
-                .then(async (documents) => {
-                  documents.forEach((document) => {
+              await document.find(
+                { _id: documentsDownload },
+                ["locate"],
+                async function (err, documents) {
+                  if (err) console.log(err);
+
+                  await documents.forEach((document) => {
                     zip.addLocalFile(document.locate);
                   });
 
                   const outputFileFolder = `src/resources/file/document/others/${req.user._id}`;
                   const outputFile = `src/resources/file/document/others/${req.user._id}/fileProcessing.zip`;
-                  await baseJs.checkAndCreateDirectory(outputFileFolder);
+                  await base.checkAndCreateDirectory(outputFileFolder);
                   await fs.writeFileSync(outputFile, zip.toBuffer());
 
                   await res.download(outputFile, (err) => {
-                    if (err) console.log("Err when sending file!");
+                    if (!err) {
+                      fs.unlinkSync(outputFile);
+                      console.log("Downlaod file successfilly!");
+                    } else {
+                      console.log("Err when download file!");
+                    }
                   });
 
-                  fs.unlinkSync(outputFile);
-                });
-
-              resolve();
+                  resolve();
+                }
+              );
             }
           })
       );
-
-      // if (req.params.documentsId.length % 24 === 0) {
-      //   document.findOne(
-      //     { _id: req.params.documentId },
-      //     ["userId", "locate"],
-      //     function (err, result) {
-      //       if (result.userId == req.user._id && !err) {
-      //         res.download(result.locate);
-      //       }
-      //     }
-      //   );
-      // }
     },
   };
 }

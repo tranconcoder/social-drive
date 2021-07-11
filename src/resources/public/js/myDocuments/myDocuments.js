@@ -12,7 +12,6 @@ let documents;
 const documentList = $(".document-list");
 async function renderDocumentList() {
   documents = await getAllDocument();
-  console.log(documents);
   documentList.innerHTML = "";
 
   // set HTML
@@ -100,10 +99,6 @@ async function renderDocumentList() {
     contextMenuDownload.addEventListener("click", async (e) => {
       let downloadAPI = `${http}://${domain}/api/my-documents/download?`;
       const itemsSelected = $$(".document-list__item__container.selected");
-      const fileNameItemsSelected = $$(
-        `.document-list__item__container.selected 
-        `
-      );
 
       await itemsSelected.forEach((item) => {
         downloadAPI += `documents[]=${item.getAttribute("docId")}&`;
@@ -114,14 +109,17 @@ async function renderDocumentList() {
         .then((blob) => {
           let fileName;
           let a = document.createElement("a"); // create a tag a
+
           a.href = URL.createObjectURL(blob); // create url of blob
+          // Set file name
           if (itemsSelected.length === 1) {
             fileName = itemsSelected[0].querySelector(
               ".document-list__item__container__file-name"
             ).innerHTML;
-            console.log(fileName);
           } else {
-            fileName = `${Date.now()}__ documents.zip`;
+            let time = new Date(Date.now());
+            time.toLocaleTimeString("ICT");
+            fileName = `Documents_${time.getDate()}_${time.getMonth()}_${time.getFullYear()}.zip`;
           }
           a.setAttribute("download", fileName); // set file
           a.click(); // click tag a to download

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Error: ENOENT: no such file or directory, stat &#39;/home/conkgyt/Project/social/src/resources/file/document/powerPoint/60e3ed563ae45f1d2599ba00/1212.pptx&#39;</pre>
+</body>
+</html>
