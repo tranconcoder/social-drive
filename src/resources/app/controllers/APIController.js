@@ -71,11 +71,11 @@ class APIController {
         if (!req.user || !req.body.fileName || !req.files.file) {
           reject();
         } else {
-          resolve();
+          resolve("Lỗi xác thực");
         }
       })
         .then(() => {
-          // save file do disk
+          // save file to db
           return new Promise((resolve, reject) => {
             const file = req.files.file;
 
@@ -85,7 +85,8 @@ class APIController {
                 base.checkAndCreateDirectory(folderWordPath);
                 file.mv(folderWordPath + `/${req.body.fileName}`);
                 break;
-              case ("xlsm", "xlsx"):
+              case "xlsx":
+              case "xlsm":
                 const folderExcelPath = `src/resources/file/document/excel/${req.user._id}`;
                 base.checkAndCreateDirectory(folderExcelPath);
                 file.mv(folderExcelPath + `/${req.body.fileName}`);
@@ -106,7 +107,6 @@ class APIController {
         .then(() => {
           return new Promise(async (resolve, reject) => {
             // create file to database
-
             const file = req.files.file;
             const fileObject = await {
               userId: `${req.user._id}`,
@@ -131,8 +131,8 @@ class APIController {
         .then(() => {
           res.json(true);
         })
-        .catch(() => {
-          res.json(false);
+        .catch((err) => {
+          res.json(err);
         });
     },
 
@@ -142,57 +142,58 @@ class APIController {
 
     download(req, res, next) {
       new Promise((resolve, reject) => {
-        if (!req.user) reject();
-        if (!req.query.documents) reject();
+        if (!req.user) reject("Lỗi xác thực tài khoản");
+        if (!req.query.documents) reject("Lỗi xác thực query");
         resolve(req.query.documents);
-      }).then(
-        (documentsDownload) =>
-          new Promise(async (resolve, reject) => {
-            if (documentsDownload.length === 1) {
-              await document
-                .findOne({ _id: documentsDownload[0] }, ["locate"])
-
-                .then((document) => {
-                  res.download(document.locate);
-                })
-
-                .catch((err) => {
-                  console.log(err);
-                });
-
-              resolve();
-            } else {
-              let zip = await new AdmZip();
-              await document.find(
-                { _id: documentsDownload },
-                ["locate"],
-                async function (err, documents) {
-                  if (err) console.log(err);
-
-                  await documents.forEach((document) => {
-                    zip.addLocalFile(document.locate);
+      })
+        .then(
+          (documentsDownload) =>
+            new Promise(async (resolve, reject) => {
+              if (documentsDownload.length === 1) {
+                await document
+                  .findOne({ _id: documentsDownload[0] }, ["locate"])
+                  .then((document) => {
+                    res.download(document.locate);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                    reject("Lỗi tìm kiếm tài liệu trên db để tải xuống!");
                   });
 
-                  const outputFileFolder = `src/resources/file/document/others/${req.user._id}`;
-                  const outputFile = `${outputFileFolder}/fileProcessing.zip`;
-                  await base.checkAndCreateDirectory(outputFileFolder);
-                  await fs.writeFileSync(outputFile, zip.toBuffer());
+                resolve();
+              } else {
+                let zip = await new AdmZip();
+                await document.find(
+                  { _id: documentsDownload },
+                  ["locate"],
+                  async function (err, documents) {
+                    if (err) console.log(err);
 
-                  await res.download(outputFile, (err) => {
-                    if (!err) {
-                      fs.unlinkSync(outputFile);
-                      console.log("Downlaod file successfilly!");
-                    } else {
-                      console.log("Err when download file!");
-                    }
-                  });
+                    await documents.forEach((document) => {
+                      zip.addLocalFile(document.locate);
+                    });
 
-                  resolve();
-                }
-              );
-            }
-          })
-      );
+                    const outputFileFolder = `src/resources/file/document/others/${req.user._id}`;
+                    const outputFile = `${outputFileFolder}/fileProcessing.zip`;
+                    await base.checkAndCreateDirectory(outputFileFolder);
+                    await fs.writeFileSync(outputFile, zip.toBuffer());
+
+                    await res.download(outputFile, (err) => {
+                      if (!err) {
+                        fs.unlinkSync(outputFile);
+                        console.log("Download file successfilly!");
+                      } else {
+                        console.log("Err when download file!");
+                      }
+                    });
+
+                    resolve();
+                  }
+                );
+              }
+            })
+        )
+        .catch((err) => console.log(err));
     },
   };
 }

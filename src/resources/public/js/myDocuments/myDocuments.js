@@ -35,114 +35,115 @@ async function renderDocumentList() {
     </div>`;
   });
 
-  // document list context menu
-  async function documentListContextMenu() {
-    const documentListItems = $$(".document-list__item__container");
-
-    for (let index = 0; index < documentListItems.length; index++) {
-      // Set event Propagation Click event;
-      childElementItem = documentListItems[index].querySelectorAll(
-        ".document-list__item__container > *"
-      );
-      childElementItem.forEach((element) => {
-        element.addEventListener("click", (e) => {});
-        element.addEventListener("contextmenu", (e) => {});
-      });
-
-      // Select item when click
-      documentListItems[index].addEventListener("click", (e) => {
-        documentListItems[index].classList.toggle("selected");
-      });
-
-      documentListItems[index].addEventListener("contextmenu", async (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        // TODO: show and set content contextMenu
-        const contextMenu = $(".context-menu__document-item");
-        const contextMenuOverHeight =
-          e.screenY + contextMenu.offsetHeight - screen.height;
-
-        contextMenu.style.visibility = "visible";
-        contextMenu.style.left = `${e.clientX}px`;
-
-        if (contextMenuOverHeight > 0) {
-          contextMenu.style.top = `${e.clientY - contextMenuOverHeight}px`;
-        } else {
-          contextMenu.style.top = `${e.clientY}px`;
-        }
-
-        // Check this selection item
-        if (!documentListItems[index].classList.contains("selected")) {
-          // remove all itemsSelected
-          let itemsSelectedElement = $$(
-            ".document-list__item__container.selected"
-          );
-          await itemsSelectedElement.forEach((itemSelected) => {
-            itemSelected.classList.remove("selected");
-          });
-
-          // add this item to itemsSelected
-          documentListItems[index].classList.add("selected");
-        }
-
-        // TODO: hide contextMenu when click
-        document.addEventListener("click", (e) => {
-          contextMenu.style.visibility = "hidden";
-        });
-      });
-    }
-    // context menu selection
-    // download
-    const contextMenuDownload = $(".context-menu__item__download");
-
-    contextMenuDownload.addEventListener("click", async (e) => {
-      let downloadAPI = `${http}://${domain}/api/my-documents/download?`;
-      const itemsSelected = $$(".document-list__item__container.selected");
-
-      await itemsSelected.forEach((item) => {
-        downloadAPI += `documents[]=${item.getAttribute("docId")}&`;
-      });
-
-      await fetch(downloadAPI)
-        .then((response) => response.blob())
-        .then((blob) => {
-          let fileName;
-          let a = document.createElement("a"); // create a tag a
-
-          a.href = URL.createObjectURL(blob); // create url of blob
-          // Set file name
-          if (itemsSelected.length === 1) {
-            fileName = itemsSelected[0].querySelector(
-              ".document-list__item__container__file-name"
-            ).innerHTML;
-          } else {
-            let time = new Date(Date.now());
-            time.toLocaleTimeString("ICT");
-            fileName = `Documents_${time.getDate()}_${time.getMonth()}_${time.getFullYear()}.zip`;
-          }
-          a.setAttribute("download", fileName); // set file
-          a.click(); // click tag a to download
-        });
-    });
-
-    // delete
-    const contextMenuDelete = $(".context-menu__item__delete");
-    contextMenuDelete.addEventListener("click", (e) => {
-      let deleteAPI = `${http}://${domain}/api/my-documents/deletes`;
-      const xhr = new XMLHttpRequest();
-      const data = new FormData();
-
-      data.append("documentIds", [documentSelected.id, documentSelected.id]);
-      xhr.open("DELETE", deleteAPI);
-      xhr.send(data);
-    });
-  }
-
   documentListContextMenu();
 }
 
 renderDocumentList();
+
+// document list context menu
+async function documentListContextMenu() {
+  const documentListItems = $$(".document-list__item__container");
+
+  for (let index = 0; index < documentListItems.length; index++) {
+    // Set event Propagation Click event;
+    childElementItem = documentListItems[index].querySelectorAll(
+      ".document-list__item__container > *"
+    );
+    childElementItem.forEach((element) => {
+      element.addEventListener("click", (e) => {});
+      element.addEventListener("contextmenu", (e) => {});
+    });
+
+    // Select item when click
+    documentListItems[index].addEventListener("click", (e) => {
+      documentListItems[index].classList.toggle("selected");
+    });
+
+    documentListItems[index].addEventListener("contextmenu", async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // TODO: show and set content contextMenu
+      const contextMenu = $(".context-menu__document-item");
+      const contextMenuOverHeight =
+        e.screenY + contextMenu.offsetHeight - screen.height;
+
+      contextMenu.style.visibility = "visible";
+      contextMenu.style.left = `${e.clientX}px`;
+
+      if (contextMenuOverHeight > 0) {
+        contextMenu.style.top = `${e.clientY - contextMenuOverHeight}px`;
+      } else {
+        contextMenu.style.top = `${e.clientY}px`;
+      }
+
+      // Check this selection item
+      if (!documentListItems[index].classList.contains("selected")) {
+        // remove all itemsSelected
+        let itemsSelectedElement = $$(
+          ".document-list__item__container.selected"
+        );
+        await itemsSelectedElement.forEach((itemSelected) => {
+          itemSelected.classList.remove("selected");
+        });
+
+        // add this item to itemsSelected
+        documentListItems[index].classList.add("selected");
+      }
+
+      // TODO: hide contextMenu when click
+      document.addEventListener("click", (e) => {
+        contextMenu.style.visibility = "hidden";
+      });
+    });
+  }
+
+  // context menu selection
+  // download
+  const contextMenuDownload = $(".context-menu__item__download");
+
+  contextMenuDownload.addEventListener("click", async (e) => {
+    let downloadAPI = `${http}://${domain}/api/my-documents/download?`;
+    const itemsSelected = $$(".document-list__item__container.selected");
+
+    await itemsSelected.forEach((item) => {
+      downloadAPI += `documents[]=${item.getAttribute("docId")}&`;
+    });
+
+    await fetch(downloadAPI)
+      .then((response) => response.blob())
+      .then((blob) => {
+        let fileName;
+        let a = document.createElement("a"); // create a tag a
+
+        a.href = URL.createObjectURL(blob); // create url of blob
+        // Set file name
+        if (itemsSelected.length === 1) {
+          fileName = itemsSelected[0].querySelector(
+            ".document-list__item__container__file-name"
+          ).innerHTML;
+        } else {
+          let time = new Date(Date.now());
+          time.toLocaleTimeString("ICT");
+          fileName = `Documents_${time.getDate()}_${time.getMonth()}_${time.getFullYear()}.zip`;
+        }
+        a.setAttribute("download", fileName); // set file
+        a.click(); // click tag a to download
+      });
+  });
+
+  // delete
+  const contextMenuDelete = $(".context-menu__item__delete");
+  contextMenuDelete.addEventListener("click", (e) => {
+    let deleteAPI = `${http}://${domain}/api/my-documents/deletes`;
+    const xhr = new XMLHttpRequest();
+    const data = new FormData();
+
+    data.append("documentIds", [documentSelected.id, documentSelected.id]);
+    xhr.open("DELETE", deleteAPI);
+    xhr.send(data);
+  });
+}
 
 // document list API
 async function getAllDocument() {
