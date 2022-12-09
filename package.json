@@ -1,41 +1,41 @@
 {
-  "name": "social",
-  "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "nodemon --watch src",
-    "watch": "node-sass --watch --output-style=compressed src/resources/public/scss --output src/resources/public/css",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/conkgyt/social.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/conkgyt/social/issues"
-  },
-  "homepage": "https://github.com/conkgyt/social#readme",
-  "dependencies": {
-    "adm-zip": "^0.5.5",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.2.1",
-    "express-handlebars": "^5.3.2",
-    "express-session": "^1.17.2",
-    "handlebars": "^4.7.7",
-    "jimp": "^0.16.1",
-    "jpeg-js": "^0.4.2",
-    "mongodb": "^3.6.9",
-    "mongoose": "^5.12.14",
-    "mongoose-delete": "^0.5.3",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "node-sass": "^6.0.1",
-    "nodemon": "^2.0.7",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "pngjs": "^3.4.0"
-  }
+	"name": "social",
+	"version": "1.0.0",
+	"description": "",
+	"main": "src/index.js",
+	"scripts": {
+		"start": "nodemon --watch src",
+		"watch": "node-sass --watch --output-style=compressed src/resources/public/scss --output src/resources/public/css",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/conkgyt/social.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/conkgyt/social/issues"
+	},
+	"homepage": "https://github.com/conkgyt/social#readme",
+	"dependencies": {
+		"adm-zip": "^0.5.5",
+		"express": "^4.17.1",
+		"express-fileupload": "^1.2.1",
+		"express-handlebars": "^5.3.2",
+		"express-session": "^1.17.2",
+		"handlebars": "^4.7.7",
+		"jimp": "^0.16.1",
+		"jpeg-js": "^0.4.2",
+		"mongodb": "^3.6.9",
+		"mongoose": "^5.12.14",
+		"mongoose-delete": "^0.5.3",
+		"morgan": "^1.10.0",
+		"multer": "^1.4.2",
+		"node-sass": "^8.0.0",
+		"nodemon": "^2.0.7",
+		"passport": "^0.4.1",
+		"passport-local": "^1.0.0",
+		"pngjs": "^3.4.0"
+	}
 }
